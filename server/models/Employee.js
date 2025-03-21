@@ -13,8 +13,6 @@ const employeeSchema = new mongoose.Schema(
       minLength: 3,
       required: true,
       trim: true,
-      unique: true,
-      lowercase: true,
     },
     email: {
       type: String,

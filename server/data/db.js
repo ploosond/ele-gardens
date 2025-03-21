@@ -2,7 +2,7 @@ let products = [
   {
     tag: "sp01",
     scientific_name: "Acorus Gramineus",
-    category: "grass",
+    category: "flower",
     common_name: "Argenteostriatus",
     description: "A variegated ornamental grass with striking foliage.",
     images: [
@@ -27,7 +27,7 @@ let products = [
   {
     tag: "sp02",
     scientific_name: "Acorus Gramineus",
-    category: "grass",
+    category: "flower",
     common_name: "Ogon",
     description:
       "A tall, hardy grass with striking green and white striped leaves.",
@@ -59,7 +59,7 @@ let products = [
   {
     tag: "sp03",
     scientific_name: "Alopecurus Pratensis",
-    category: "grass",
+    category: "flower",
     common_name: "Aureovariegatus",
     description:
       "A beautiful ornamental grass with narrow leaves and arching form.",
