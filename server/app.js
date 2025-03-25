@@ -11,6 +11,7 @@ import testRouter from "./routes/test.js";
 import userRouter from "./routes/user.js";
 import productRouter from "./routes/product.js";
 import employeeRouter from "./routes/employee.js";
+import contactRouter from "./routes/contact.js";
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use("/api/ping", testRouter);
 app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);
 app.use("/api/employee", employeeRouter);
+app.use("/api/contact", contactRouter);
 
 app.use(middleware.unknownRequest);
 app.use(middleware.errorHandler);

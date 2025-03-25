@@ -100,7 +100,7 @@ const Navbar = () => {
         </div>
 
         {/* Navigation Items for Desktop */}
-        <div className="hidden items-center justify-center gap-4 bg-gradient-to-r from-lime-400 to-lime-600 md:flex lg:gap-20">
+        <div className="hidden items-center justify-center gap-4 bg-gradient-to-r from-lime-600 to-lime-400 md:flex lg:gap-12">
           {navItems.map((item, index) =>
             item.dropdown ? (
               <div
