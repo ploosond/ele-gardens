@@ -8,6 +8,7 @@ import Project from "./pages/Project";
 import Blog from "./pages/Blog";
 import Career from "./pages/Career";
 import Contact from "./pages/Contact";
+import Team from "./pages/Team";
 import Policy from "./pages/Policy";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -19,18 +20,18 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/location" element={<Location />} />
         <Route path="/product" element={<Product />} />
         <Route path="/product/:productId" element={<Product />} />
         <Route path="/project" element={<Project />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/career" element={<Career />} />
+
+        <Route path="/team" element={<Team />} />
+        <Route path="/location" element={<Location />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/career" element={<Career />} />
         <Route path="/policy" element={<Policy />} />
       </Routes>
       <Footer />
-      {/* combined blog and project into Our Work */}
-      {/* /location and /career comes in footer */}
     </div>
   );
 };
