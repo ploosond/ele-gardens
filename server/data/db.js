@@ -2,7 +2,7 @@ let products = [
   {
     tag: "sp01",
     scientific_name: "Acorus Gramineus",
-    category: "flower",
+    category: "grass",
     common_name: "Argenteostriatus",
     description: "A variegated ornamental grass with striking foliage.",
     images: [
@@ -11,11 +11,11 @@ let products = [
         altText: "A variegated ornamental grass with striking foliage.",
       },
       {
-        url: "https://elegrass.com/images/products/2/large/Acorus_Argenteostriatus.jpg",
+        url: "https://www.baumschule-horstmann.de/bilder/popup/weissgestreifter-kalmus-ogon-m054232_h_0.jpg",
         altText: "A variegated ornamental grass with striking foliage.",
       },
       {
-        url: "https://elegrass.com/images/products/2/large/Acorus_Argenteostriatus.jpg",
+        url: "https://www.baumschule-horstmann.de/bilder/popup/weissgestreifter-gras-kalmus-ogon-m054232_w_0.jpg",
         altText: "A variegated ornamental grass with striking foliage.",
       },
     ],
@@ -27,7 +27,7 @@ let products = [
   {
     tag: "sp02",
     scientific_name: "Acorus Gramineus",
-    category: "flower",
+    category: "grass",
     common_name: "Ogon",
     description:
       "A tall, hardy grass with striking green and white striped leaves.",
@@ -39,13 +39,13 @@ let products = [
           "A tall, hardy grass with striking green and white striped leaves.",
       },
       {
-        url: "https://elegrass.com/images/products/3/large/Acorus_gramineus_Ogon_W9A2150.jpg",
+        url: "https://www.baumschule-horstmann.de/bilder/popup/weissgestreifter-kalmus-ogon-m054232_w_0.jpg",
 
         altText:
           "A tall, hardy grass with striking green and white striped leaves.",
       },
       {
-        url: "https://elegrass.com/images/products/3/large/Acorus_gramineus_Ogon_W9A2150.jpg",
+        url: "https://www.baumschule-horstmann.de/bilder/popup/weissgestreifter-gras-kalmus-ogon-m054232_w_1.jpg",
 
         altText:
           "A tall, hardy grass with striking green and white striped leaves.",
@@ -65,17 +65,17 @@ let products = [
       "A beautiful ornamental grass with narrow leaves and arching form.",
     images: [
       {
-        url: "https://elegrass.com/images/products/59/large/1FvdS_StPeters__Alopecuros.jpg",
+        url: "https://www.baumschule-horstmann.de/bilder/popup/storchschnabel-new-dimension--m062133_h_0.jpg",
         altText:
           "A beautiful ornamental grass with narrow leaves and arching form.",
       },
       {
-        url: "https://elegrass.com/images/products/59/large/1FvdS_StPeters__Alopecuros.jpg",
+        url: "https://www.baumschule-horstmann.de/bilder/popup/storchschnabel-new-dimension--m062133_w_4.jpg",
         altText:
           "A beautiful ornamental grass with narrow leaves and arching form.",
       },
       {
-        url: "https://elegrass.com/images/products/59/large/1FvdS_StPeters__Alopecuros.jpg",
+        url: "https://www.baumschule-horstmann.de/bilder/popup/storchschnabel-new-dimension--m062133_w_2.jpg",
         altText:
           "A beautiful ornamental grass with narrow leaves and arching form.",
       },
@@ -83,7 +83,7 @@ let products = [
     height: 150,
     diameter: 40,
     hardiness: -20,
-    light: "sun",
+    light: "shadow",
   },
   {
     tag: "sp04",
@@ -93,15 +93,15 @@ let products = [
     description: "Compact grass with soft, feathery plumes.",
     images: [
       {
-        url: "https://elegrass.com/images/products/4/large/Arunda_donax_Variegata_W9A6898.jpg",
+        url: "https://www.baumschule-horstmann.de/bilder/popup/pfahlrohr-m044598_h_0.jpg",
         altText: "Compact grass with soft, feathery plumes.",
       },
       {
-        url: "https://elegrass.com/images/products/4/large/Arunda_donax_Variegata_W9A6898.jpg",
+        url: "https://www.baumschule-horstmann.de/bilder/popup/pfahlrohr-m044598_w_5.jpg",
         altText: "Compact grass with soft, feathery plumes.",
       },
       {
-        url: "https://elegrass.com/images/products/4/large/Arunda_donax_Variegata_W9A6898.jpg",
+        url: "https://www.baumschule-horstmann.de/bilder/popup/pfahlrohr-m044598_w_0.jpg",
         altText: "Compact grass with soft, feathery plumes.",
       },
     ],
@@ -118,7 +118,15 @@ let products = [
     description: "A fast-growing grass with white-striped leaves.",
     images: [
       {
-        url: "https://elegrass.com/images/products/6/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
+        url: "https://www.baumschule-horstmann.de/bilder/popup/reitgras-waldenbuch-m057965_h_0.jpg",
+        altText: "A fast-growing grass with white-striped leaves.",
+      },
+      {
+        url: "https://www.baumschule-horstmann.de/bilder/popup/reitgras-waldenbuch-m057965_w_5.jpg",
+        altText: "A fast-growing grass with white-striped leaves.",
+      },
+      {
+        url: "https://www.baumschule-horstmann.de/bilder/popup/reitgras-waldenbuch-m057965_w_0.jpg",
         altText: "A fast-growing grass with white-striped leaves.",
       },
     ],
@@ -129,628 +137,28 @@ let products = [
   },
   {
     tag: "sp06",
-    scientific_name: "Calamagrostis X Acutiflora",
+    scientific_name: "Bodendecker-Rose",
     category: "grass",
-    common_name: "Overdam",
+    common_name: "Alcantara",
     description: "A low-growing blue-green ornamental grass.",
     images: [
       {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
+        url: "https://www.baumschule-horstmann.de/bilder/popup/bodendecker-rose-alcantara-m009395_h_0.jpg",
         altText: "A low-growing blue-green ornamental grass.",
       },
       {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
+        url: "https://www.baumschule-horstmann.de/bilder/popup/bodendecker-rose-alcantara--m009395_w_0.jpg",
         altText: "A low-growing blue-green ornamental grass.",
       },
       {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
+        url: "https://www.baumschule-horstmann.de/bilder/popup/bodendecker-rose-alcantara--m009395_w_3.jpg",
         altText: "A low-growing blue-green ornamental grass.",
       },
     ],
     height: 30,
     diameter: 25,
     hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp07",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp08",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp09",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp10",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp11",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp12",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp13",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp14",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp15",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp16",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp17",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp18",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp19",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp20",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp21",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp22",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp23",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp24",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp25",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp26",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp27",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp28",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp29",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
-  },
-  {
-    tag: "sp30",
-    scientific_name: "Calamagrostis X Acutiflora",
-    category: "grass",
-    common_name: "Overdam",
-    description: "A low-growing blue-green ornamental grass.",
-    images: [
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-      {
-        url: "https://elegrass.com/images/products/5/large/Calamagrostis_x_acutiflora_Overdam_W9A1717.jpg",
-        altText: "A low-growing blue-green ornamental grass.",
-      },
-    ],
-    height: 30,
-    diameter: 25,
-    hardiness: -35,
-    light: "sun",
+    light: "shadow",
   },
 ];
 

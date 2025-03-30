@@ -1,6 +1,7 @@
 import { useState } from "react";
-import Information from "../components/Information";
+import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 import axios from "axios";
+import HeroSection from "../components/HeroSection";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,107 +12,210 @@ const Contact = () => {
     message: "",
   });
 
+  const [formStatus, setFormStatus] = useState({
+    submitted: false,
+    error: false,
+    message: "",
+  });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormData({
-      firstname: "",
-      lastname: "",
-      email: "",
-      phone: "",
-      message: "",
-    });
-    await axios.post("http://localhost:3001/api/contact", formData);
-    alert("Thank you! We’ll be in touch soon.");
+    try {
+      await axios.post("http://localhost:3001/api/contact", formData);
+      setFormStatus({
+        submitted: true,
+        error: false,
+        message: "Your message has been sent successfully!",
+      });
+      setFormData({
+        firstname: "",
+        lastname: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+    } catch (error) {
+      console.log(error);
+
+      setFormStatus({
+        submitted: true,
+        error: true,
+        message: "Something went wrong. Please try again.",
+      });
+    }
   };
 
   return (
-    <div className="mx-auto max-w-5xl px-6 py-12">
-      <div className="mt-8 grid gap-12 md:grid-cols-2">
-        {/* Contact Form */}
-        <div className="rounded-sm bg-gray-100 p-4 shadow-md sm:p-6">
-          <form onSubmit={handleSubmit} className="space-y-5 font-semibold">
-            <p className="mt-2 text-justify text-gray-600">
-              If you have any questions or suggestions, please do not hesitate
-              to contact us.
+    <div>
+      {/* Hero Section */}
+
+      <HeroSection
+        title="Contact"
+        highlight="Us"
+        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque
+              ab velit nobis iste et consequatur quam voluptatibus incidunt obcaecati,
+              explicabo vel tempore."
+      />
+
+      {/* Contact Info & Form */}
+      <section className="mx-auto max-w-7xl px-4 py-16">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+          {/* Contact Information */}
+          <div>
+            <h2 className="text-3xl font-semibold">Contact Us</h2>
+            <p className="mt-2 text-gray-600">
+              Reach out to us for inquiries or assistance.
             </p>
-            <div className="grid grid-cols-2 gap-4 font-medium">
-              <div>
-                <label className="block text-gray-700">First Name</label>
-                <input
-                  type="text"
-                  name="firstname"
-                  value={formData.firstname}
-                  onChange={handleChange}
-                  className="w-full rounded-sm p-2 focus:shadow-[inset_0px_0px_5px_0px_#84cc16] focus:outline-none"
-                  required
-                />
+
+            <div className="mt-6 space-y-6">
+              <div className="flex items-start">
+                <MapPin size={24} className="mr-4 text-green-600" />
+                <div>
+                  <h3 className="font-medium">Our Location</h3>
+                  <p>Drüllerweg 14</p>
+                  <p>47559 Kranenburg</p>
+                  <p>Germany</p>
+                </div>
               </div>
-              <div>
-                <label className="block text-gray-700">Last Name</label>
-                <input
-                  type="text"
-                  name="lastname"
-                  value={formData.lastname}
-                  onChange={handleChange}
-                  className="w-full rounded-sm p-2 focus:shadow-[inset_0px_0px_5px_0px_#84cc16] focus:outline-none"
-                  required
-                />
+
+              <div className="flex items-start">
+                <Phone size={24} className="mr-4 text-green-600" />
+                <div>
+                  <h3 className="font-medium">Phone</h3>
+                  <p>
+                    <a href="tel:+1234567890" className="hover:text-green-600">
+                      +49 (0)2826 / 91 50-0
+                    </a>
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <Mail size={24} className="mr-4 text-green-600" />
+                <div>
+                  <h3 className="font-medium">Email</h3>
+                  <p>
+                    <a
+                      href="mailto:info@example.com"
+                      className="hover:text-green-600"
+                    >
+                      info@example.com
+                    </a>
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <Clock size={24} className="mr-4 text-green-600" />
+                <div>
+                  <h3 className="font-medium">Hours</h3>
+                  <p>Mon-Fri: 9 AM - 6 PM | Sat: 9 AM - 4 PM | Sun: Closed</p>
+                </div>
               </div>
             </div>
+          </div>
 
-            <div className="font-medium">
-              <label className="block text-gray-700">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full rounded-sm p-2 focus:shadow-[inset_0px_0px_5px_0px_#84cc16] focus:outline-none"
-                required
-              />
-            </div>
+          {/* Contact Form */}
+          <div className="rounded-lg border border-gray-200 bg-white p-8 shadow-sm">
+            <h2 className="mb-6 text-2xl font-medium">Send Us a Message</h2>
 
-            <div className="font-medium">
-              <label className="block text-gray-700">Phone Number</label>
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                className="w-full rounded-sm p-2 focus:shadow-[inset_0px_0px_5px_0px_#84cc16] focus:outline-none"
-                required
-              />
-            </div>
+            {formStatus.submitted && (
+              <div
+                className={`mb-6 rounded-md p-4 ${formStatus.error ? "bg-red-100 text-red-800" : "bg-green-100 text-green-800"}`}
+              >
+                {formStatus.message}
+              </div>
+            )}
 
-            <div className="font-medium">
-              <label className="block text-gray-700">Message</label>
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                rows="4"
-                className="w-full rounded-sm p-2 focus:shadow-[inset_0px_0px_5px_0px_#84cc16] focus:outline-none"
-                required
-              ></textarea>
-            </div>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+                <div>
+                  <label className="mb-1 block text-sm font-medium">
+                    First Name *
+                  </label>
+                  <input
+                    type="text"
+                    name="firstname"
+                    value={formData.firstname}
+                    onChange={handleChange}
+                    required
+                    className="w-full rounded-md border p-2 focus:outline-none"
+                  />
+                </div>
 
-            <button
-              type="submit"
-              className="w-full rounded-sm bg-lime-600 py-2 text-white transition hover:bg-lime-500"
-            >
-              Send Message
-            </button>
-          </form>
+                <div>
+                  <label className="mb-1 block text-sm font-medium">
+                    Last Name *
+                  </label>
+                  <input
+                    type="text"
+                    name="lastname"
+                    value={formData.lastname}
+                    onChange={handleChange}
+                    required
+                    className="w-full rounded-md border p-2 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="mb-1 block text-sm font-medium">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full rounded-md border p-2 focus:outline-none"
+                  />
+                </div>
+
+                <div className="">
+                  <div>
+                    <label className="mb-1 block text-sm font-medium">
+                      Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="w-full rounded-md border p-2 focus:outline-none"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="mb-6">
+                <label className="mb-1 block text-sm font-medium">
+                  Your Message *
+                </label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows={5}
+                  className="w-full rounded-md border p-2 focus:outline-none"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                className="flex w-full items-center justify-center rounded-md bg-secondary py-2 text-white hover:bg-accent"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
         </div>
-
-        {/* Contact Information */}
-        <Information />
-      </div>
+      </section>
     </div>
   );
 };
