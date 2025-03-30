@@ -19,31 +19,31 @@ const Footer = () => {
               dolores incidunt asperiores ex ullam libero exercitationem, nemo
               totam suscipit deserunt!
             </p>
-            <div className="flex space-x-4 pt-2">
+            <div className="flex space-x-4">
               <a
                 href="#"
-                className="text-garden-100/80 transition-colors hover:text-blue-600"
+                className="p-2 transition-colors hover:text-blue-600"
                 aria-label="Facebook"
               >
                 <FaFacebookF size={20} />
               </a>
               <a
                 href="#"
-                className="text-garden-100/80 transition-colors hover:text-gray-900"
+                className="p-2 transition-colors hover:text-gray-900"
                 aria-label="Twitter"
               >
                 <FaXTwitter size={20} />
               </a>
               <a
                 href="#"
-                className="text-garden-100/80 transition-colors hover:text-pink-500"
+                className="p-2 transition-colors hover:text-pink-500"
                 aria-label="Instagram"
               >
                 <IoLogoInstagram size={20} />
               </a>
               <a
                 href="#"
-                className="text-garden-100/80 transition-colors hover:text-red-600"
+                className="p-2 transition-colors hover:text-red-600"
                 aria-label="Instagram"
               >
                 <IoLogoYoutube size={20} />
@@ -78,14 +78,7 @@ const Footer = () => {
                   Products
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/our-work"
-                  className="text-garden-100/80 transition-colors hover:text-white"
-                >
-                  Our Work
-                </Link>
-              </li>
+
               <li>
                 <Link
                   to="/teams"
@@ -142,18 +135,10 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/policy"
                   className="text-garden-100/80 transition-colors hover:text-white"
                 >
                   Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-garden-100/80 transition-colors hover:text-white"
-                >
-                  Terms of Service
                 </a>
               </li>
             </ul>
@@ -165,16 +150,16 @@ const Footer = () => {
               <li className="flex items-start">
                 <MapPin
                   size={20}
-                  className="mr-2 mt-0.5 flex-shrink-0 text-garden-300"
+                  className="text-garden-300 mr-2 mt-0.5 flex-shrink-0"
                 />
                 <span className="text-garden-100/80">
-                  123 Garden Avenue, Greenville, Nature Valley, 54321
+                  Drüller Weg 14, 47559 Kranenburg
                 </span>
               </li>
               <li className="flex items-center">
                 <Mail
                   size={20}
-                  className="mr-2 flex-shrink-0 text-garden-300"
+                  className="text-garden-300 mr-2 flex-shrink-0"
                 />
                 <a
                   href="mailto:info@gardenoasis.com"
@@ -186,7 +171,7 @@ const Footer = () => {
               <li className="flex items-center">
                 <Phone
                   size={20}
-                  className="mr-2 flex-shrink-0 text-garden-300"
+                  className="text-garden-300 mr-2 flex-shrink-0"
                 />
                 <a
                   href="tel:+1234567890"
@@ -199,9 +184,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-garden-800 pt-8 text-center">
-          <p className="text-sm text-garden-100/70">
-            &copy; {currentYear} Garden Oasis. All rights reserved.
+        <div className="border-garden-800 mt-12 border-t pt-8 text-center">
+          <p className="text-garden-100/70 text-sm">
+            Copyright ©{currentYear} Ele gardens. All rights reserved.
           </p>
         </div>
       </div>

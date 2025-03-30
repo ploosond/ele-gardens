@@ -208,7 +208,7 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="flex w-full items-center justify-center rounded-md bg-secondary py-2 text-white hover:bg-accent"
+                className="flex w-full items-center justify-center rounded-md bg-green-600 py-3 text-white hover:bg-green-700"
               >
                 Send Message
               </button>

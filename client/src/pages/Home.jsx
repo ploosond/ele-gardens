@@ -9,15 +9,15 @@ const Home = ({ products, members }) => {
 
   const homeSliderImages = [
     {
-      url: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07",
-      alt: "Beautiful garden with orange flowers",
+      url: "https://www.stauden-peters.de/s/cc_images/teaserbox_15569709.jpg?t=1626435468",
+      alt: "Willkommen bei Stauden Peters",
     },
     {
-      url: "https://images.unsplash.com/photo-1518495973542-4542c06a5843",
-      alt: "Sunlight passing through green leafed trees",
+      url: "https://www.stauden-peters.de/s/cc_images/teaserbox_15570074.jpg?t=1626442749",
+      alt: "Willkommen bei Stauden Peters",
     },
     {
-      url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+      url: "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/472744664_28280541954922902_7888935511809927159_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=YBf5VO4sn-oQ7kNvgEYCkva&_nc_oc=Adm4vhgbfEZciLpgg2X-L-OhF67bX6ts9kccg1cz4vX6uN17a-fUL9OkebSraURUAhY&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=gVHkh4O77xiN-340-z0e2w&oh=00_AYFfLeBNUHXiZ9FciEUVNyk7CNfTiIRhogeWmAt3gBxzaQ&oe=67EF6F5E",
       alt: "Serene body of water surrounded by trees",
     },
   ];
@@ -57,11 +57,11 @@ const Home = ({ products, members }) => {
               />
             </div>
           ))}
-          <div className="absolute inset-0 z-10 bg-black/50"></div>
+          <div className="absolute inset-0 z-10 bg-black/30"></div>
         </div>
 
         {/* Overlay Content */}
-        <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/50">
+        <div className="absolute inset-0 z-10 flex items-center justify-center">
           <div className="px-4 text-center text-white">
             <div className="mb-6 inline-block rounded-full bg-white/20 px-3 py-1 text-xl font-medium text-white backdrop-blur-sm">
               Welcome to EleGardens
@@ -92,7 +92,7 @@ const Home = ({ products, members }) => {
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`h-4 w-4 rounded-full transition-all ${
+              className={`h-2 w-8 rounded-full transition-all ${
                 index === currentSlide
                   ? "bg-green-600"
                   : "bg-white/50 hover:bg-white/80"
@@ -116,7 +116,7 @@ const Home = ({ products, members }) => {
 
           {/* Features */}
           <div className="mt-12 flex flex-wrap justify-center gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <div className="hover-scale rounded-lg bg-white p-6 text-center shadow-md">
+            <div className="rounded-lg bg-white p-6 text-center shadow-md transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg">
               <div className="bg-garden-green-light/20 text-garden-green-dark mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
                 <Leaf size={32} />
               </div>
@@ -126,7 +126,7 @@ const Home = ({ products, members }) => {
               </p>
             </div>
 
-            <div className="hover-scale rounded-lg bg-white p-6 text-center shadow-md">
+            <div className="rounded-lg bg-white p-6 text-center shadow-md transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg">
               <div className="bg-garden-green-light/20 text-garden-green-dark mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
                 <Droplets size={32} />
               </div>
@@ -138,7 +138,7 @@ const Home = ({ products, members }) => {
               </p>
             </div>
 
-            <div className="hover-scale rounded-lg bg-white p-6 text-center shadow-md">
+            <div className="rounded-lg bg-white p-6 text-center shadow-md transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg">
               <div className="bg-garden-green-light/20 text-garden-green-dark mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
                 <Mountain size={32} />
               </div>
@@ -229,7 +229,7 @@ const Home = ({ products, members }) => {
         </div>
       </section>
       {/* CTA Section */}
-      <section className="bg-three relative overflow-hidden py-4 md:py-8">
+      <section className="relative overflow-hidden bg-three py-4 md:py-8">
         {/* Content */}
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-6 text-3xl font-semibold md:text-4xl">
@@ -242,7 +242,7 @@ const Home = ({ products, members }) => {
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               to="/contact"
-              className="rounded-md border border-transparent bg-secondary px-6 py-3 font-medium text-white transition hover:border-white hover:bg-accent"
+              className="flex items-center justify-center rounded-md border border-transparent bg-green-600 px-6 py-3 font-medium text-white transition hover:border-white hover:bg-green-700"
             >
               Contact Our Team
             </Link>

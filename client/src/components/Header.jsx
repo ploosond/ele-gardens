@@ -14,8 +14,8 @@ const navItems = [
     name: "OUR WORK",
     dropdown: true,
     subItems: [
-      { name: "PROJECTS", path: "/project" },
-      { name: "BLOGS", path: "/blog" },
+      { name: "PROJECTS", path: "/projects" },
+      { name: "BLOGS", path: "/blogs" },
     ],
   },
   { name: "TEAM", path: "/team" },
@@ -112,6 +112,7 @@ const Navbar = () => {
                       key={subIndex}
                       to={subItem.path}
                       className="block rounded px-3 py-2 font-semibold text-white transition-colors duration-300 hover:bg-tertiary"
+                      onClick={() => setDropdownOpen(null)} // Close dropdown on click
                     >
                       {subItem.name}
                     </NavLink>
@@ -123,6 +124,7 @@ const Navbar = () => {
                 key={index}
                 to={item.path}
                 className="my-1 inline-block rounded-md px-4 py-2 font-semibold text-white transition-colors duration-300 hover:bg-accent"
+                onClick={() => setMenuOpen(false)} // Close menu on click
               >
                 {item.name}
               </NavLink>
@@ -152,6 +154,10 @@ const Navbar = () => {
                       key={subIndex}
                       to={subItem.path}
                       className="block px-6 py-2 text-gray-700 hover:bg-gray-100"
+                      onClick={() => {
+                        setMenuOpen(false); // Close menu
+                        setDropdownMobileOpen(false); // Close dropdown
+                      }}
                     >
                       {subItem.name}
                     </NavLink>
@@ -164,6 +170,7 @@ const Navbar = () => {
               key={index}
               to={item.path}
               className="block px-6 py-2 text-gray-800 hover:bg-gray-100"
+              onClick={() => setMenuOpen(false)} // Close menu on click
             >
               {item.name}
             </NavLink>

@@ -5,7 +5,7 @@ import About from "./pages/About";
 import Location from "./pages/Location";
 import Products from "./pages/Products";
 import Projects from "./pages/Projects";
-import Blog from "./pages/Blog";
+import Blogs from "./pages/Blogs";
 import Career from "./pages/Career";
 import Contact from "./pages/Contact";
 import Team from "./pages/Team";
@@ -56,7 +56,7 @@ const App = () => {
           element={<ProductDetail products={products} />}
         />
         <Route path="/projects" element={<Projects />} />
-        <Route path="/blog" element={<Blog />} />
+        <Route path="/blogs" element={<Blogs />} />
 
         <Route path="/team" element={<Team members={members} />} />
         <Route path="/location" element={<Location />} />

@@ -131,7 +131,7 @@ const About = () => {
                         : "md:order-2 md:pl-12"
                     } mt-6 md:mt-0 md:w-1/2`}
                   >
-                    <div className="animate-fade-in-up inline-block rounded-lg border border-green-200 bg-white p-6 shadow-sm">
+                    <div className="inline-block rounded-lg border border-green-200 bg-white p-6 shadow-sm transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg">
                       <h4 className="mb-2 text-xl font-medium text-gray-800">
                         {event.year}
                       </h4>
