@@ -28,6 +28,7 @@ connectDB()
     process.exit(1);
   });
 
+app.use(express.static("dist"));
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cors());
