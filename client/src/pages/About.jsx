@@ -83,40 +83,40 @@ const About = () => {
           {/* Timeline */}
           <div className="relative mt-16">
             {/* Timeline Line */}
-            <div className="absolute bottom-0 left-0 top-0 w-0.5 transform bg-tertiary md:left-1/2 md:translate-x-px"></div>
+            <div className="absolute bottom-0 left-1/2 top-0 w-0.5 transform bg-tertiary md:translate-x-px"></div>
 
             {/* Timeline Events */}
-            <div className="space-y-16">
+            <div className="space-y-8 sm:space-y-12">
               {[
                 {
                   year: "2010",
                   description:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.  consequuntur rerum? Blanditiis",
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur rerum? Blanditiis",
                 },
                 {
                   year: "2013",
                   description:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.  consequuntur rerum? Blanditiis",
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur rerum? Blanditiis",
                 },
                 {
                   year: "2015",
                   description:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.  consequuntur rerum? Blanditiis",
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur rerum? Blanditiis",
                 },
                 {
                   year: "2018",
                   description:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.  consequuntur rerum? Blanditiis",
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur rerum? Blanditiis",
                 },
                 {
                   year: "2021",
                   description:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.  consequuntur rerum? Blanditiis",
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur rerum? Blanditiis",
                 },
                 {
                   year: "Today",
                   description:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.  consequuntur rerum? Blanditiis",
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur rerum? Blanditiis",
                 },
               ].map((event, index) => (
                 <div
@@ -129,18 +129,20 @@ const About = () => {
                       index % 2 === 0
                         ? "md:order-1 md:pr-12 md:text-right"
                         : "md:order-2 md:pl-12"
-                    } mt-6 md:mt-0 md:w-1/2`}
+                    } mt-4 md:mt-0 md:w-1/2`}
                   >
-                    <div className="inline-block rounded-lg border border-green-200 bg-white p-6 shadow-sm transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg">
-                      <h4 className="mb-2 text-xl font-medium text-gray-800">
+                    <div className="inline-block rounded-lg border border-green-200 bg-white p-4 shadow-sm transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg sm:p-6">
+                      <h4 className="mb-2 text-lg font-medium text-gray-800 sm:text-xl">
                         {event.year}
                       </h4>
-                      <p className="text-gray-600">{event.description}</p>
+                      <p className="text-sm text-gray-600 sm:text-base">
+                        {event.description}
+                      </p>
                     </div>
                   </div>
 
                   {/* Timeline Marker */}
-                  <div className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full bg-green-600 text-white md:absolute md:left-1/2 md:-translate-x-1/2 md:transform">
+                  <div className="relative z-10 mt-16 flex h-8 w-8 items-center justify-center rounded-full bg-green-600 text-white sm:h-10 sm:w-10 md:absolute md:left-1/2 md:-translate-x-1/2 md:transform">
                     {index + 1}
                   </div>
 
@@ -150,7 +152,7 @@ const About = () => {
                       index % 2 === 0
                         ? "md:order-2 md:pl-12"
                         : "md:order-1 md:pr-12 md:text-right"
-                    } invisible md:visible md:w-1/2`}
+                    } mt-4 md:mt-0 md:w-1/2`}
                   ></div>
                 </div>
               ))}

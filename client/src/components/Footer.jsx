@@ -81,7 +81,7 @@ const Footer = () => {
 
               <li>
                 <Link
-                  to="/teams"
+                  to="/team"
                   className="text-garden-100/80 transition-colors hover:text-white"
                 >
                   Our Team
@@ -119,7 +119,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/our-work/projects"
+                  to="/projects"
                   className="text-garden-100/80 transition-colors hover:text-white"
                 >
                   Projects
@@ -127,19 +127,19 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/our-work/blogs"
+                  to="/blogs"
                   className="text-garden-100/80 transition-colors hover:text-white"
                 >
                   Blog
                 </Link>
               </li>
               <li>
-                <a
-                  href="/policy"
+                <Link
+                  to="/policy"
                   className="text-garden-100/80 transition-colors hover:text-white"
                 >
                   Privacy Policy
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

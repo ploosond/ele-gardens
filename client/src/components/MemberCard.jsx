@@ -10,8 +10,10 @@ const MemberCard = ({ member }) => {
         {member.firstname} {member.lastname}
       </h3>
       <p className="mb-2 text-sm text-gray-600">{member.role}</p>
-      <p className="mt-2 text-sm text-gray-500">{member.email}</p>
-      <p className="text-sm text-gray-500">{member.telephone}</p>
+      <div className="mt-2 space-y-1">
+        <p className="break-words text-sm text-gray-500">{member.email}</p>
+        <p className="text-sm text-gray-500">{member.telephone}</p>
+      </div>
     </div>
   );
 };

@@ -22,7 +22,7 @@ const Home = ({ products, members }) => {
     },
   ];
   // Get featured products (first 4)
-  const featuredProducts = products.slice(0, 4);
+  const featuredProducts = products?.slice(0, 4);
 
   // Get featured team members (first 4)
   const featuredTeam = members.slice(0, 4);

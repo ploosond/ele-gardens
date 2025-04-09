@@ -40,12 +40,17 @@ const ProductDetail = ({ products }) => {
         </Link>
 
         {/* Content Section */}
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-24">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-24">
           {/* Image Slider */}
-          <div className="mx-auto flex max-w-lg items-center justify-center">
+          <div className="mx-auto flex max-w-full items-center justify-center">
             <Carousel>
               {product.images.map((image, index) => (
-                <img key={index} src={image.url} alt={image.altText} />
+                <img
+                  key={index}
+                  src={image.url}
+                  alt={image.altText}
+                  className="h-auto w-full max-w-sm object-cover"
+                />
               ))}
             </Carousel>
           </div>
@@ -53,10 +58,10 @@ const ProductDetail = ({ products }) => {
           {/* Details Section */}
           <div className="flex flex-col justify-between">
             <div>
-              <span className="mb-4 hidden rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-700 lg:inline-block">
+              <span className="mb-4 inline-block rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-700">
                 {product.category}
               </span>
-              <h1 className="mb-2 text-4xl font-bold text-gray-800">
+              <h1 className="mb-2 text-3xl font-bold text-gray-800 sm:text-4xl">
                 {product.common_name}
               </h1>
               <p className="mb-4 text-lg italic text-gray-500">
@@ -66,7 +71,7 @@ const ProductDetail = ({ products }) => {
             </div>
 
             {/* Product Attributes */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="rounded-lg bg-gray-50 p-4 shadow-sm">
                 <h4 className="mb-1 text-sm font-medium text-gray-600">
                   Height

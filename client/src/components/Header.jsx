@@ -4,7 +4,6 @@ import MenuSharpIcon from "@mui/icons-material/MenuSharp";
 import CloseSharpIcon from "@mui/icons-material/CloseSharp";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import Arrow from "./util/Arrow";
-import Search from "./util/Search";
 
 const navItems = [
   { name: "HOME", path: "/" },

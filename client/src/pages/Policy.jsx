@@ -1,5 +1,3 @@
-import React from "react";
-
 const Policy = () => {
   return (
     <div className="px-4 py-8 sm:px-8 md:px-16 lg:px-32 xl:px-64">
