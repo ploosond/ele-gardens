@@ -1,15 +1,35 @@
 import { Link, Outlet, useNavigate } from "react-router";
-import HeroSection from "../components/HeroSection";
+import HeroSection from "../../components/HeroSection";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
-const Admin = () => {
+const AdminLayout = () => {
   const navigate = useNavigate();
+  const { userData, logout } = useContext(AuthContext);
 
   const handleLogout = () => {
-    // Clear user details from localStorage
-    window.localStorage.removeItem("loggedUser");
-    // Redirect to login page
+    logout();
     navigate("/login");
   };
+
+  if (!userData || userData.user.role !== "admin") {
+    return (
+      <div className="flex h-screen flex-col items-center justify-center bg-gray-100">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-red-600">Access Denied</h1>
+          <p className="mt-2 text-lg text-gray-700">
+            You do not have the necessary permissions to access this page.
+          </p>
+          <button
+            className="mt-6 rounded-md bg-red-500 px-6 py-3 text-white hover:bg-red-600"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -45,4 +65,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default AdminLayout;

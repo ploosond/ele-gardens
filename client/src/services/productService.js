@@ -25,4 +25,16 @@ const createProduct = async (newObject) => {
   return response.data;
 };
 
-export default { setToken, getAllProducts, createProduct };
+const deleteProduct = async (productId) => {
+  
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+
+  const response = await axios.delete(`${baseUrl}/${productId}`, config)
+  return response.data
+}
+
+export default { setToken, getAllProducts, createProduct, deleteProduct };

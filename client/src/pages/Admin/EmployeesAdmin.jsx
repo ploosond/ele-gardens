@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import employeeService from "../../services/employeeService";
 
-const EmployeesAdmin = ({ members }) => {
-  if (!members) {
-    return null;
-  }
+const EmployeesAdmin = () => {
+  const [members, setMembers] = useState([]);
 
-  console.log(members);
+  const handleDelete = async (employee, employeeId) => {
+    if (window.confirm(`Are you sure you want to delete ${employee}?`)) {
+      await employeeService.deleteEmployee(employeeId);
+      setMembers(members.filter((m) => m._id !== employeeId));
+    }
+  };
+
+  useEffect(() => {
+    const fetchEmployees = async () => {
+      try {
+        const data = await employeeService.getAllEmployees();
+        setMembers(data);
+      } catch (error) {
+        console.error("Error fetching employees:", error);
+      }
+    };
+
+    fetchEmployees();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
@@ -44,7 +61,10 @@ const EmployeesAdmin = ({ members }) => {
                 <button className="rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-600">
                   Update
                 </button>
-                <button className="rounded bg-red-500 px-3 py-1 text-white hover:bg-red-600">
+                <button
+                  onClick={() => handleDelete(m.firstname, m._id)}
+                  className="rounded bg-red-500 px-3 py-1 text-white hover:bg-red-600"
+                >
                   Delete
                 </button>
               </td>

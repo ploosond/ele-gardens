@@ -4,6 +4,7 @@ import MenuSharpIcon from "@mui/icons-material/MenuSharp";
 import CloseSharpIcon from "@mui/icons-material/CloseSharp";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import Arrow from "./util/Arrow";
+import logo from "../assets/logo.png";
 
 const navItems = [
   { name: "HOME", path: "/" },
@@ -53,9 +54,10 @@ const Navbar = () => {
               to="/"
               className="mx-auto flex items-center justify-start md:mx-0"
             >
-              <span className="font-serif text-2xl font-semibold text-white md:text-3xl">
+              <img src={logo} className="h-10 w-auto md:h-12" alt="Logo" />{" "}
+              {/* <span className="font-serif text-2xl font-semibold text-white md:text-3xl">
                 Ele <span className="text-garden-300">Gardens</span>
-              </span>
+              </span> */}
             </NavLink>
 
             {/* Search */}

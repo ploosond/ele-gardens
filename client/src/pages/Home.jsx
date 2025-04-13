@@ -16,10 +16,6 @@ const Home = ({ products, members }) => {
       url: "https://www.stauden-peters.de/s/cc_images/teaserbox_15570074.jpg?t=1626442749",
       alt: "Willkommen bei Stauden Peters",
     },
-    {
-      url: "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/472744664_28280541954922902_7888935511809927159_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=YBf5VO4sn-oQ7kNvgEYCkva&_nc_oc=Adm4vhgbfEZciLpgg2X-L-OhF67bX6ts9kccg1cz4vX6uN17a-fUL9OkebSraURUAhY&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=gVHkh4O77xiN-340-z0e2w&oh=00_AYFfLeBNUHXiZ9FciEUVNyk7CNfTiIRhogeWmAt3gBxzaQ&oe=67EF6F5E",
-      alt: "Serene body of water surrounded by trees",
-    },
   ];
   // Get featured products (first 4)
   const featuredProducts = products?.slice(0, 4);

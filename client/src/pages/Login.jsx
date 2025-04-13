@@ -1,31 +1,44 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import userService from "../services/userService";
-import productService from "../services/productService";
+import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
-  const [emailOrUsername, setEmailOrUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    emailOrUsername: "",
+    password: "",
+  });
   const [errorMessage, setErrorMessage] = useState("");
   let navigate = useNavigate();
+  const { userData, login } = useContext(AuthContext);
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const user = await userService.login({ emailOrUsername, password });
-      window.localStorage.setItem("loggedUser", JSON.stringify(user));
-      productService.setToken(user.token);
-      setEmailOrUsername("");
-      setPassword("");
+      const user = await userService.login(formData);
+      login(user);
+      setFormData({ emailOrUsername: "", password: "" });
       navigate("/admin");
     } catch (error) {
-      console.log(error);
-      setErrorMessage("wrong username or password");
+      setErrorMessage("Wrong credentials");
       setTimeout(() => {
         setErrorMessage(null);
       }, 3000);
     }
   };
+
+  useEffect(() => {
+    if (userData) {
+      navigate("/admin", { replace: true });
+    }
+  }, [userData, navigate]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
@@ -42,9 +55,9 @@ const Login = () => {
             </label>
             <input
               type="text"
-              id="email"
-              value={emailOrUsername}
-              onChange={(e) => setEmailOrUsername(e.target.value)}
+              name="emailOrUsername"
+              value={formData.emailOrUsername}
+              onChange={handleChange}
               required
               className="w-full rounded-md border p-2 focus:outline-none"
             />
@@ -59,9 +72,9 @@ const Login = () => {
             </label>
             <input
               type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
               required
               className="w-full rounded-md border p-2 focus:outline-none"
             />
@@ -78,11 +91,11 @@ const Login = () => {
 
         {/* Additional Links */}
         {/* <div className="mt-6 text-center text-sm text-gray-600">
-          Don't have an account?{" "}
-          <a href="/register" className="text-green-600 hover:underline">
-            Sign up
-          </a>
-        </div> */}
+            Don't have an account?{" "}
+            <a href="/register" className="text-green-600 hover:underline">
+              Sign up
+            </a>
+          </div> */}
       </div>
     </div>
   );

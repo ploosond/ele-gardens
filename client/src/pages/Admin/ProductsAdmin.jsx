@@ -1,9 +1,27 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import productService from "../../services/productService";
 
-const ProductsAdmin = ({ products }) => {
-  if (!products) {
-    return null;
-  }
+const ProductsAdmin = () => {
+  const [products, setProducts] = useState([]);
+
+  const handleDelete = async (product, productId) => {
+    if (window.confirm(`Are you sure you want to delete ${product}?`)) {
+      await productService.deleteProduct(productId);
+      setProducts(products.filter((p) => p._id !== productId));
+    }
+  };
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await productService.getAllProducts();
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
@@ -53,7 +71,10 @@ const ProductsAdmin = ({ products }) => {
                 <button className="rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-600">
                   Update
                 </button>
-                <button className="rounded bg-red-500 px-3 py-1 text-white hover:bg-red-600">
+                <button
+                  onClick={() => handleDelete(p.common_name, p._id)}
+                  className="rounded bg-red-500 px-3 py-1 text-white hover:bg-red-600"
+                >
                   Delete
                 </button>
               </td>
