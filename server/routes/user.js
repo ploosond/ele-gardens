@@ -46,6 +46,7 @@ router.post("/register", async (req, res, next) => {
         _id: newUser._id,
         username: newUser.username,
         email: newUser.email,
+        role: newUser.role
       },
     });
   } catch (error) {
@@ -93,6 +94,7 @@ router.post("/login", async (req, res, next) => {
         _id: user._id,
         username: user.username,
         email: user.email,
+        role: user.role
       },
     });
   } catch (error) {
