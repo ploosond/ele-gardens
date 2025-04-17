@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 import productService from "../../services/productService";
+import AddProductForm from "../../components/AddProductForm";
 
 const ProductsAdmin = () => {
   const [products, setProducts] = useState([]);
+  const [showAddForm, setShowAddForm] = useState(false);
 
   const handleDelete = async (product, productId) => {
     if (window.confirm(`Are you sure you want to delete ${product}?`)) {
       await productService.deleteProduct(productId);
       setProducts(products.filter((p) => p._id !== productId));
     }
+  };
+
+  const handleProductAdded = (newProduct) => {
+    setProducts((prevProducts) => [...prevProducts, newProduct]);
+    setShowAddForm(false); // Hide the form after adding
   };
 
   useEffect(() => {
@@ -26,10 +33,20 @@ const ProductsAdmin = () => {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="mb-4 flex flex-row-reverse items-center justify-between">
-        <button className="rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600">
-          Add +
+        <button
+          onClick={() => setShowAddForm((prev) => !prev)}
+          className="rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
+        >
+          {showAddForm ? "Cancel" : "Add +"}
         </button>
       </div>
+
+      {showAddForm && (
+        <div className="mb-6">
+          <AddProductForm onProductAdded={handleProductAdded} />
+        </div>
+      )}
+
       <table className="w-full border-collapse overflow-hidden rounded-lg bg-white shadow-md">
         <thead>
           <tr className="bg-gray-200 text-gray-700">

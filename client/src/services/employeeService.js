@@ -13,16 +13,26 @@ const getAllEmployees = async () => {
   return response.data;
 };
 
-const deleteEmployee = async (productId) => {
-  
+const createEmployee = async (newObject) => {
   const config = {
     headers: {
       Authorization: token,
     },
   };
 
-  const response = await axios.delete(`${baseUrl}/${productId}`, config)
-  return response.data
-}
+  const response = await axios.post(baseUrl, newObject, config);
+  return response.data;
+};
 
-export default {  setToken , getAllEmployees, deleteEmployee };
+const deleteEmployee = async (productId) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+
+  const response = await axios.delete(`${baseUrl}/${productId}`, config);
+  return response.data;
+};
+
+export default { setToken, getAllEmployees, createEmployee, deleteEmployee };
