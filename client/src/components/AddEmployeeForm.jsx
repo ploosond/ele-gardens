@@ -151,18 +151,6 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
               required
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium">Alt Text</label>
-            <input
-              type="text"
-              value={formData.profilePicture.altText}
-              onChange={(e) =>
-                handleProfilePictureChange("altText", e.target.value)
-              }
-              className="w-full rounded border p-2"
-              placeholder="Enter alt text for the picture"
-            />
-          </div>
         </div>
       </div>
 

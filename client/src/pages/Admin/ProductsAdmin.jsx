@@ -85,9 +85,9 @@ const ProductsAdmin = () => {
                 ))}
               </td>
               <td className="flex gap-2 border p-3">
-                <button className="rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-600">
+                {/* <button className="rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-600">
                   Update
-                </button>
+                </button> */}
                 <button
                   onClick={() => handleDelete(p.common_name, p._id)}
                   className="rounded bg-red-500 px-3 py-1 text-white hover:bg-red-600"

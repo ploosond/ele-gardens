@@ -24,6 +24,22 @@ const createEmployee = async (newObject) => {
   return response.data;
 };
 
+const updateEmployee = async (employeeId, updatedEmployee) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+
+  const response = await axios.put(
+    `${baseUrl}/${employeeId}`,
+    updatedEmployee,
+    config,
+  );
+
+  return response.data;
+};
+
 const deleteEmployee = async (productId) => {
   const config = {
     headers: {
@@ -35,4 +51,10 @@ const deleteEmployee = async (productId) => {
   return response.data;
 };
 
-export default { setToken, getAllEmployees, createEmployee, deleteEmployee };
+export default {
+  setToken,
+  getAllEmployees,
+  createEmployee,
+  updateEmployee,
+  deleteEmployee,
+};

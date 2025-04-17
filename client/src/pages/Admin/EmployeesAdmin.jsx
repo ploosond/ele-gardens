@@ -58,7 +58,6 @@ const EmployeesAdmin = () => {
             <th className="border p-3">Department</th>
             <th className="border p-3">Telephone</th>
             <th className="border p-3">Profile</th>
-            <th className="border p-3">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -78,9 +77,9 @@ const EmployeesAdmin = () => {
                 />
               </td>
               <td className="flex gap-2 border p-3">
-                <button className="rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-600">
+                {/* <button className="rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-600">
                   Update
-                </button>
+                </button> */}
                 <button
                   onClick={() => handleDelete(m.firstname, m._id)}
                   className="rounded bg-red-500 px-3 py-1 text-white hover:bg-red-600"
