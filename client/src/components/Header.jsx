@@ -179,6 +179,7 @@ const Navbar = () => {
         )}
       </div>
 
+      {/* Repalce the search box with language option EN/DE */}
       {/* Mobile Search Box */}
       {searchVisible && (
         <div className="flex justify-center bg-secondary px-4 py-3 md:hidden">
