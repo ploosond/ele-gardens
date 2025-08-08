@@ -10,3 +10,21 @@ html {
   padding: 0;
   box-sizing: border-box;
 }
+
+/* Default: 16:9 */
+.aspect-landscape {
+  aspect-ratio: 16 / 9;
+  max-height: 100vh;
+}
+
+/* When device is in portrait */
+@media (orientation: portrait) {
+  .aspect-landscape {
+    aspect-ratio: 9 / 16;
+    max-height: 80vh;
+  }
+}
+
+.hero-section-wrapper {
+  padding-bottom: 0 !important;
+}

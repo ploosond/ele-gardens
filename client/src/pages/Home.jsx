@@ -4,6 +4,7 @@ import { ArrowRight, Leaf, Droplets, Mountain } from "lucide-react";
 import ProductCard from "../components/ProductCard";
 import MemberCard from "../components/MemberCard";
 import { assets } from "../assets/assets";
+import VideoWithPlaceholder from "../components/video/VideoWithPlaceholder";
 
 const Home = ({ products, members }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -37,7 +38,7 @@ const Home = ({ products, members }) => {
   return (
     <div>
       {/* Hero Section with Slider */}
-      <section className="relative h-[70vh] min-h-[500px] overflow-hidden bg-gradient-to-r from-green-900 to-green-700">
+      <section className="aspect-landscape relative w-full overflow-hidden bg-gradient-to-r from-green-900 to-green-700">
         {/* Slider */}
         <div className="absolute inset-0 z-0">
           {homeSliderImages.map((image, index) => (
@@ -171,7 +172,9 @@ const Home = ({ products, members }) => {
           {/* Product Grid */}
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             {featuredProducts.map((product) => (
-              <ProductCard key={product.tag} product={product} />
+              <Link key={product.tag} to={`/products/${product.tag}`}>
+                <ProductCard product={product} />
+              </Link>
             ))}
           </div>
 
@@ -225,11 +228,28 @@ const Home = ({ products, members }) => {
           </div>
         </div>
       </section>
+
+      {/* Video Section */}
+      <section className="relative overflow-hidden py-2 md:py-4">
+        {/* Content */}
+        <div className="flex items-center justify-center">
+          <div>
+            <h2 className="text-3xl font-bold text-gray-800 md:text-4xl">
+              Bring Your Garden to Life
+            </h2>
+            <p className="mt-2 text-lg text-gray-600">
+              Experience the art of gardening through our eyes.
+            </p>
+          </div>
+        </div>
+        <VideoWithPlaceholder />
+      </section>
+
       {/* CTA Section */}
       <section className="relative overflow-hidden bg-three py-4 md:py-8">
         {/* Content */}
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="mb-6 text-3xl font-semibold md:text-4xl">
+          <h2 className="mb-6 text-3xl font-bold md:text-4xl">
             Ready to Transform Your Space?
           </h2>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-gray-600">

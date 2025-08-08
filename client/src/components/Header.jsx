@@ -8,10 +8,10 @@ import { ArrowUpRight, Globe } from "lucide-react";
 import { IoLanguageSharp } from "react-icons/io5";
 const navItems = [
   { name: "Home", path: "/" },
+  { name: "About Us", path: "/about" },
   { name: "Products", path: "/products" },
   { name: "Projects", path: "/projects" },
   { name: "Team", path: "/team" },
-  { name: "About", path: "/about" },
 ];
 
 const Navbar = () => {
@@ -44,7 +44,7 @@ const Navbar = () => {
                 <NavLink
                   key={index}
                   to={item.path}
-                  className="font-outfit text-md group relative inline-block overflow-hidden rounded-full border border-transparent px-4 py-2 font-medium text-gray-800 transition-all duration-300 hover:border-gray-300"
+                  className="text-md group relative inline-block overflow-hidden rounded-full border border-transparent px-4 py-2 font-outfit font-medium text-gray-800 transition-all duration-300 hover:border-gray-300"
                   onClick={() => setMenuOpen(false)}
                 >
                   <span className="relative z-10">{item.name}</span>
@@ -57,7 +57,7 @@ const Navbar = () => {
               {/* Language toggle button */}
               <button
                 onClick={() => setLanguage(language === "EN" ? "DE" : "EN")}
-                className="font-outfit group flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-800 transition hover:bg-gray-200"
+                className="group flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2 font-outfit text-sm font-semibold text-gray-800 transition hover:bg-gray-200"
                 title={
                   language === "EN" ? "Switch to German" : "Switch to English"
                 }
@@ -69,7 +69,7 @@ const Navbar = () => {
               {/* Contact button */}
               <a
                 href="/contact"
-                className="font-outfit group relative ml-4 hidden items-center gap-3 overflow-hidden rounded-full border border-gray-500 px-10 py-3 transition-all duration-300 lg:flex"
+                className="group relative ml-4 hidden items-center gap-3 overflow-hidden rounded-full border border-gray-500 px-10 py-3 font-outfit transition-all duration-300 lg:flex"
               >
                 <span className="relative z-10 flex items-center gap-3 text-gray-800">
                   Contact
@@ -93,7 +93,7 @@ const Navbar = () => {
           <NavLink
             key={index}
             to={item.path}
-            className="font-outfit block px-6 py-2 font-medium text-gray-800 hover:bg-gray-100"
+            className="block px-6 py-2 font-outfit font-medium text-gray-800 hover:bg-gray-100"
             onClick={() => setMenuOpen(false)} // Close menu on click
           >
             {item.name}
