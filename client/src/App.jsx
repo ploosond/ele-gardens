@@ -19,6 +19,7 @@ import ProductsAdmin from "./pages/Admin/ProductsAdmin";
 import EmployeesAdmin from "./pages/Admin/EmployeesAdmin";
 import PrivateRoute from "./pages/PrivateRoute";
 import PublicLayout from "./pages/PublicLayout";
+import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -49,6 +50,7 @@ const App = () => {
 
   return (
     <div>
+      <ScrollToTop />
       <Routes>
         {/* Public Routes with Layout */}
         <Route element={<PublicLayout />}>

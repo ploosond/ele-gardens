@@ -13,6 +13,9 @@ export default {
         two: "#dcf1de",
         three: "#bde3c1",
       },
+      fontFamily: {
+        outfit: ["Outfit", "sans-serif"],
+      },
     },
   },
   plugins: [],

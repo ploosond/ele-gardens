@@ -3,18 +3,19 @@ import { Link } from "react-router";
 import { ArrowRight, Leaf, Droplets, Mountain } from "lucide-react";
 import ProductCard from "../components/ProductCard";
 import MemberCard from "../components/MemberCard";
+import { assets } from "../assets/assets";
 
 const Home = ({ products, members }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const homeSliderImages = [
     {
-      url: "https://www.stauden-peters.de/s/cc_images/teaserbox_15569709.jpg?t=1626435468",
-      alt: "Willkommen bei Stauden Peters",
+      url: assets.main_background_1,
+      alt: "Ele gardens background image",
     },
     {
-      url: "https://www.stauden-peters.de/s/cc_images/teaserbox_15570074.jpg?t=1626442749",
-      alt: "Willkommen bei Stauden Peters",
+      url: assets.main_background_2,
+      alt: "Ele gardens background image",
     },
   ];
   // Get featured products (first 4)
@@ -49,7 +50,7 @@ const Home = ({ products, members }) => {
               <img
                 src={image.url}
                 alt={image.alt}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover object-top"
               />
             </div>
           ))}
