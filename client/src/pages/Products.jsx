@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import ProductCard from "../components/ProductCard";
-import HeroSection from "../components/HeroSection";
 import SearchInput from "../components/util/SearchInput";
-import { ChevronUp, ChevronDown } from "lucide-react";
 import { Link } from "react-router";
 
 const Products = ({ products }) => {
@@ -55,18 +53,11 @@ const Products = ({ products }) => {
       </div>
 
       {/* Products Section */}
-      <section className="bg-three py-12">
+      <section className="bg-white p-12">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-6 lg:flex-row">
             {/* Products Grid */}
             <div className="w-full">
-              <div className="mb-6">
-                <h2 className="text-xl font-medium">
-                  {filteredProducts.length}
-                  {filteredProducts.length === 1 ? " Product" : " Products"}
-                </h2>
-              </div>
-
               {filteredProducts.length === 0 ? (
                 <div className="rounded-lg bg-gray-100 py-12 text-center">
                   <h3 className="mb-2 text-xl font-medium">
@@ -83,7 +74,7 @@ const Products = ({ products }) => {
                   </button>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                <div className="grid grid-cols-1 gap-4 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
                   {filteredProducts.map((product) => (
                     <Link key={product.tag} to={`/products/${product.tag}`}>
                       <ProductCard product={product} />

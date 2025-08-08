@@ -2,6 +2,7 @@ const ProductCard = ({ product }) => {
   return (
     <div className="bg-white shadow-md transition hover:shadow-lg">
       {/* Image Section */}
+      <div className="h-1" style={{ backgroundColor: product.color }}></div>
       <div className="relative overflow-hidden object-cover">
         <img
           src={product.images[0]?.url || "https://via.placeholder.com/150"}
@@ -11,13 +12,14 @@ const ProductCard = ({ product }) => {
       </div>
 
       {/* Content Section */}
-      <div className="p-4">
-        <h3 className="mb-1 text-lg font-semibold text-gray-800">
-          {product.common_name}
-        </h3>
-        <p className="mb-2 text-sm italic text-gray-500">
+      <div
+        className="overflow-hidden p-4"
+        style={{ backgroundColor: product.color, height: "6rem" }}
+      >
+        <h3 className="text-lg font-semibold text-white">
           {product.scientific_name}
-        </p>
+        </h3>
+        <p className="mb-4 text-sm italic text-white">{product.common_name}</p>
       </div>
     </div>
   );

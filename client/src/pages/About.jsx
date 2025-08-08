@@ -1,9 +1,13 @@
 import React from "react";
-import { Leaf, Users, Heart } from "lucide-react";
+import { Leaf, Users, Heart, ArrowRight } from "lucide-react";
 import HeroSection from "../components/HeroSection";
 import { Link } from "react-router";
+import MemberCard from "../components/MemberCard";
 
-const About = () => {
+const About = ({ members }) => {
+  // Get featured team members (first 4)
+  const featuredTeam = members.slice(0, 4);
+
   return (
     <div>
       {/* Hero Section */}
@@ -16,7 +20,7 @@ const About = () => {
       />
 
       {/* Core Values Section */}
-      <section className="bg-three py-12 md:py-16">
+      <section className="bg-two py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Custom Title and Subtitle */}
           <div className="mb-12 text-center">
@@ -67,7 +71,7 @@ const About = () => {
       </section>
 
       {/* Timeline Section */}
-      <section className="bg-two py-12 md:py-16">
+      <section className="py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Custom Title and Subtitle */}
           <div className="mb-12 text-center">
@@ -157,6 +161,46 @@ const About = () => {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="bg-two py-16">
+        <div className="container mx-auto px-4">
+          {/* Section Header */}
+          <div className="mb-8 flex items-end justify-between">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-800 md:text-4xl">
+                Meet Our Team
+              </h2>
+              <p className="mt-2 text-lg text-gray-600">
+                The experts behind our beautiful gardens
+              </p>
+            </div>
+            <Link
+              to="/team"
+              className="text-garden-green-dark hover:text-garden-green-light hidden items-center transition-colors md:flex"
+            >
+              View full team <ArrowRight size={16} className="ml-2" />
+            </Link>
+          </div>
+
+          {/* Team Grid */}
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {featuredTeam.map((member) => (
+              <MemberCard key={member._id} member={member} />
+            ))}
+          </div>
+
+          {/* Mobile View Full Team Link */}
+          <div className="mt-8 text-center md:hidden">
+            <Link
+              to="/team"
+              className="text-garden-green-dark hover:text-garden-green-light inline-flex items-center transition-colors"
+            >
+              View full team <ArrowRight size={16} className="ml-2" />
+            </Link>
           </div>
         </div>
       </section>

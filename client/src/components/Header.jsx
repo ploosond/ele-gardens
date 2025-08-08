@@ -44,7 +44,7 @@ const Navbar = () => {
                 <NavLink
                   key={index}
                   to={item.path}
-                  className="text-md group relative inline-block overflow-hidden rounded-full border border-transparent px-4 py-2 font-outfit font-medium text-gray-800 transition-all duration-300 hover:border-gray-300"
+                  className="text-md group relative inline-block overflow-hidden rounded-full border border-transparent px-4 py-2 font-outfit font-normal text-gray-800 transition-all duration-300 hover:border-gray-300"
                   onClick={() => setMenuOpen(false)}
                 >
                   <span className="relative z-10">{item.name}</span>

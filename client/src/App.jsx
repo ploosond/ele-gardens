@@ -54,11 +54,8 @@ const App = () => {
       <Routes>
         {/* Public Routes with Layout */}
         <Route element={<PublicLayout />}>
-          <Route
-            path="/"
-            element={<Home products={products} members={members} />}
-          />
-          <Route path="/about" element={<About />} />
+          <Route path="/" element={<Home products={products} />} />
+          <Route path="/about" element={<About members={members} />} />
           <Route path="/products" element={<Products products={products} />} />
           <Route
             path="/products/:id"
