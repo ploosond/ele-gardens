@@ -30,6 +30,11 @@ const productSchema = new mongoose.Schema(
       enum: ["sun", "half-shadow", "shadow"],
       required: true,
     },
+    color: {
+      type: String,
+      default: "#E7E381",
+    },
+
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
