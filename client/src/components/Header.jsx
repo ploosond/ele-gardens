@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { NavLink } from "react-router";
 import MenuSharpIcon from "@mui/icons-material/MenuSharp";
 import CloseSharpIcon from "@mui/icons-material/CloseSharp";
 
@@ -34,22 +33,22 @@ const Navbar = () => {
             </button>
 
             {/* Logo - centered on mobile, left on desktop */}
-            <NavLink to="/" className="ml-4 flex items-center md:ml-6 lg:ml-8">
+            <a href="/" className="ml-4 flex items-center md:ml-6 lg:ml-8">
               <img src={logo} className="h-10 w-auto md:h-12" alt="Logo" />
-            </NavLink>
+            </a>
 
             {/* Navigation bar */}
             <div className="hidden items-center justify-center md:flex">
               {navItems.map((item, index) => (
-                <NavLink
+                <a
                   key={index}
-                  to={item.path}
+                  href={item.path}
                   className="text-md group relative inline-block overflow-hidden rounded-full border border-transparent px-4 py-2 font-outfit font-normal text-gray-800 transition-all duration-300 hover:border-gray-300"
                   onClick={() => setMenuOpen(false)}
                 >
                   <span className="relative z-10">{item.name}</span>
                   <span className="absolute inset-0 z-0 rounded-full bg-black/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                </NavLink>
+                </a>
               ))}
             </div>
 
@@ -90,14 +89,14 @@ const Navbar = () => {
         className={`md:hidden ${menuOpen ? "block" : "hidden"} space-y-4 border-t bg-white py-4`}
       >
         {navItems.map((item, index) => (
-          <NavLink
+          <a
             key={index}
-            to={item.path}
+            href={item.path}
             className="block px-6 py-2 font-outfit font-medium text-gray-800 hover:bg-gray-100"
             onClick={() => setMenuOpen(false)} // Close menu on click
           >
             {item.name}
-          </NavLink>
+          </a>
         ))}
       </div>
     </header>

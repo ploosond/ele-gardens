@@ -33,11 +33,6 @@ const AdminLayout = () => {
 
   return (
     <div>
-      <HeroSection
-        title="Admin"
-        highlight="Panel"
-        description="You can read, create, update, and delete the Products and Employees"
-      />
       <div className="m-2 flex items-center justify-between">
         <div className="flex gap-4 text-lg font-semibold text-gray-600">
           <Link

@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    emailOrUsername: "",
+    username: "",
     password: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
@@ -24,10 +24,10 @@ const Login = () => {
     try {
       const user = await userService.login(formData);
       login(user);
-      setFormData({ emailOrUsername: "", password: "" });
+      setFormData({ username: "", password: "" });
       navigate("/admin");
     } catch (error) {
-      setErrorMessage("Wrong credentials");
+      setErrorMessage(error || "Wrong credentials");
       setTimeout(() => {
         setErrorMessage(null);
       }, 3000);
@@ -51,12 +51,12 @@ const Login = () => {
           )}
           <div>
             <label htmlFor="email" className="mb-1 block text-sm font-medium">
-              Username or Email *
+              Username *
             </label>
             <input
               type="text"
-              name="emailOrUsername"
-              value={formData.emailOrUsername}
+              name="username"
+              value={formData.username}
               onChange={handleChange}
               required
               className="w-full rounded-md border p-2 focus:outline-none"

@@ -13,29 +13,26 @@ const getAllEmployees = async () => {
   return response.data;
 };
 
-const createEmployee = async (newObject) => {
+const createEmployee = async (formData) => {
   const config = {
     headers: {
       Authorization: token,
+      "Content-Type": "multipart/form-data",
     },
   };
 
-  const response = await axios.post(baseUrl, newObject, config);
+  const response = await axios.post(baseUrl, formData, config);
   return response.data;
 };
 
-const updateEmployee = async (employeeId, updatedEmployee) => {
+const updateEmployee = async (id, updatedEmployee) => {
   const config = {
     headers: {
       Authorization: token,
     },
   };
 
-  const response = await axios.put(
-    `${baseUrl}/${employeeId}`,
-    updatedEmployee,
-    config,
-  );
+  const response = await axios.put(`${baseUrl}/${id}`, updatedEmployee, config);
 
   return response.data;
 };

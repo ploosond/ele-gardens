@@ -1,6 +1,7 @@
 import express from "express";
 import Employee from "../models/Employee.js";
 import middleware from "../utils/middleware.js";
+import upload from "../utils/upload.js";
 
 const router = express.Router();
 
@@ -31,17 +32,13 @@ router.post(
   "/",
   middleware.userExtractor,
   middleware.isAdmin,
+  upload.single("profilePicture"),
   async (req, res, next) => {
     try {
-      const {
-        firstname,
-        lastname,
-        email,
-        role,
-        department,
-        telephone,
-        profilePicture,
-      } = req.body;
+      const { firstname, lastname, email, role, department, telephone } =
+        req.body;
+
+      const profilePicturePath = req.file ? req.file.path : null;
 
       const newEmployee = new Employee({
         firstname,
@@ -50,7 +47,10 @@ router.post(
         role,
         department,
         telephone,
-        profilePicture,
+        profilePicture: {
+          url: req.file?.path || "https://www.gravatar.com/avatar/?d=mp&s=200",
+          altText: `${firstname} ${lastname}'s profile picture`,
+        },
         user: req.user._id,
       });
 
@@ -66,9 +66,23 @@ router.put(
   "/:id",
   middleware.userExtractor,
   middleware.isAdmin,
+  upload.single("profilePicture"),
   async (req, res, next) => {
     try {
       const body = req.body;
+
+      let profilePicture = body.profilePicture;
+      if (req.file) {
+        profilePicture = {
+          url: req.file.path,
+          altText: body.profilePictureAltText || "",
+        };
+      } else if (body.profilePicture) {
+        try {
+          profilePicture = JSON.parse(body.profilePicture);
+        } catch {}
+      }
+
       const employee = {
         firstname: body.firstname,
         lastname: body.lastname,
@@ -76,7 +90,7 @@ router.put(
         role: body.role,
         department: body.department,
         telephone: body.telephone,
-        profilePicture: body.profilePicture,
+        profilePicture,
       };
 
       const updatedEmployee = await Employee.findByIdAndUpdate(
@@ -84,6 +98,10 @@ router.put(
         employee,
         { new: true }
       );
+
+      if (!updatedEmployee) {
+        return res.status(404).json({ error: "Employee not found" });
+      }
 
       return res.status(200).json(updatedEmployee);
     } catch (error) {

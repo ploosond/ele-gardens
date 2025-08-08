@@ -9,7 +9,7 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
     role: "",
     department: "",
     telephone: "",
-    profilePicture: { url: "", altText: "" },
+    profilePicture: null, // store file object
   });
 
   const handleChange = (e) => {
@@ -17,18 +17,22 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleProfilePictureChange = (field, value) => {
-    setFormData({
-      ...formData,
-      profilePicture: { ...formData.profilePicture, [field]: value },
-    });
+  const handleFileChange = (e) => {
+    setFormData({ ...formData, profilePicture: e.target.files[0] });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const addedEmployee = await employeeService.createEmployee(formData);
-      onEmployeeAdded(addedEmployee); // Notify parent component
+      const formDataToSend = new FormData();
+      Object.keys(formData).forEach((key) => {
+        formDataToSend.append(key, formData[key]);
+      });
+
+      const addedEmployee =
+        await employeeService.createEmployee(formDataToSend);
+      onEmployeeAdded(addedEmployee);
+
       setFormData({
         firstname: "",
         lastname: "",
@@ -36,7 +40,7 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
         role: "",
         department: "",
         telephone: "",
-        profilePicture: { url: "", altText: "" },
+        profilePicture: null,
       });
     } catch (error) {
       console.error("Error adding employee:", error);
@@ -47,10 +51,10 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
     <form
       onSubmit={handleSubmit}
       className="space-y-6 rounded bg-white p-6 shadow-md"
+      encType="multipart/form-data"
     >
       <h2 className="text-lg font-semibold">Add New Employee</h2>
 
-      {/* General Information Section */}
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium">
@@ -132,29 +136,20 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
         </div>
       </div>
 
-      {/* Profile Picture Section */}
+      {/* Profile Picture */}
       <div>
-        <h3 className="text-sm font-medium">Profile Picture</h3>
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium">
-              Picture URL <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              value={formData.profilePicture.url}
-              onChange={(e) =>
-                handleProfilePictureChange("url", e.target.value)
-              }
-              className="w-full rounded border p-2"
-              placeholder="Enter profile picture URL"
-              required
-            />
-          </div>
-        </div>
+        <label className="block text-sm font-medium">
+          Profile Picture <span className="text-red-500">*</span>
+        </label>
+        <input
+          type="file"
+          name="profilePicture"
+          accept="image/*"
+          onChange={handleFileChange}
+          className="w-full rounded border p-2"
+        />
       </div>
 
-      {/* Submit Button */}
       <button
         type="submit"
         className="w-full rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"

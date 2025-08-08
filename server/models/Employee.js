@@ -28,9 +28,12 @@ const employeeSchema = new mongoose.Schema(
     profilePicture: {
       url: {
         type: String,
-        required: true,
+        default: "https://www.gravatar.com/avatar/?d=mp&s=200",
       },
-      altText: { type: String },
+      altText: {
+        type: String,
+        default: "Default profile picture",
+      },
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,

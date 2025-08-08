@@ -6,10 +6,7 @@ const connectDB = async () => {
     throw new Error("Configure the MongoDB URI properly in file .env");
   }
 
-  return mongoose.connect(config.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  return mongoose.connect(config.MONGODB_URI);
 };
 
 export default connectDB;

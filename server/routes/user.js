@@ -46,7 +46,7 @@ router.post("/register", async (req, res, next) => {
         _id: newUser._id,
         username: newUser.username,
         email: newUser.email,
-        role: newUser.role
+        role: newUser.role,
       },
     });
   } catch (error) {
@@ -56,25 +56,23 @@ router.post("/register", async (req, res, next) => {
 
 router.post("/login", async (req, res, next) => {
   try {
-    const { emailOrUsername, password } = req.body;
+    const { username, password } = req.body;
 
     // Validate input
-    if (!emailOrUsername || !password) {
+    if (!username || !password) {
       return res
         .status(400)
-        .json({ error: "Email/Username and password are required" });
+        .json({ error: "Username and password are required" });
     }
 
     // Check if user exists by email or username
-    const user = await User.findOne({
-      $or: [{ email: emailOrUsername }, { username: emailOrUsername }],
-    });
+    const user = await User.findOne({ username: username });
 
     if (!user) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    // Compare passwords
+    // Compare passwords (assuming user model has comparePassword method)
     const isMatch = await user.comparePassword(password);
 
     if (!isMatch) {
@@ -94,7 +92,7 @@ router.post("/login", async (req, res, next) => {
         _id: user._id,
         username: user.username,
         email: user.email,
-        role: user.role
+        role: user.role,
       },
     });
   } catch (error) {
