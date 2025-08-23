@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Location from "./pages/Location";
 import Products from "./pages/Products";
 import Projects from "./pages/Projects";
-import Blogs from "./pages/Blogs";
 import Career from "./pages/Career";
 import Contact from "./pages/Contact";
 import Team from "./pages/Team";
@@ -20,6 +19,7 @@ import EmployeesAdmin from "./pages/Admin/EmployeesAdmin";
 import PrivateRoute from "./pages/PrivateRoute";
 import PublicLayout from "./pages/PublicLayout";
 import ScrollToTop from "./components/ScrollToTop";
+import ProjectDetail from "./components/ProjectDetail";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -62,7 +62,7 @@ const App = () => {
             element={<ProductDetail products={products} />}
           />
           <Route path="/projects" element={<Projects />} />
-          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/projects/:id" element={<ProjectDetail />} />
 
           <Route path="/team" element={<Team members={members} />} />
           <Route path="/location" element={<Location />} />

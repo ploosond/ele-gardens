@@ -33,12 +33,12 @@ const ProductDetail = ({ products }) => {
     <div className="container mx-auto mt-8 px-4 py-12">
       {/* Back to Products Button */}
 
-      <Link
+      {/* <Link
         to="/products"
         className="mb-4 inline-block text-lg text-green-600 hover:text-green-800"
       >
         &larr; Back to Products
-      </Link>
+      </Link> */}
 
       {/* Content Section */}
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-24">
@@ -53,10 +53,10 @@ const ProductDetail = ({ products }) => {
         {/* Details Section */}
         <div className="flex flex-col">
           <div className="mb-10">
-            <h1 className="font-poppins mb-2 text-3xl font-semibold text-green-600 sm:text-4xl">
+            <h1 className="mb-2 font-poppins text-3xl font-semibold text-green-600 sm:text-4xl">
               {product.scientific_name}
             </h1>
-            <p className="font-poppins mb-4 text-lg italic text-secondary">
+            <p className="mb-4 font-poppins text-lg italic text-secondary">
               {product.common_name}
             </p>
             <hr className="mb-6 border-0 border-b-2 border-gray-300" />

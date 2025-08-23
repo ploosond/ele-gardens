@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
-import { ArrowRight, Leaf, Droplets, Mountain } from "lucide-react";
+import { ArrowRight, Sprout, Sun, Flower2, Recycle } from "lucide-react";
+
 import ProductCard from "../components/ProductCard";
 import MemberCard from "../components/MemberCard";
 import { assets } from "../assets/assets";
@@ -58,9 +59,6 @@ const Home = ({ products }) => {
         {/* Overlay Content */}
         <div className="absolute inset-0 z-10 flex items-center justify-center">
           <div className="px-4 text-center text-white">
-            <div className="mb-6 inline-block rounded-full bg-white/20 px-3 py-1 text-2xl font-medium text-white backdrop-blur-sm">
-              Welcome to elegardens
-            </div>
             <h1 className="mb-6 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
               Transform Your Space with{" "}
               <span className="text-green-300">Nature's Beauty</span>
@@ -82,7 +80,7 @@ const Home = ({ products }) => {
         </div>
 
         {/* Navigation Dots */}
-        <div className="absolute bottom-6 left-1/2 z-30 flex -translate-x-1/2 space-x-3">
+        {/* <div className="absolute bottom-6 left-1/2 z-30 flex -translate-x-1/2 space-x-3">
           {homeSliderImages.map((_, index) => (
             <button
               key={index}
@@ -94,57 +92,68 @@ const Home = ({ products }) => {
               }`}
             ></button>
           ))}
-        </div>
+        </div> */}
       </section>
+
       {/* Features Section */}
-      <section className="bg-two py-16">
-        <div className="container mx-auto px-4">
-          {/* Section Header */}
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-800 md:text-4xl">
-              Why Choose Us
-            </h2>
-            <p className="mt-2 text-lg text-gray-600">
-              We deliver excellence in all aspects of gardening
-            </p>
-          </div>
+      <section className="bg-white py-12">
+        <div className="mx-auto max-w-7xl px-4">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Feature 1: Freshly Handpicked */}
+            <div className="flex flex-col items-center text-center">
+              <Sprout strokeWidth={1} className="mb-2 h-8 w-8 text-green-600" />
 
-          {/* Features */}
-          <div className="mt-12 flex flex-wrap justify-center gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <div className="rounded-lg bg-white p-6 text-center shadow-md transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg">
-              <div className="bg-garden-green-light/20 text-garden-green-dark mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
-                <Leaf size={32} />
+              <div className="mt-2 text-xl font-extrabold">
+                Freshly Handpicked
               </div>
-              <h3 className="mb-2 text-xl font-semibold">Quality Plants</h3>
-              <p className="text-gray-600">
-                We grow and source the healthiest plants for your garden.
-              </p>
+              <div className="mt-1 text-base text-gray-700">
+                Flowers picked daily for maximum freshness
+              </div>
             </div>
 
-            <div className="rounded-lg bg-white p-6 text-center shadow-md transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg">
-              <div className="bg-garden-green-light/20 text-garden-green-dark mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
-                <Droplets size={32} />
+            {/* Feature 2: Seasonal & Local */}
+            <div className="flex flex-col items-center text-center">
+              <Sun strokeWidth={1} className="mb-2 h-8 w-8 text-green-600" />
+
+              <div className="mt-2 text-xl font-extrabold">
+                Seasonal & Local
               </div>
-              <h3 className="mb-2 text-xl font-semibold">
-                Sustainable Practices
-              </h3>
-              <p className="text-gray-600">
-                We use eco-friendly methods in all our garden projects.
-              </p>
+              <div className="mt-1 text-base text-gray-700">
+                Grown by trusted local gardeners
+              </div>
             </div>
 
-            <div className="rounded-lg bg-white p-6 text-center shadow-md transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg">
-              <div className="bg-garden-green-light/20 text-garden-green-dark mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
-                <Mountain size={32} />
+            {/* Feature 3: Premium Quality Blooms */}
+            <div className="flex flex-col items-center text-center">
+              <Flower2
+                strokeWidth={1}
+                className="mb-2 h-8 w-8 text-green-600"
+              />
+
+              <div className="mt-2 text-xl font-extrabold">Premium Quality</div>
+              <div className="mt-1 text-base text-gray-700">
+                Only the healthiest, most vibrant flowers
               </div>
-              <h3 className="mb-2 text-xl font-semibold">Beautiful Designs</h3>
-              <p className="text-gray-600">
-                Our landscape designs transform outdoor spaces.
-              </p>
+            </div>
+
+            {/* Feature 4: Sustainable Choice */}
+            <div className="flex flex-col items-center text-center">
+              <Recycle
+                strokeWidth={1}
+                className="mb-2 h-8 w-8 text-green-600"
+              />
+
+              <div className="mt-2 text-xl font-extrabold">
+                Sustainable Choice
+              </div>
+              <div className="mt-1 text-base text-gray-700">
+                Eco-friendly packaging & sourcing
+              </div>
             </div>
           </div>
         </div>
       </section>
+
       {/* Featured Products Section */}
       <section className="bg-white p-12">
         <div className="mx-auto px-4">
