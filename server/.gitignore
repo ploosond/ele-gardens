@@ -134,3 +134,7 @@ out
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Ignore built video assets (avoid committing large files)
+/dist/videos/
+/dist/videos/intro.mp4
