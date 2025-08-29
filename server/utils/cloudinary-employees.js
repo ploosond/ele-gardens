@@ -8,6 +8,17 @@ const storage = new CloudinaryStorage({
     folder: 'employees', // Folder in your Cloudinary account
     allowed_formats: ['jpg', 'jpeg', 'png', 'gif'],
     transformation: [{ width: 800, height: 800, crop: 'fill' }],
+    // ensure a deterministic public_id is set so multer provides file.filename
+    public_id: (req, file) => {
+      // build a short, safe base name without extension so Cloudinary will
+      // create a clean public_id under the configured folder
+      const base = file.originalname
+        .replace(/\.[^.]+$/, '') // remove extension
+        .replace(/[^a-z0-9_.-]/gi, '-')
+        .toLowerCase()
+        .slice(0, 50);
+      return `${Date.now()}-${Math.random().toString(36).slice(2, 8)}-${base}`;
+    },
   },
 });
 

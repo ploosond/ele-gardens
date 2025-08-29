@@ -40,18 +40,20 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      !formData.firstname ||
-      !formData.lastname ||
-      !formData.email ||
-      !formData.role_en ||
-      !formData.role_de ||
-      !formData.department_en ||
-      !formData.department_de
-    ) {
-      alert(
-        "All fields are required, including role and department in both languages.",
-      );
+    // client-side validation for required fields
+    const missing = [];
+    if (!formData.firstname) missing.push('First name');
+    if (!formData.lastname) missing.push('Last name');
+    if (!formData.email) missing.push('Email');
+    if (!formData.role_en) missing.push('Role (EN)');
+    if (!formData.role_de) missing.push('Role (DE)');
+    if (!formData.department_en) missing.push('Department (EN)');
+    if (!formData.department_de) missing.push('Department (DE)');
+    if (!formData.telephone) missing.push('Telephone');
+    if (!formData.profilePicture) missing.push('Profile Picture');
+
+    if (missing.length > 0) {
+      alert('Please provide required fields: ' + missing.join(', '));
       return;
     }
 
@@ -111,7 +113,8 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
             value={formData.firstname}
             onChange={handleChange}
             className="w-full rounded border p-2"
-            required
+              placeholder="First name"
+              required
           />
         </div>
         <div>
@@ -124,7 +127,8 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
             value={formData.lastname}
             onChange={handleChange}
             className="w-full rounded border p-2"
-            required
+              placeholder="Last name"
+              required
           />
         </div>
         <div>
@@ -137,7 +141,8 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
             value={formData.email}
             onChange={handleChange}
             className="w-full rounded border p-2"
-            required
+              placeholder="email@example.com"
+              required
           />
         </div>
         <div>
@@ -150,7 +155,8 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
             value={formData.role_en}
             onChange={handleChange}
             className="w-full rounded border p-2"
-            required
+              placeholder="e.g. Engineer"
+              required
           />
         </div>
         <div>
@@ -163,7 +169,8 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
             value={formData.role_de}
             onChange={handleChange}
             className="w-full rounded border p-2"
-            required
+              placeholder="z. B. Ingenieur"
+              required
           />
         </div>
         <div>
@@ -176,7 +183,8 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
             value={formData.department_en}
             onChange={handleChange}
             className="w-full rounded border p-2"
-            required
+              placeholder="e.g. R&D"
+              required
           />
         </div>
         <div>
@@ -189,7 +197,8 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
             value={formData.department_de}
             onChange={handleChange}
             className="w-full rounded border p-2"
-            required
+              placeholder="z. B. F&E"
+              required
           />
         </div>
         <div>
@@ -202,7 +211,8 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
             value={formData.telephone}
             onChange={handleChange}
             className="w-full rounded border p-2"
-            required
+              placeholder="e.g. +49 1234 567890"
+              required
           />
         </div>
       </div>
@@ -219,6 +229,8 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
           accept="image/*"
           onChange={handleFileChange}
           className="w-full rounded border p-2"
+          required
+          aria-required="true"
         />
 
         {preview && (

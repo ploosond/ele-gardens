@@ -52,6 +52,14 @@ const EditProductForm = ({ product, onUpdate, onCancel }) => {
       setNewImages([]);
       setErrors({});
     }
+    return () => {
+      // revoke any created object URLs for newImages
+      newImages.forEach((f) => {
+        try {
+          URL.revokeObjectURL(f && f.previewUrl ? f.previewUrl : undefined);
+        } catch (e) {}
+      });
+    };
   }, [product]);
 
   const handleChange = (e) => {
@@ -65,7 +73,12 @@ const EditProductForm = ({ product, onUpdate, onCancel }) => {
       alert("You can upload up to 3 images only.");
       return;
     }
-    setNewImages((prev) => [...prev, ...files]);
+    // attach a previewUrl to each file so we can revoke later
+    const filesWithPreview = files.map((f) => {
+      f.previewUrl = URL.createObjectURL(f);
+      return f;
+    });
+    setNewImages((prev) => [...prev, ...filesWithPreview]);
   };
 
   const handleRemoveImage = (index, isExisting = false) => {
@@ -259,13 +272,19 @@ const EditProductForm = ({ product, onUpdate, onCancel }) => {
           {newImages.map((file, index) => (
             <div key={index} className="relative">
               <img
-                src={URL.createObjectURL(file)}
+                src={file.previewUrl}
                 alt="New"
                 className="h-16 w-16 rounded object-cover"
               />
               <button
                 type="button"
-                onClick={() => handleRemoveImage(index)}
+                onClick={() => {
+                  // revoke preview URL and remove
+                  try {
+                    URL.revokeObjectURL(file.previewUrl);
+                  } catch (e) {}
+                  handleRemoveImage(index);
+                }}
                 className="absolute right-1/2 top-1/2 flex h-6 w-6 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full bg-red-500 text-sm font-bold text-white hover:bg-red-600"
               >
                 ×
@@ -276,17 +295,26 @@ const EditProductForm = ({ product, onUpdate, onCancel }) => {
       </div>
 
       {/* Buttons */}
-      <button
-        type="submit"
-        disabled={isLoading}
-        className={`w-26 flex rounded px-4 py-2 text-white ${
-          isLoading
-            ? "cursor-not-allowed bg-gray-400"
-            : "bg-blue-600 hover:bg-blue-700"
-        }`}
-      >
-        {isLoading ? "Saving..." : "Save"}
-      </button>
+      <div className="mt-6 flex justify-end gap-3">
+        <button
+          type="submit"
+          disabled={isLoading}
+          className={`rounded px-6 py-2 font-semibold text-white shadow focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+            isLoading
+              ? "cursor-not-allowed bg-gray-400"
+              : "bg-blue-600 hover:bg-blue-700"
+          }`}
+        >
+          {isLoading ? "Saving..." : "Save"}
+        </button>
+        <button
+          type="button"
+          onClick={onCancel}
+          className="rounded bg-gray-300 px-6 py-2 font-semibold transition hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400"
+        >
+          Cancel
+        </button>
+      </div>
     </form>
   );
 };

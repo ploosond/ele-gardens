@@ -2,6 +2,7 @@ import express from 'express';
 import Product from '../models/Product.js';
 import middleware from '../utils/middleware.js';
 import upload from '../utils/cloudinary-products.js';
+import attachCloudinaryResponse from '../utils/cloudinary-attach-response.js';
 import cloudinary from '../config/cloudinary.js';
 const router = express.Router();
 import { body, validationResult } from 'express-validator';
@@ -78,6 +79,7 @@ router.post(
   middleware.userExtractor,
   middleware.isAdmin,
   upload.array('images', 3),
+  attachCloudinaryResponse,
   productValidationRules,
   async (req, res, next) => {
     const errors = validationResult(req);
@@ -107,7 +109,16 @@ router.post(
       };
 
       const images = req.files
-        ? req.files.map((file) => ({ url: file.path }))
+        ? req.files.map((file) => ({
+            url: file.path,
+            public_id: file.filename || (() => {
+              try {
+                return file.path.split('/').slice(-2).join('/').split('.')[0];
+              } catch (e) {
+                return undefined;
+              }
+            })(),
+          }))
         : [];
 
       if (images.length < 1)
@@ -174,7 +185,16 @@ router.put(
         ? JSON.parse(req.body.existingImages)
         : [];
       const uploadedImages = req.files
-        ? req.files.map((file) => ({ url: file.path }))
+        ? req.files.map((file) => ({
+            url: file.path,
+            public_id: file.filename || (() => {
+              try {
+                return file.path.split('/').slice(-2).join('/').split('.')[0];
+              } catch (e) {
+                return undefined;
+              }
+            })(),
+          }))
         : [];
 
       const images = [...existingImages, ...uploadedImages];
@@ -212,13 +232,13 @@ router.delete(
 
       if (Array.isArray(product.images)) {
         for (const img of product.images) {
-          const publicId = img.url.split('/').slice(-2).join('/').split('.')[0];
+          // publicId extraction is best-effort; if it fails we'll log and continue
           try {
+            const publicId = img.url.split('/').slice(-2).join('/').split('.')[0];
             await cloudinary.uploader.destroy(publicId);
-          } catch (err) {
-            return res
-              .status(500)
-              .json({ error: `Failed to delete image: ${image.url}` });
+          } catch (error) {
+            // Log and continue removing other images instead of aborting whole request
+            console.error('Cloudinary delete error for', img?.url, error);
           }
         }
       }
@@ -226,7 +246,7 @@ router.delete(
       const deletedProduct = await Product.findByIdAndDelete(req.params.id);
       res.status(200).json({ message: 'Product deleted successfully.' });
     } catch (error) {
-      console.error('Error deleting product:', err);
+      console.error('Error deleting product:', error);
       res
         .status(500)
         .json({ error: 'An error occurred while deleting the product.' });
