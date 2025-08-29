@@ -58,7 +58,6 @@ const EmployeesAdmin = () => {
     const fetchEmployees = async () => {
       try {
         const data = await employeeService.getAllEmployees();
-        console.log("Fetched employees:", data); // Debugging log
         setMembers(data);
       } catch (error) {
         console.error("Error fetching employees:", error);

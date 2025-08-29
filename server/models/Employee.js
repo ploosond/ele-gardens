@@ -36,6 +36,7 @@ const employeeSchema = new mongoose.Schema(
         type: String,
         default: 'https://www.gravatar.com/avatar/?d=mp&s=200',
       },
+  public_id: { type: String },
       altText: {
         type: String,
         default: 'Default profile picture',

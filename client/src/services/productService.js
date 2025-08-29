@@ -17,7 +17,6 @@ const createProduct = async (formData) => {
   const config = {
     headers: {
       Authorization: token,
-      "Content-Type": "multipart/form-data",
     },
   };
 
@@ -29,7 +28,6 @@ const updateProduct = async (productId, updatedProduct) => {
   const config = {
     headers: {
       Authorization: token,
-      "Content-Type": "multipart/form-data",
     },
   };
 

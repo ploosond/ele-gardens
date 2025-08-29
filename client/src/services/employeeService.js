@@ -17,7 +17,6 @@ const createEmployee = async (formData) => {
   const config = {
     headers: {
       Authorization: token,
-      "Content-Type": "multipart/form-data",
     },
   };
 
@@ -38,14 +37,14 @@ const updateEmployee = async (id, updatedEmployee) => {
   return response.data;
 };
 
-const deleteEmployee = async (productId) => {
+const deleteEmployee = async (employeeId) => {
   const config = {
     headers: {
       Authorization: token,
     },
   };
 
-  const response = await axios.delete(`${baseUrl}/${productId}`, config);
+  const response = await axios.delete(`${baseUrl}/${employeeId}`, config);
   return response.data;
 };
 

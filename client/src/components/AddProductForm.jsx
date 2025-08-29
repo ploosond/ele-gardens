@@ -60,8 +60,20 @@ const AddProductForm = ({ onProductAdded }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (images.length < 1) {
-      alert("At least one image is required.");
+    // client-side validation for required fields
+    const missing = [];
+    if (!formData.common_name) missing.push("Common name");
+    if (!formData.description_en) missing.push("Description (EN)");
+    if (!formData.description_de) missing.push("Description (DE)");
+    if (!formData.height) missing.push("Height");
+    if (!formData.diameter) missing.push("Diameter");
+    if (!formData.hardiness) missing.push("Hardiness");
+    if (!formData.light) missing.push("Light");
+    if (!formData.color) missing.push("Color");
+    if (images.length < 1) missing.push("At least one image");
+
+    if (missing.length > 0) {
+      alert("Please fill required fields: " + missing.join(", "));
       return;
     }
 
@@ -94,9 +106,7 @@ const AddProductForm = ({ onProductAdded }) => {
 
       images.forEach((file) => formDataToSend.append("images", file));
 
-      const addedProduct = await productService.createProduct(formDataToSend, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+  const addedProduct = await productService.createProduct(formDataToSend);
 
       onProductAdded(addedProduct);
       setFormData({
@@ -106,8 +116,8 @@ const AddProductForm = ({ onProductAdded }) => {
         height: "",
         diameter: "",
         hardiness: "",
-        light_en: "sun",
-        light_de: "sonne",
+        light: "sun",
+        color: "",
       });
       setImages([]);
     } catch (error) {
@@ -127,13 +137,16 @@ const AddProductForm = ({ onProductAdded }) => {
 
       {/* Common Name */}
       <div>
-        <label className="block text-sm font-medium">Common Name</label>
+        <label className="block text-sm font-medium">
+          Common Name <span className="text-red-500">*</span>
+        </label>
         <input
           type="text"
           name="common_name"
           value={formData.common_name}
           onChange={handleChange}
           className="w-full rounded border p-2"
+          placeholder="e.g. Ficus lyrata"
           required
         />
       </div>
@@ -141,21 +154,31 @@ const AddProductForm = ({ onProductAdded }) => {
       {/* Descriptions */}
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium">Description (EN)</label>
+          <label className="block text-sm font-medium">
+            Description (EN) <span className="text-red-500">*</span>
+          </label>
           <textarea
             name="description_en"
             value={formData.description_en}
             onChange={handleChange}
             className="w-full rounded border p-2"
+            placeholder="Short description in English"
+            required
+            aria-required="true"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium">Description (DE)</label>
+          <label className="block text-sm font-medium">
+            Description (DE) <span className="text-red-500">*</span>
+          </label>
           <textarea
             name="description_de"
             value={formData.description_de}
             onChange={handleChange}
             className="w-full rounded border p-2"
+            placeholder="Kurze Beschreibung auf Deutsch"
+            required
+            aria-required="true"
           />
         </div>
       </div>
@@ -163,7 +186,9 @@ const AddProductForm = ({ onProductAdded }) => {
       {/* Dimensions */}
       <div className="grid grid-cols-3 gap-4">
         <div>
-          <label className="block text-sm font-medium">Height (cm)</label>
+          <label className="block text-sm font-medium">
+            Height (cm) <span className="text-red-500">*</span>
+          </label>
           <input
             type="text"
             name="height"
@@ -175,7 +200,9 @@ const AddProductForm = ({ onProductAdded }) => {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium">Diameter (cm)</label>
+          <label className="block text-sm font-medium">
+            Diameter (cm) <span className="text-red-500">*</span>
+          </label>
           <input
             type="text"
             name="diameter"
@@ -187,7 +214,9 @@ const AddProductForm = ({ onProductAdded }) => {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium">Hardiness (°C)</label>
+          <label className="block text-sm font-medium">
+            Hardiness (°C) <span className="text-red-500">*</span>
+          </label>
           <input
             type="text"
             name="hardiness"
@@ -203,12 +232,16 @@ const AddProductForm = ({ onProductAdded }) => {
       {/* Light */}
 
       <div>
-        <label className="block text-sm font-medium">Light</label>
+        <label className="block text-sm font-medium">
+          Light <span className="text-red-500">*</span>
+        </label>
         <select
           name="light"
           value={formData.light}
           onChange={(e) => setFormData({ ...formData, light: e.target.value })}
           className="w-full rounded border p-2"
+          required
+          aria-required="true"
         >
           <option value="sun">Sun</option>
           <option value="half-shadow">Half-Shadow</option>
@@ -238,7 +271,7 @@ const AddProductForm = ({ onProductAdded }) => {
 
       {/* Images */}
       <div className="mb-4">
-        <label className="block font-medium text-gray-700">Images (1-3)</label>
+        <label className="block font-medium text-gray-700">Images (1-3) <span className="text-red-500">*</span></label>
         <input
           type="file"
           accept="image/*"
