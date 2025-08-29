@@ -1,10 +1,25 @@
 import { useEffect, useState } from "react";
 import productService from "../../services/productService";
 import AddProductForm from "../../components/AddProductForm";
+import EditProductForm from "./EditProductForm";
 
 const ProductsAdmin = () => {
   const [products, setProducts] = useState([]);
   const [showAddForm, setShowAddForm] = useState(false);
+  const [editingProduct, setEditingProduct] = useState(null);
+
+  const handleEditClick = (product) => {
+    setEditingProduct(product);
+  };
+
+  const handleProductUpdated = (updatedProduct) => {
+    setProducts((prevProducts) =>
+      prevProducts.map((p) =>
+        p._id === updatedProduct._id ? updatedProduct : p,
+      ),
+    );
+    setEditingProduct(null);
+  };
 
   const handleDelete = async (product, productId) => {
     if (window.confirm(`Are you sure you want to delete ${product}?`)) {
@@ -50,53 +65,77 @@ const ProductsAdmin = () => {
       <table className="w-full border-collapse overflow-hidden rounded-lg bg-white shadow-md">
         <thead>
           <tr className="bg-gray-200 text-gray-700">
-            <th className="border p-3">Tag</th>
             <th className="border p-3">Common Name</th>
-            <th className="border p-3">Scientific Name</th>
-            <th className="border p-3">Category</th>
-            <th className="border p-3">Description</th>
-            <th className="border p-3">Diameter</th>
-            <th className="border p-3">Hardiness</th>
-            <th className="border p-3">Height</th>
-            <th className="border p-3">Light</th>
+            <th className="border p-3">Description (EN)</th>
+            <th className="border p-3">Description (DE)</th>
+            <th className="border p-3">Height (cm)</th>
+            <th className="border p-3">Diameter (cm)</th>
+            <th className="border p-3">Hardiness (°C)</th>
+            <th className="border p-3">Light (EN)</th>
+            <th className="border p-3">Light (DE)</th>
             <th className="border p-3">Images</th>
+            <th className="border p-3">Actions</th>
           </tr>
         </thead>
         <tbody>
-          {products.map((p) => (
-            <tr key={p.tag} className="hover:bg-gray-100">
-              <td className="border p-3">{p.tag}</td>
-              <td className="border p-3">{p.common_name}</td>
-              <td className="border p-3">{p.scientific_name}</td>
-              <td className="border p-3">{p.category}</td>
-              <td className="border p-3">{p.description}</td>
-              <td className="border p-3">{p.diameter}</td>
-              <td className="border p-3">{p.hardiness}</td>
-              <td className="border p-3">{p.height}</td>
-              <td className="border p-3">{p.light}</td>
-              <td className="flex gap-2 border p-3">
-                {p.images.map((i) => (
-                  <img
-                    className="h-16 w-16 rounded object-cover"
-                    key={i._id}
-                    src={i.url}
-                    alt={i.altText || "Product Image"}
-                  />
-                ))}
-              </td>
-              <td className="flex gap-2 border p-3">
-                {/* <button className="rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-600">
-                  Update
-                </button> */}
-                <button
-                  onClick={() => handleDelete(p.common_name, p._id)}
-                  className="rounded bg-red-500 px-3 py-1 text-white hover:bg-red-600"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
+          {[...products]
+            .sort((a, b) => a.common_name.localeCompare(b.common_name))
+            .map((p) =>
+              editingProduct?._id === p._id ? (
+                <tr key={p._id}>
+                  <td colSpan={10} className="p-3">
+                    <EditProductForm
+                      product={p}
+                      onUpdate={handleProductUpdated}
+                      onCancel={() => setEditingProduct(null)}
+                    />
+                  </td>
+                </tr>
+              ) : (
+                <tr key={p._id} className="hover:bg-gray-100">
+                  <td className="border p-3">{p.common_name}</td>
+                  <td className="border p-3">{p.description?.en}</td>
+                  <td className="border p-3">{p.description?.de}</td>
+                  <td className="border p-3">{p.height}</td>
+                  <td className="border p-3">{p.diameter}</td>
+                  <td className="border p-3">{p.hardiness}</td>
+                  <td className="border p-3">{p.light?.en}</td>
+                  <td className="border p-3">{p.light?.de}</td>
+                  <td className="border p-3">
+                    <div className="flex flex-col gap-2">
+                      {(Array.isArray(p.images) ? p.images : []).map((i) => (
+                        <img
+                          className="h-16 w-16 rounded object-cover"
+                          key={i.url}
+                          src={i.url}
+                          alt={i.altText || "Product Image"}
+                        />
+                      ))}
+                    </div>
+                  </td>
+                  <td className="flex flex-col gap-2 border p-3">
+                    <button
+                      onClick={() => handleEditClick(p)}
+                      className="rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-600"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={async () => {
+                        try {
+                          await handleDelete(p.common_name, p._id);
+                        } catch (error) {
+                          alert("Failed to delete product.");
+                        }
+                      }}
+                      className="rounded bg-red-500 px-3 py-1 text-white hover:bg-red-600"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ),
+            )}
         </tbody>
       </table>
     </div>

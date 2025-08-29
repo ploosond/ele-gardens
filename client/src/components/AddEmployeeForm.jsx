@@ -1,16 +1,23 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import employeeService from "../services/employeeService";
 
 const AddEmployeeForm = ({ onEmployeeAdded }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
     email: "",
-    role: "",
-    department: "",
+    role_en: "",
+    role_de: "",
+    department_en: "",
+    department_de: "",
     telephone: "",
     profilePicture: null, // store file object
   });
+
+  const [preview, setPreview] = useState(null);
+  const fileInputRef = useRef(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,15 +25,47 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
   };
 
   const handleFileChange = (e) => {
-    setFormData({ ...formData, profilePicture: e.target.files[0] });
+    const file = e.target.files[0];
+    setFormData({ ...formData, profilePicture: file });
+    if (file) setPreview(URL.createObjectURL(file));
+    else setPreview(null);
+  };
+
+  const handleRemoveSelectedImage = () => {
+    setFormData((prev) => ({ ...prev, profilePicture: null }));
+    setPreview(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (
+      !formData.firstname ||
+      !formData.lastname ||
+      !formData.email ||
+      !formData.role_en ||
+      !formData.role_de ||
+      !formData.department_en ||
+      !formData.department_de
+    ) {
+      alert(
+        "All fields are required, including role and department in both languages.",
+      );
+      return;
+    }
+
     try {
+      setIsLoading(true);
+
       const formDataToSend = new FormData();
       Object.keys(formData).forEach((key) => {
-        formDataToSend.append(key, formData[key]);
+        if (key === "profilePicture") {
+          if (formData[key])
+            formDataToSend.append("profilePicture", formData[key]); // Correct field name
+        } else {
+          formDataToSend.append(key, formData[key]);
+        }
       });
 
       const addedEmployee =
@@ -37,13 +76,19 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
         firstname: "",
         lastname: "",
         email: "",
-        role: "",
-        department: "",
+        role_en: "",
+        role_de: "",
+        department_en: "",
+        department_de: "",
         telephone: "",
         profilePicture: null,
       });
+      setPreview(null);
     } catch (error) {
       console.error("Error adding employee:", error);
+      alert(error.response?.data?.error || "Failed to add employee.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -97,12 +142,12 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
         </div>
         <div>
           <label className="block text-sm font-medium">
-            Role <span className="text-red-500">*</span>
+            Role (EN) <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
-            name="role"
-            value={formData.role}
+            name="role_en"
+            value={formData.role_en}
             onChange={handleChange}
             className="w-full rounded border p-2"
             required
@@ -110,12 +155,38 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
         </div>
         <div>
           <label className="block text-sm font-medium">
-            Department <span className="text-red-500">*</span>
+            Role (DE) <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
-            name="department"
-            value={formData.department}
+            name="role_de"
+            value={formData.role_de}
+            onChange={handleChange}
+            className="w-full rounded border p-2"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium">
+            Department (EN) <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            name="department_en"
+            value={formData.department_en}
+            onChange={handleChange}
+            className="w-full rounded border p-2"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium">
+            Department (DE) <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            name="department_de"
+            value={formData.department_de}
             onChange={handleChange}
             className="w-full rounded border p-2"
             required
@@ -142,19 +213,45 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
           Profile Picture <span className="text-red-500">*</span>
         </label>
         <input
+          ref={fileInputRef}
           type="file"
           name="profilePicture"
           accept="image/*"
           onChange={handleFileChange}
           className="w-full rounded border p-2"
         />
+
+        {preview && (
+          <div className="mt-2 flex gap-2">
+            <div className="relative">
+              <img
+                src={preview}
+                alt="preview"
+                className="h-16 w-16 rounded-full object-cover"
+              />
+              <button
+                type="button"
+                onClick={handleRemoveSelectedImage}
+                className="absolute right-1/2 top-1/2 flex h-6 w-6 -translate-y-1/2 translate-x-1/2 transform items-center justify-center rounded-full bg-red-500 text-sm font-bold text-white transition hover:bg-red-600"
+                aria-label="Remove selected image"
+              >
+                ×
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       <button
         type="submit"
-        className="w-full rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
+        disabled={isLoading}
+        className={`w-26 flex rounded px-4 py-2 text-white ${
+          isLoading
+            ? "cursor-not-allowed bg-gray-400"
+            : "bg-green-500 hover:bg-green-600"
+        }`}
       >
-        Add Employee
+        {isLoading ? "Adding..." : "Add Employee"}
       </button>
     </form>
   );

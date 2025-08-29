@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const employeeSchema = new mongoose.Schema(
   {
@@ -20,30 +20,36 @@ const employeeSchema = new mongoose.Schema(
       unique: true,
       trim: true,
       lowercase: true,
-      match: [/.+\@.+\..+/, "Please enter a valid email"], // Email validation,
+      match: [/.+\@.+\..+/, 'Please enter a valid email'], // Email validation,
     },
-    role: { type: String, required: true },
-    department: { type: String, required: true },
+    role: {
+      en: { type: String, required: true },
+      de: { type: String, required: true },
+    },
+    department: {
+      en: { type: String, required: true },
+      de: { type: String, required: true },
+    },
     telephone: { type: String, required: true },
     profilePicture: {
       url: {
         type: String,
-        default: "https://www.gravatar.com/avatar/?d=mp&s=200",
+        default: 'https://www.gravatar.com/avatar/?d=mp&s=200',
       },
       altText: {
         type: String,
-        default: "Default profile picture",
+        default: 'Default profile picture',
       },
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
       required: true,
     },
   },
   { timestamps: true }
 );
 
-const Employee = mongoose.model("Employee", employeeSchema);
+const Employee = mongoose.model('Employee', employeeSchema);
 
 export default Employee;

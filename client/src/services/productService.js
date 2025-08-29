@@ -13,14 +13,15 @@ const getAllProducts = async () => {
   return response.data;
 };
 
-const createProduct = async (newObject) => {
+const createProduct = async (formData) => {
   const config = {
     headers: {
       Authorization: token,
+      "Content-Type": "multipart/form-data",
     },
   };
 
-  const response = await axios.post(baseUrl, newObject, config);
+  const response = await axios.post(baseUrl, formData, config);
   return response.data;
 };
 
@@ -28,6 +29,7 @@ const updateProduct = async (productId, updatedProduct) => {
   const config = {
     headers: {
       Authorization: token,
+      "Content-Type": "multipart/form-data",
     },
   };
 
