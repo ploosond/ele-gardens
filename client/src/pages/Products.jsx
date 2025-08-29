@@ -37,12 +37,12 @@ const Products = ({ products }) => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative mt-10 bg-gradient-to-r from-green-900 to-green-700 pb-8 pt-16 text-white">
+      <section className="from-primary-dark text-on-dark relative mt-10 bg-gradient-to-r to-primary pb-8 pt-16">
         {/* Content */}
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl space-y-6 text-center">
             <h2 className="text-4xl font-bold md:text-5xl">
-              Our Product <span className="text-green-300">Collection</span>
+              Our Product <span className="text-primary/70">Collection</span>
             </h2>
             <p className="text-lg leading-relaxed text-white/80">
               Discover our wide range of plants, carefully curated to bring
@@ -53,7 +53,7 @@ const Products = ({ products }) => {
       </section>
 
       {/* Search input */}
-      <div className="bg-gradient-to-r from-green-900 to-green-700 pb-6">
+      <div className="from-primary-dark bg-gradient-to-r to-primary pb-6">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <SearchInput
             value={searchTerm}
@@ -79,7 +79,7 @@ const Products = ({ products }) => {
                   </p>
                   <button
                     onClick={() => setSearchTerm("")}
-                    className="rounded-md bg-green-600 px-4 py-2 text-white hover:bg-green-700"
+                    className="text-on-dark hover:bg-primary-dark rounded-md bg-primary px-4 py-2"
                   >
                     Clear Filters
                   </button>

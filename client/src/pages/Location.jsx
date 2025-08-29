@@ -1,3 +1,4 @@
+import React from "react";
 import HeroSection from "../components/HeroSection";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
@@ -60,7 +61,7 @@ const Location = () => {
       />
 
       {/* Locations Section */}
-      <section className="bg-white py-16">
+      <section className="bg-bg py-16">
         <div className="container mx-auto px-6 md:px-12">
           <div className="space-y-16">
             {locations.map((location, index) => (
@@ -76,9 +77,11 @@ const Location = () => {
                     src={location.image}
                     alt={location.name}
                     className="absolute inset-0 h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/60 to-transparent p-4">
-                    <h3 className="text-xl font-semibold text-white">
+                    <h3 className="text-on-dark text-xl font-semibold">
                       {location.name}
                     </h3>
                   </div>
@@ -86,17 +89,17 @@ const Location = () => {
 
                 {/* Details Section */}
                 <div className="space-y-6">
-                  <h3 className="text-garden-dark text-2xl font-semibold">
+                  <h3 className="text-text text-2xl font-semibold">
                     {location.name}
                   </h3>
 
                   <div className="flex items-start">
-                    <div className="bg-garden-light mr-4 flex-shrink-0 rounded-full p-3">
-                      <MapPin className="text-garden-primary" size={20} />
+                    <div className="bg-muted mr-4 flex-shrink-0 rounded-full p-3">
+                      <MapPin className="text-primary" size={20} />
                     </div>
                     <div>
-                      <h4 className="text-garden-dark font-medium">Address</h4>
-                      <p className="text-gray-600">
+                      <h4 className="text-text font-medium">Address</h4>
+                      <p className="text-text/70">
                         {location.address.street}
                         <br />
                         {location.address.city}, {location.address.state}{" "}
@@ -106,15 +109,15 @@ const Location = () => {
                   </div>
 
                   <div className="flex items-start">
-                    <div className="bg-garden-light mr-4 flex-shrink-0 rounded-full p-3">
-                      <Phone className="text-garden-primary" size={20} />
+                    <div className="bg-muted mr-4 flex-shrink-0 rounded-full p-3">
+                      <Phone className="text-primary" size={20} />
                     </div>
                     <div>
-                      <h4 className="text-garden-dark font-medium">Phone</h4>
-                      <p className="text-gray-600">
+                      <h4 className="text-text font-medium">Phone</h4>
+                      <p className="text-text/70">
                         <a
                           href={`tel:${location.phone}`}
-                          className="hover:text-garden-primary transition-colors"
+                          className="transition-colors hover:text-primary"
                         >
                           {location.phone}
                         </a>
@@ -123,15 +126,15 @@ const Location = () => {
                   </div>
 
                   <div className="flex items-start">
-                    <div className="bg-garden-light mr-4 flex-shrink-0 rounded-full p-3">
-                      <Mail className="text-garden-primary" size={20} />
+                    <div className="bg-muted mr-4 flex-shrink-0 rounded-full p-3">
+                      <Mail className="text-primary" size={20} />
                     </div>
                     <div>
-                      <h4 className="text-garden-dark font-medium">Email</h4>
-                      <p className="text-gray-600">
+                      <h4 className="text-text font-medium">Email</h4>
+                      <p className="text-text/70">
                         <a
                           href={`mailto:${location.email}`}
-                          className="hover:text-garden-primary transition-colors"
+                          className="transition-colors hover:text-primary"
                         >
                           {location.email}
                         </a>
@@ -140,12 +143,12 @@ const Location = () => {
                   </div>
 
                   <div className="flex items-start">
-                    <div className="bg-garden-light mr-4 flex-shrink-0 rounded-full p-3">
-                      <Clock className="text-garden-primary" size={20} />
+                    <div className="bg-muted mr-4 flex-shrink-0 rounded-full p-3">
+                      <Clock className="text-primary" size={20} />
                     </div>
                     <div>
-                      <h4 className="text-garden-dark font-medium">Hours</h4>
-                      <p className="text-gray-600">{location.hours}</p>
+                      <h4 className="text-text font-medium">Hours</h4>
+                      <p className="text-text/70">{location.hours}</p>
                     </div>
                   </div>
                 </div>

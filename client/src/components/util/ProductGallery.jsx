@@ -44,8 +44,8 @@ export default function ProductGallery({
                 key={(image.url || index) + index}
                 onClick={() => setSelectedIndex(index)}
                 aria-pressed={selectedIndex === index}
-                className={`flex-shrink-0 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-green-200 ${
-                  selectedIndex === index ? "ring-2 ring-green-500" : "ring-0"
+                className={`flex-shrink-0 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-primary/30 ${
+                  selectedIndex === index ? "ring-2 ring-primary" : "ring-0"
                 }`}
                 aria-label={
                   image.altText || image.caption || `Thumbnail ${index + 1}`

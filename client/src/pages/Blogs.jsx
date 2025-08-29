@@ -66,7 +66,7 @@ const Blogs = () => {
                 setSelectedBlog(null);
                 setComments([]);
               }}
-              className="mb-4 text-green-600 hover:text-green-800"
+              className="hover:text-primary-dark mb-4 text-primary"
             >
               &larr; Back to Blogs
             </button>
@@ -107,11 +107,11 @@ const Blogs = () => {
                   value={newComment}
                   onChange={(e) => setNewComment(e.target.value)}
                   placeholder="Write a comment..."
-                  className="flex-1 rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-green-600"
+                  className="flex-1 rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-primary"
                 />
                 <button
                   onClick={handleAddComment}
-                  className="rounded-md bg-green-600 px-4 py-2 text-white hover:bg-green-700"
+                  className="text-on-dark hover:bg-primary-dark rounded-md bg-primary px-4 py-2"
                 >
                   Add
                 </button>

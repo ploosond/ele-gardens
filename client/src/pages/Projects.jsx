@@ -15,7 +15,7 @@ const Projects = () => {
       <HeroSection
         title="Our Work"
         highlight="Projects"
-        description="Helping brands grow through technology & design"
+        description="Browse recent landscape and garden projects — from private patios to commercial landscapes — showcasing our design, planting, and long-term care approach."
       />
 
       <div className="py-12">

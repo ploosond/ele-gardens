@@ -10,40 +10,40 @@ const Footer = () => {
 
   return (
     <footer>
-      <div className="mx-auto bg-gradient-to-l from-green-800 to-green-700 px-4 pb-4 pt-16 text-gray-300 sm:px-6 lg:px-8">
+      <div className="from-primary-dark text-on-dark mx-auto bg-gradient-to-l to-primary px-4 pb-4 pt-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
-          <div className="space-y-4">
+          <div className="space-y-4 lg:col-span-2">
             <h3 className="font-serif text-2xl font-medium">Ele Gardens</h3>
-            <p className="text-garden-100/80 md:max-w-xs">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint
-              dolores incidunt asperiores ex ullam libero exercitationem, nemo
-              totam suscipit deserunt!
+            <p className="text-on-dark/80 md:max-w-md">
+              Ele Gardens combines horticultural expertise with sustainable
+              practices to help you create lasting outdoor beauty — expert
+              plants, personalized design, and dependable service.
             </p>
             <div className="flex space-x-4">
               <a
                 href="#"
-                className="p-2 transition-colors hover:text-blue-600"
+                className="hover:text-on-dark/90 p-2 transition-colors"
                 aria-label="Facebook"
               >
                 <FaFacebookF size={20} />
               </a>
               <a
                 href="#"
-                className="p-2 transition-colors hover:text-gray-900"
+                className="hover:text-on-dark/90 p-2 transition-colors"
                 aria-label="Twitter"
               >
                 <FaXTwitter size={20} />
               </a>
               <a
                 href="#"
-                className="p-2 transition-colors hover:text-pink-500"
+                className="p-2 transition-colors hover:text-accent"
                 aria-label="Instagram"
               >
                 <IoLogoInstagram size={20} />
               </a>
               <a
                 href="#"
-                className="p-2 transition-colors hover:text-red-600"
+                className="p-2 transition-colors hover:text-accent"
                 aria-label="Instagram"
               >
                 <IoLogoYoutube size={20} />
@@ -53,11 +53,11 @@ const Footer = () => {
 
           <div>
             <h4 className="mb-4 text-lg font-medium">Quick Links</h4>
-            <ul className="space-y-2">
+            <ul className="grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-2">
               <li>
                 <Link
                   to="/"
-                  className="text-garden-100/80 transition-colors hover:text-white"
+                  className="text-on-dark/80 hover:text-on-dark transition-colors"
                 >
                   Home
                 </Link>
@@ -65,7 +65,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/about"
-                  className="text-garden-100/80 transition-colors hover:text-white"
+                  className="text-on-dark/80 hover:text-on-dark transition-colors"
                 >
                   About Us
                 </Link>
@@ -73,16 +73,15 @@ const Footer = () => {
               <li>
                 <Link
                   to="/products"
-                  className="text-garden-100/80 transition-colors hover:text-white"
+                  className="text-on-dark/80 hover:text-on-dark transition-colors"
                 >
                   Products
                 </Link>
               </li>
-
               <li>
                 <Link
                   to="/team"
-                  className="text-garden-100/80 transition-colors hover:text-white"
+                  className="text-on-dark/80 hover:text-on-dark transition-colors"
                 >
                   Our Team
                 </Link>
@@ -90,29 +89,23 @@ const Footer = () => {
               <li>
                 <Link
                   to="/contact"
-                  className="text-garden-100/80 transition-colors hover:text-white"
+                  className="text-on-dark/80 hover:text-on-dark transition-colors"
                 >
                   Contact
                 </Link>
               </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="mb-4 text-lg font-medium">Information</h4>
-            <ul className="space-y-2">
               <li>
                 <Link
-                  to="/career"
-                  className="text-garden-100/80 transition-colors hover:text-white"
+                  to="/policy"
+                  className="text-on-dark/80 hover:text-on-dark transition-colors"
                 >
-                  Careers
+                  Privacy Policy
                 </Link>
               </li>
               <li>
                 <Link
                   to="/location"
-                  className="text-garden-100/80 transition-colors hover:text-white"
+                  className="text-on-dark/80 hover:text-on-dark transition-colors"
                 >
                   Our Locations
                 </Link>
@@ -120,25 +113,9 @@ const Footer = () => {
               <li>
                 <Link
                   to="/projects"
-                  className="text-garden-100/80 transition-colors hover:text-white"
+                  className="text-on-dark/80 hover:text-on-dark transition-colors"
                 >
                   Projects
-                </Link>
-              </li>
-              {/* <li>
-                <Link
-                  to="/blogs"
-                  className="text-garden-100/80 transition-colors hover:text-white"
-                >
-                  Blog
-                </Link>
-              </li> */}
-              <li>
-                <Link
-                  to="/policy"
-                  className="text-garden-100/80 transition-colors hover:text-white"
-                >
-                  Privacy Policy
                 </Link>
               </li>
             </ul>
@@ -184,8 +161,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-garden-800 mt-12 border-t pt-8 text-center">
-          <p className="text-garden-100/70 text-sm">
+        <div className="border-on-dark/10 mt-12 border-t pt-8 text-center">
+          <p className="text-on-dark/70 text-sm">
             Copyright ©{currentYear} Ele gardens. All rights reserved.
           </p>
         </div>

@@ -1,6 +1,6 @@
 const HeroSection = ({ title, highlight, description }) => {
   return (
-    <section className="relative mt-10 bg-gradient-to-r from-green-800 to-green-700 py-16 text-white">
+    <section className="from-primary-dark text-on-dark relative mt-10 bg-gradient-to-r to-primary py-16">
       {/* Content */}
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl space-y-6 text-center">

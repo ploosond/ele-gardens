@@ -57,9 +57,7 @@ const Contact = () => {
       <HeroSection
         title="Contact"
         highlight="Us"
-        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque
-              ab velit nobis iste et consequatur quam voluptatibus incidunt obcaecati,
-              explicabo vel tempore."
+        description="Have a question or need help planning your garden? Our team at Ele Gardens is here to help — visit our center, call, or send a message and we'll respond promptly."
       />
 
       {/* Contact Info & Form */}
@@ -74,7 +72,7 @@ const Contact = () => {
 
             <div className="mt-6 space-y-6">
               <div className="flex items-start">
-                <MapPin size={24} className="mr-4 text-green-600" />
+                <MapPin size={24} className="mr-4 text-primary" />
                 <div>
                   <h3 className="font-medium">Our Location</h3>
                   <p>Drüllerweg 14</p>
@@ -84,11 +82,11 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start">
-                <Phone size={24} className="mr-4 text-green-600" />
+                <Phone size={24} className="mr-4 text-primary" />
                 <div>
                   <h3 className="font-medium">Phone</h3>
                   <p>
-                    <a href="tel:+1234567890" className="hover:text-green-600">
+                    <a href="tel:+1234567890" className="hover:text-primary">
                       +49 (0)2826 / 91 50-0
                     </a>
                   </p>
@@ -96,13 +94,13 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start">
-                <Mail size={24} className="mr-4 text-green-600" />
+                <Mail size={24} className="mr-4 text-primary" />
                 <div>
                   <h3 className="font-medium">Email</h3>
                   <p>
                     <a
                       href="mailto:info@example.com"
-                      className="hover:text-green-600"
+                      className="hover:text-primary"
                     >
                       info@example.com
                     </a>
@@ -111,7 +109,7 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start">
-                <Clock size={24} className="mr-4 text-green-600" />
+                <Clock size={24} className="mr-4 text-primary" />
                 <div>
                   <h3 className="font-medium">Hours</h3>
                   <p>Mon-Fri: 9 AM - 6 PM | Sat: 9 AM - 4 PM | Sun: Closed</p>
@@ -121,12 +119,12 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="rounded-lg border border-gray-200 bg-white p-8 shadow-sm">
+          <div className="border-muted rounded-lg border bg-white p-8 shadow-sm">
             <h2 className="mb-6 text-2xl font-medium">Send Us a Message</h2>
 
             {formStatus.submitted && (
               <div
-                className={`mb-6 rounded-md p-4 ${formStatus.error ? "bg-red-100 text-red-800" : "bg-green-100 text-green-800"}`}
+                className={`mb-6 rounded-md p-4 ${formStatus.error ? "bg-red-100 text-red-800" : "bg-primary/10 text-primary"}`}
               >
                 {formStatus.message}
               </div>
@@ -208,7 +206,7 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="flex w-full items-center justify-center rounded-md bg-green-600 py-3 text-white hover:bg-green-700"
+                className="text-on-dark hover:bg-primary-dark flex w-full items-center justify-center rounded-md bg-primary py-3"
               >
                 Send Message
               </button>

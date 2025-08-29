@@ -9,7 +9,7 @@ const SearchInput = ({ value, onChange, placeholder = "Search..." }) => {
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="w-full rounded-lg border border-transparent bg-white/10 py-3 pl-10 pr-4 text-white placeholder-white/70 shadow-md focus:border-green-500 focus:outline-none focus:ring-green-500"
+        className="w-full rounded-lg border border-transparent bg-white/10 py-3 pl-10 pr-4 text-white placeholder-white/70 shadow-md focus:border-primary focus:outline-none focus:ring-primary"
       />
       <Search
         className="absolute left-3 top-1/2 -translate-y-1/2 transform text-white/70"
