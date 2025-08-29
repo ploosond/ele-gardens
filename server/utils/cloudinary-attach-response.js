@@ -19,7 +19,11 @@ async function attachCloudinaryResponse(req, res, next) {
           req.file.cloudinary = info;
         } catch (err) {
           // Non-fatal; log and continue
-          console.warn('Could not fetch Cloudinary resource for', publicId, err?.message || err);
+          console.warn(
+            'Could not fetch Cloudinary resource for',
+            publicId,
+            err?.message || err
+          );
         }
       }
     }
@@ -42,7 +46,11 @@ async function attachCloudinaryResponse(req, res, next) {
               const info = await cloudinary.api.resource(publicId);
               file.cloudinary = info;
             } catch (err) {
-              console.warn('Could not fetch Cloudinary resource for', publicId, err?.message || err);
+              console.warn(
+                'Could not fetch Cloudinary resource for',
+                publicId,
+                err?.message || err
+              );
             }
           }
         })

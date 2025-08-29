@@ -4,14 +4,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#244d2a", // Example primary color
-        secondary: "#296132", // Example secondary color
-        accent: "#31793c", // Example accent color
-        tertiary: "#429a4c", // New tertiary color
-        neutral: "#f0f9f1", // Example neutral color
-        one: "#f0f9f1",
-        two: "#dcf1de",
-        three: "#bde3c1",
+        primary: "var(--color-primary)",
+        "primary-dark": "var(--color-primary-dark)",
+        secondary: "var(--color-secondary)",
+        accent: "var(--color-accent)",
+
+        surface: "var(--color-surface)",
+        bg: "var(--color-bg)",
+        muted: "var(--color-muted)",
+
+        text: "var(--color-text)",
+        "on-dark": "var(--color-on-dark)",
+        "on-primary": "var(--color-on-primary)",
+        "on-secondary": "var(--color-on-secondary)",
       },
       fontFamily: {
         outfit: ["Outfit", "sans-serif"],

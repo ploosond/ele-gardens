@@ -41,7 +41,7 @@ router.post(
     body('firstname').notEmpty().withMessage('First name is required.'),
     body('lastname').notEmpty().withMessage('Last name is required.'),
     body('email').isEmail().withMessage('Valid email is required.'),
-  body('telephone').trim().notEmpty().withMessage('Telephone is required.'),
+    body('telephone').trim().notEmpty().withMessage('Telephone is required.'),
     body('role_en').trim().notEmpty().withMessage('Role (EN) is required.'),
     body('role_de').trim().notEmpty().withMessage('Role (DE) is required.'),
     body('department_en')
@@ -81,9 +81,21 @@ router.post(
       telephone,
       profilePicture: {
         url: req.file?.path || 'https://www.gravatar.com/avatar/?d=mp&s=200',
-        public_id: req.file?.filename || (req.file?.path ? (() => {
-            try { return req.file.path.split('/').slice(-2).join('/').split('.')[0]; } catch (e) { return undefined; }
-          })() : undefined),
+        public_id:
+          req.file?.filename ||
+          (req.file?.path
+            ? (() => {
+                try {
+                  return req.file.path
+                    .split('/')
+                    .slice(-2)
+                    .join('/')
+                    .split('.')[0];
+                } catch (e) {
+                  return undefined;
+                }
+              })()
+            : undefined),
         altText: `${firstname} ${lastname}'s profile picture`,
       },
       user: req.user._id,
@@ -103,7 +115,7 @@ router.put(
     body('firstname').notEmpty().withMessage('First name is required.'),
     body('lastname').notEmpty().withMessage('Last name is required.'),
     body('email').isEmail().withMessage('Valid email is required.'),
-  body('telephone').trim().notEmpty().withMessage('Telephone is required.'),
+    body('telephone').trim().notEmpty().withMessage('Telephone is required.'),
     body('role_en').trim().notEmpty().withMessage('Role (EN) is required.'),
     body('role_de').trim().notEmpty().withMessage('Role (DE) is required.'),
     body('department_en')
@@ -156,37 +168,50 @@ router.put(
             existing.profilePicture &&
             !existing.profilePicture.url.includes('gravatar.com')
           ) {
-            const oldPublicId = existing.profilePicture.public_id || (() => {
-              try {
-                return existing.profilePicture.url
-                  .split('/')
-                  .slice(-2)
-                  .join('/')
-                  .split('.')[0];
-              } catch (e) {
-                return undefined;
-              }
-            })();
+            const oldPublicId =
+              existing.profilePicture.public_id ||
+              (() => {
+                try {
+                  return existing.profilePicture.url
+                    .split('/')
+                    .slice(-2)
+                    .join('/')
+                    .split('.')[0];
+                } catch (e) {
+                  return undefined;
+                }
+              })();
 
             if (oldPublicId) {
               try {
                 await cloudinary.uploader.destroy(oldPublicId);
               } catch (err) {
-                console.error('Cloudinary deletion error for old employee picture:', err);
+                console.error(
+                  'Cloudinary deletion error for old employee picture:',
+                  err
+                );
               }
             }
           }
         } catch (err) {
           // Non-fatal: log and continue
-          console.error('Error while attempting to remove old profile picture:', err);
+          console.error(
+            'Error while attempting to remove old profile picture:',
+            err
+          );
         }
 
         updateObj.profilePicture = {
           url: req.file.path,
           public_id:
-            req.file.filename || (() => {
+            req.file.filename ||
+            (() => {
               try {
-                return req.file.path.split('/').slice(-2).join('/').split('.')[0];
+                return req.file.path
+                  .split('/')
+                  .slice(-2)
+                  .join('/')
+                  .split('.')[0];
               } catch (e) {
                 return undefined;
               }
@@ -237,13 +262,19 @@ router.delete(
         employee.profilePicture &&
         !employee.profilePicture.url.includes('gravatar.com')
       ) {
-        const publicId = employee.profilePicture.public_id || (() => {
-          try {
-            return employee.profilePicture.url.split('/').slice(-2).join('/').split('.')[0];
-          } catch (e) {
-            return undefined;
-          }
-        })();
+        const publicId =
+          employee.profilePicture.public_id ||
+          (() => {
+            try {
+              return employee.profilePicture.url
+                .split('/')
+                .slice(-2)
+                .join('/')
+                .split('.')[0];
+            } catch (e) {
+              return undefined;
+            }
+          })();
 
         if (publicId) {
           try {
@@ -252,12 +283,17 @@ router.delete(
             console.error('Cloudinary deletion error:', err);
           }
         } else {
-          console.warn('No public_id available for employee profile picture:', employee.profilePicture.url);
+          console.warn(
+            'No public_id available for employee profile picture:',
+            employee.profilePicture.url
+          );
         }
       }
 
-  const deletedEmployee = await Employee.findByIdAndDelete(req.params.id);
-  return res.status(200).json({ message: 'Employee deleted successfully.' });
+      const deletedEmployee = await Employee.findByIdAndDelete(req.params.id);
+      return res
+        .status(200)
+        .json({ message: 'Employee deleted successfully.' });
     } catch (error) {
       next(error);
     }

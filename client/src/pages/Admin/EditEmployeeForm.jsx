@@ -90,18 +90,18 @@ const EditEmployeeForm = ({ employee, onUpdate, onCancel }) => {
       Object.keys(formData).forEach((key) => {
         if (key === "profilePictureFile" && formData[key]) {
           formDataToSend.append("profilePicture", formData[key]); // Correct field name for Multer
-          } else if (formData[key] !== null && formData[key] !== undefined) {
+        } else if (formData[key] !== null && formData[key] !== undefined) {
           formDataToSend.append(key, formData[key].toString()); // Ensure all values are strings
         }
       });
 
-        // If no new file was uploaded, include the existing profilePicture info
-        if (!formData.profilePictureFile) {
-          const existing = employee?.profilePicture || null;
-          if (existing) {
-            formDataToSend.append('profilePicture', JSON.stringify(existing));
-          }
+      // If no new file was uploaded, include the existing profilePicture info
+      if (!formData.profilePictureFile) {
+        const existing = employee?.profilePicture || null;
+        if (existing) {
+          formDataToSend.append("profilePicture", JSON.stringify(existing));
         }
+      }
 
       console.log("FormData before submission:");
       for (let [key, value] of formDataToSend.entries()) {

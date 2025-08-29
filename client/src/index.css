@@ -1,5 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* Centralized color tokens (single theme) - must appear before @tailwind */
+:root {
+  /* Primary (CTA-safe) */
+  --color-primary: #0b7a43; /* primary background (works with white text) */
+  --color-primary-dark: #064f31; /* hover/active */
+
+  /* Secondary & accent */
+  --color-secondary: #145a8a;
+  --color-accent: #f59e0b;
+
+  /* Neutrals */
+  --color-bg: #ffffff;
+  --color-surface: #f8fafb;
+  --color-muted: #f1f5f9;
+
+  /* Text tokens */
+  --color-text: #0f1724; /* normal dark text for light backgrounds */
+  --color-on-dark: #ffffff; /* white text (use on primary/secondary/etc) */
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

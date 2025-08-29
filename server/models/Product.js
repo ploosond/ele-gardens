@@ -30,7 +30,7 @@ const productSchema = new mongoose.Schema(
           type: String,
           required: [true, 'Image URL is required.'],
         },
-  public_id: { type: String },
+        public_id: { type: String },
         altText: { type: String },
       },
     ],

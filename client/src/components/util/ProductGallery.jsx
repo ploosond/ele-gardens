@@ -1,15 +1,44 @@
 import { useState } from "react";
 
-export default function ProductGallery({ images = [] }) {
+export default function ProductGallery({
+  images = [],
+  className = "h-[50vh] w-full sm:h-[60vh] lg:h-[85vh]",
+}) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const selectedImage = images[selectedIndex] || null;
 
   return (
     <div className="mx-auto w-full">
-      <div className="flex flex-col-reverse gap-4 lg:flex-row lg:items-center lg:gap-6">
-        {/* Thumbnails column (left on large screens) */}
-        <div className="w-full lg:flex lg:w-20 lg:items-center lg:justify-center">
-          <div className="flex w-full gap-3 overflow-x-auto lg:flex-col lg:overflow-y-auto">
+      <div className="flex flex-col gap-4">
+        {/* Main image area */}
+        <div className="w-full">
+          <div className="relative w-full overflow-hidden rounded-md bg-gray-50">
+            <div className={`w-full ${className}`}>
+              {selectedImage ? (
+                <img
+                  src={selectedImage.url}
+                  alt={
+                    selectedImage.altText ||
+                    selectedImage.caption ||
+                    "Product image"
+                  }
+                  className="h-full w-full object-cover"
+                  loading="eager"
+                  decoding="async"
+                  fetchpriority={selectedIndex === 0 ? "high" : "auto"}
+                />
+              ) : (
+                <div className="flex h-full items-center justify-center text-gray-400">
+                  No image available
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Thumbnails row (under the main image) */}
+        <div className="w-full">
+          <div className="flex w-full justify-center gap-3 overflow-x-auto py-2">
             {images.map((image, index) => (
               <button
                 key={(image.url || index) + index}
@@ -28,32 +57,11 @@ export default function ProductGallery({ images = [] }) {
                     image.altText || image.caption || `Thumbnail ${index + 1}`
                   }
                   className="h-20 w-20 rounded-md object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
               </button>
             ))}
-          </div>
-        </div>
-
-        {/* Main image area (right on large screens) */}
-        <div className="w-full lg:flex-1">
-          <div className="relative w-full overflow-hidden rounded-md bg-gray-50">
-            <div className="h-[50vh] w-full sm:h-[60vh] lg:h-[85vh]">
-              {selectedImage ? (
-                <img
-                  src={selectedImage.url}
-                  alt={
-                    selectedImage.altText ||
-                    selectedImage.caption ||
-                    "Product image"
-                  }
-                  className="h-full w-full object-cover"
-                />
-              ) : (
-                <div className="flex h-full items-center justify-center text-gray-400">
-                  No image available
-                </div>
-              )}
-            </div>
           </div>
         </div>
       </div>

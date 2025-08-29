@@ -9,7 +9,11 @@ const MemberCard = ({ member }) => {
       <h3 className="mb-2 text-xl font-semibold text-gray-800">
         {member.firstname} {member.lastname}
       </h3>
-      <p className="mb-2 text-sm text-gray-600">{member.role}</p>
+      <p className="mb-2 text-sm text-gray-600">
+        {typeof member.role === "object"
+          ? member.role.en || member.role.de || ""
+          : member.role || ""}
+      </p>
       <div className="mt-2 space-y-1">
         <p className="break-words text-sm text-gray-500">{member.email}</p>
         <p className="text-sm text-gray-500">{member.telephone}</p>

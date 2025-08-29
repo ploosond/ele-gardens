@@ -24,7 +24,7 @@ const Home = ({ products, members }) => {
   return (
     <div className="pt-16">
       {/* Fullscreen Intro Video Hero */}
-      <section className="relative h-[60vh] w-full overflow-hidden md:h-[calc(100vh-4rem)]">
+      <section className="relative h-[50vh] w-full overflow-hidden md:h-[calc(100vh-4rem)]">
         {/* Video background (native file for clean cover) */}
         <div className="absolute inset-0 -z-10">
           {!useFallback ? (
@@ -168,9 +168,9 @@ const Home = ({ products, members }) => {
           </div>
 
           {/* Product Grid */}
-          <div className="grid grid-cols-1 gap-4 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
+          <div className="grid grid-cols-2 gap-4 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
             {featuredProducts.map((product) => (
-              <Link key={product.tag} to={`/products/${product.tag}`}>
+              <Link key={product._id} to={`/products/${product.tag}`}>
                 <ProductCard product={product} />
               </Link>
             ))}
@@ -210,7 +210,7 @@ const Home = ({ products, members }) => {
           </div>
 
           {/* Team Grid */}
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-4">
             {featuredTeam.map((member) => (
               <MemberCard key={member._id} member={member} />
             ))}

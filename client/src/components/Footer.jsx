@@ -10,7 +10,7 @@ const Footer = () => {
 
   return (
     <footer>
-      <div className="mx-auto bg-primary px-4 py-16 text-gray-300 sm:px-6 lg:px-8">
+      <div className="mx-auto bg-gradient-to-l from-green-800 to-green-700 px-4 pb-4 pt-16 text-gray-300 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
             <h3 className="font-serif text-2xl font-medium">Ele Gardens</h3>
