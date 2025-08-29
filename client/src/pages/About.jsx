@@ -4,6 +4,7 @@ import HeroSection from "../components/HeroSection";
 import { Link } from "react-router";
 import MemberCard from "../components/MemberCard";
 import { assets } from "../assets/assets";
+import NewsletterSignup from "../components/NewsletterSignup";
 
 const About = ({}) => {
   // Get featured team members (first 4)
@@ -208,6 +209,13 @@ const About = ({}) => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Newsletter Signup (moved to page end) */}
+      <section className="py-2 sm:py-4">
+        <div className="mx-auto max-w-6xl px-2 sm:px-4">
+          <NewsletterSignup />
         </div>
       </section>
     </div>

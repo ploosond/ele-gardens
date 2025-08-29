@@ -22,7 +22,7 @@ const SectionTitle = ({
       )}
     >
       {subtitle && (
-        <div className="animate-fade-in mb-4 inline-block rounded-full bg-garden-100 px-3 py-1 text-sm font-medium text-garden-800">
+        <div className="animate-fade-in bg-muted text-text mb-4 inline-block rounded-full px-3 py-1 text-sm font-medium">
           {subtitle}
         </div>
       )}
@@ -39,7 +39,7 @@ const SectionTitle = ({
       {description && (
         <div
           className={cn(
-            "animate-fade-in-up max-w-2xl text-muted-foreground [animation-delay:200ms]",
+            "animate-fade-in-up text-muted-foreground max-w-2xl [animation-delay:200ms]",
             size === "default" ? "text-lg" : "text-base",
             {
               "mx-auto": alignment === "center",

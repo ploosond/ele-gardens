@@ -20,8 +20,8 @@ export default function ProjectDetail({
     if (!project) return null;
     const short = project.tagline || project.description || "";
     return (
-      <div className="group flex flex-col overflow-hidden rounded-lg bg-transparent">
-        <div className="overflow-hidden rounded-md bg-gray-100">
+      <div className="group flex flex-col overflow-hidden rounded bg-transparent">
+        <div className="bg-surface overflow-hidden rounded">
           <img
             src={project.image}
             alt={project.title}
@@ -37,13 +37,13 @@ export default function ProjectDetail({
             </p>
           )}
 
-          <h3 className="mb-2 text-2xl font-[600] leading-tight text-gray-900">
+          <h3 className="text-text mb-2 text-2xl font-[600] leading-tight">
             {project.title}
           </h3>
 
           {project.category && (
             <div className="mb-3">
-              <span className="inline-block rounded-full bg-gray-100 px-3 py-1 text-xs uppercase tracking-wide text-gray-700">
+              <span className="bg-muted text-text inline-block rounded-full px-3 py-1 text-xs uppercase tracking-wide">
                 {project.category}
               </span>
             </div>
@@ -56,7 +56,7 @@ export default function ProjectDetail({
               onClick={() =>
                 onView ? onView(project) : navigate(`/projects/${project.id}`)
               }
-              className="rounded-md bg-green-700 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors duration-200 hover:bg-green-800"
+              className="text-on-dark hover:bg-primary-dark rounded-md bg-primary px-4 py-2 text-sm font-medium shadow-sm transition-colors duration-200"
             >
               View Project
             </button>
@@ -90,7 +90,7 @@ export default function ProjectDetail({
     >
       {/* Hero image */}
       <div className="-mx-4 mb-8 sm:mx-0">
-        <div className="overflow-hidden rounded-3xl shadow-lg">
+        <div className="overflow-hidden rounded shadow-lg">
           <img
             src={project.image}
             alt={project.title}
@@ -141,8 +141,8 @@ export default function ProjectDetail({
             <h2 className="mb-3 text-xl font-semibold text-gray-900">
               The result
             </h2>
-            <div className="rounded-lg bg-green-50/40 p-4">
-              <p className="text-base font-medium text-gray-800">
+            <div className="rounded-lg bg-primary/10 p-4">
+              <p className="text-text text-base font-medium">
                 {project.result}
               </p>
             </div>

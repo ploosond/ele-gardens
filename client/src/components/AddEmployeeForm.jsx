@@ -257,10 +257,10 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
       <button
         type="submit"
         disabled={isLoading}
-        className={`w-26 flex rounded px-4 py-2 text-white ${
+        className={`w-26 text-on-dark flex rounded px-4 py-2 ${
           isLoading
             ? "cursor-not-allowed bg-gray-400"
-            : "bg-green-500 hover:bg-green-600"
+            : "hover:bg-primary-dark bg-primary"
         }`}
       >
         {isLoading ? "Adding..." : "Add Employee"}

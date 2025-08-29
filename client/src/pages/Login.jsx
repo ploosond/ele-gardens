@@ -45,7 +45,7 @@ const Login = () => {
   }, [userData, navigate]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
+    <div className="bg-muted flex min-h-screen items-center justify-center">
       <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg">
         <form onSubmit={handleSubmit} className="space-y-6">
           {errorMessage && (
@@ -87,7 +87,7 @@ const Login = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full rounded-md bg-green-600 px-4 py-2 text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+            className="text-on-dark hover:bg-primary-dark w-full rounded-md bg-primary px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           >
             Login
           </button>
@@ -96,7 +96,7 @@ const Login = () => {
         {/* Additional Links */}
         {/* <div className="mt-6 text-center text-sm text-gray-600">
             Don't have an account?{" "}
-            <a href="/register" className="text-green-600 hover:underline">
+            <a href="/register" className="text-primary hover:underline">
               Sign up
             </a>
           </div> */}

@@ -18,10 +18,10 @@ export default function ProjectCard({ project, onOpen }) {
         }
       }}
       aria-label={`Open case study: ${project.title}`}
-      className="group flex h-full transform cursor-pointer flex-col overflow-hidden rounded-sm border border-gray-200/10 bg-white/5 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-gray-300/20 hover:shadow-lg focus:outline-none focus-visible:-translate-y-1 focus-visible:shadow-lg focus-visible:ring-4 focus-visible:ring-green-200"
+      className="border-muted/10 hover:border-muted/20 group flex h-full transform cursor-pointer flex-col overflow-hidden rounded-sm border bg-white/5 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg focus:outline-none focus-visible:-translate-y-1 focus-visible:shadow-lg focus-visible:ring-4 focus-visible:ring-primary/20"
     >
       {/* Cover image */}
-      <div className="relative h-56 w-full overflow-hidden bg-gray-100 sm:h-64 md:h-56 lg:h-64">
+      <div className="bg-surface relative h-56 w-full overflow-hidden sm:h-64 md:h-56 lg:h-64">
         <img
           src={project.image}
           alt={project.title}
@@ -46,13 +46,13 @@ export default function ProjectCard({ project, onOpen }) {
               </p>
             )}
 
-            <h3 className="line-clamp-2 text-lg font-semibold leading-tight text-gray-900">
+            <h3 className="text-text line-clamp-2 text-lg font-semibold leading-tight">
               {project.title}
             </h3>
           </div>
         </div>
 
-        <p className="line-clamp-3 text-sm text-gray-600">{project.tagline}</p>
+        <p className="text-text line-clamp-3 text-sm">{project.tagline}</p>
       </div>
     </article>
   );

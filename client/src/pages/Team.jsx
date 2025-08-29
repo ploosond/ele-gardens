@@ -27,9 +27,7 @@ const Teams = ({ members }) => {
       <HeroSection
         title="Meet Our"
         highlight="Team"
-        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque
-              ab velit nobis nihil ea cum commodi labore voluptas. Consectetur
-              suscipit  tempore."
+        description="Meet the passionate team at Ele Gardens — horticulturists, designers, and plant-care specialists who combine practical expertise with sustainable practices to bring your outdoor spaces to life."
       />
 
       {/* Team Members Section */}
@@ -39,8 +37,8 @@ const Teams = ({ members }) => {
           <button
             className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
               activeDepartment === null
-                ? "bg-green-600 text-white"
-                : "bg-gray-100 text-green-700 hover:bg-gray-200"
+                ? "text-on-dark bg-primary"
+                : "bg-surface hover:bg-surface/90 text-primary"
             }`}
             onClick={() => setActiveDepartment(null)}
           >
@@ -51,8 +49,8 @@ const Teams = ({ members }) => {
               key={department}
               className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                 activeDepartment === department
-                  ? "bg-green-600 text-white"
-                  : "bg-gray-100 text-green-700 hover:bg-gray-200"
+                  ? "text-on-dark bg-primary"
+                  : "bg-surface hover:bg-surface/90 text-primary"
               }`}
               onClick={() => setActiveDepartment(department)}
             >
@@ -72,7 +70,7 @@ const Teams = ({ members }) => {
       </section>
 
       {/* Contact Section */}
-      <section className="bg-green-50 py-12 text-center">
+      <section className="bg-primary/10 py-12 text-center">
         <div className="mx-auto max-w-5xl px-4">
           <h2 className="text-2xl font-medium">Get in Touch</h2>
           <p className="mx-auto mt-2 max-w-2xl text-gray-600">
@@ -82,7 +80,7 @@ const Teams = ({ members }) => {
           <div className="mt-6">
             <a
               href="/contact"
-              className="rounded-full bg-green-600 px-6 py-3 text-white transition hover:bg-green-700"
+              className="text-on-dark hover:bg-primary-dark rounded-full bg-primary px-6 py-3 transition"
             >
               Contact Us
             </a>

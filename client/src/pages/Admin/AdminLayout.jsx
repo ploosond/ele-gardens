@@ -14,14 +14,14 @@ const AdminLayout = () => {
 
   if (!userData || userData.user.role !== "admin") {
     return (
-      <div className="flex h-screen flex-col items-center justify-center bg-gray-100">
+      <div className="bg-muted flex h-screen flex-col items-center justify-center">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-red-600">Access Denied</h1>
           <p className="mt-2 text-lg text-gray-700">
             You do not have the necessary permissions to access this page.
           </p>
           <button
-            className="mt-6 rounded-md bg-red-500 px-6 py-3 text-white hover:bg-red-600"
+            className="text-on-dark mt-6 rounded-md bg-red-500 px-6 py-3 hover:bg-red-600"
             onClick={handleLogout}
           >
             Logout
@@ -34,15 +34,15 @@ const AdminLayout = () => {
   return (
     <div>
       <div className="m-2 flex items-center justify-between">
-        <div className="flex gap-4 text-lg font-semibold text-gray-600">
+        <div className="text-text flex gap-4 text-lg font-semibold">
           <Link
-            className="rounded-md bg-green-600 px-4 py-3 text-white hover:bg-green-700"
+            className="text-on-dark hover:bg-primary-dark rounded-md bg-primary px-4 py-3"
             to="/admin/products"
           >
             Products
           </Link>
           <Link
-            className="rounded-md bg-green-600 px-4 py-3 text-white hover:bg-green-700"
+            className="text-on-dark hover:bg-primary-dark rounded-md bg-primary px-4 py-3"
             to="/admin/employees"
           >
             Employees

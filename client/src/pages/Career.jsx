@@ -12,42 +12,42 @@ const Careers = () => {
       />
 
       {/* Why Work With Us Section */}
-      <div className="bg-one py-12">
+      <div className="bg-surface py-12">
         <div className="container mx-auto px-4">
-          <h2 className="mb-6 text-center text-3xl font-bold">
+          <h2 className="text-text mb-6 text-center text-3xl font-bold">
             Why Work With Us?
           </h2>
-          <p className="mb-16 text-center text-lg text-gray-900">
+          <p className="text-text mb-16 text-center text-lg">
             Garden Harmony offers a fulfilling work environment where your
             talents and passion for landscaping can flourish.
           </p>
           <div className="grid grid-cols-1 gap-24">
             {/* Growth & Learning */}
             <div className="text-center">
-              <h3 className="mb-2 text-xl font-semibold text-gray-900">
+              <h3 className="text-text mb-2 text-xl font-semibold">
                 Growth & Learning
               </h3>
-              <p className="text-gray-700">
+              <p className="text-text/70">
                 Continuous professional development and learning opportunities
                 in horticulture and sustainable practices.
               </p>
             </div>
             {/* Passionate Team */}
             <div className="text-center">
-              <h3 className="mb-2 text-xl font-semibold text-gray-900">
+              <h3 className="text-text mb-2 text-xl font-semibold">
                 Passionate Team
               </h3>
-              <p className="text-gray-700">
+              <p className="text-text/70">
                 Join a team that genuinely cares about creating beautiful,
                 sustainable outdoor spaces.
               </p>
             </div>
             {/* Work-Life Balance */}
             <div className="text-center">
-              <h3 className="mb-2 text-xl font-semibold text-gray-900">
+              <h3 className="text-text mb-2 text-xl font-semibold">
                 Work-Life Balance
               </h3>
-              <p className="text-gray-700">
+              <p className="text-text/70">
                 We value your well-being and provide a supportive environment
                 that respects your time.
               </p>
@@ -58,15 +58,15 @@ const Careers = () => {
 
       {/* Careers Section */}
       <div className="container mx-auto px-16 py-12">
-        <h2 className="mb-6 text-center text-3xl font-bold text-gray-800">
+        <h2 className="text-text mb-6 text-center text-3xl font-bold">
           Currently No Open Positions
         </h2>
-        <p className="mb-6 text-center text-gray-600">
+        <p className="text-text/70 mb-6 text-center">
           We're not currently hiring for any positions, but we're always
           interested in meeting talented individuals who are passionate about
           gardening and sustainable landscaping.
         </p>
-        <p className="mb-6 text-center text-gray-600">
+        <p className="text-text/70 mb-6 text-center">
           If there will be any open positions in the future, we will post them
           here. Feel free to check back later or send your resume for future
           consideration.
@@ -74,7 +74,7 @@ const Careers = () => {
         <div className="flex justify-center">
           <a
             href="/contact"
-            className="rounded-md bg-green-600 px-6 py-3 text-white hover:bg-green-700"
+            className="text-on-dark hover:bg-primary-dark rounded-md bg-primary px-6 py-3"
           >
             Contact Us
           </a>

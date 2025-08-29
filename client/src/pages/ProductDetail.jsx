@@ -33,7 +33,7 @@ const ProductDetail = ({ products }) => {
           </p>
           <Link
             to="/products"
-            className="mt-6 inline-block rounded-md bg-green-600 px-6 py-3 text-white hover:bg-green-700"
+            className="text-on-dark hover:bg-primary-dark mt-6 inline-block rounded-md bg-primary px-6 py-3"
           >
             Back to Products
           </Link>
@@ -72,14 +72,14 @@ const ProductDetail = ({ products }) => {
         {/* Details Section */}
         <div className="flex flex-col">
           <div className="mb-10">
-            <h1 className="mb-2 font-poppins text-3xl font-semibold text-green-600 sm:text-4xl">
+            <h1 className="mb-2 font-poppins text-3xl font-semibold text-primary sm:text-4xl">
               {product.scientific_name}
             </h1>
             <p className="mb-4 font-poppins text-lg italic text-secondary">
               {product.common_name}
             </p>
-            <hr className="mb-6 border-0 border-b-2 border-gray-300" />
-            <p className="text-justify leading-relaxed text-gray-700">
+            <hr className="border-muted/60 mb-6 border-0 border-b-2" />
+            <p className="text-text text-justify leading-relaxed">
               {typeof product.description === "string"
                 ? product.description
                 : product.description?.en ||
@@ -92,35 +92,35 @@ const ProductDetail = ({ products }) => {
           <div className="grid w-full grid-cols-1 gap-x-8 gap-y-6 rounded-lg bg-white p-6 shadow-lg sm:grid-cols-2 lg:grid-cols-4">
             {/* Row 1 */}
             <div className="flex items-center space-x-2">
-              <RxHeight className="h-8 w-8 rounded bg-gray-400 p-1 text-white" />
+              <RxHeight className="bg-muted h-8 w-8 rounded p-1 text-primary" />
               <p className="whitespace-nowrap">Height</p>
             </div>
-            <div className="flex items-center font-semibold text-gray-800">
+            <div className="text-text flex items-center font-semibold">
               {product.height ? `${product.height} cm` : "—"}
             </div>
 
             <div className="flex items-center space-x-2">
-              <RxWidth className="h-8 w-8 rounded bg-gray-400 p-1 text-white" />
+              <RxWidth className="bg-muted h-8 w-8 rounded p-1 text-primary" />
               <p className="whitespace-nowrap">Diameter</p>
             </div>
-            <div className="flex items-center font-semibold text-gray-800">
+            <div className="text-text flex items-center font-semibold">
               {product.diameter ? `${product.diameter} cm` : "—"}
             </div>
 
             {/* Row 2 */}
             <div className="flex items-center space-x-2">
-              <PiSnowflakeThin className="h-8 w-8 rounded bg-gray-400 p-1 text-white" />
+              <PiSnowflakeThin className="bg-muted h-8 w-8 rounded p-1 text-primary" />
               <p className="whitespace-nowrap">Hardy</p>
             </div>
-            <div className="flex items-center font-semibold text-gray-800">
+            <div className="text-text flex items-center font-semibold">
               {product.hardiness ? `${product.hardiness}°C` : "—"}
             </div>
 
             <div className="flex items-center space-x-2">
-              <IoSunnyOutline className="h-8 w-8 rounded bg-gray-400 p-1 text-white" />
+              <IoSunnyOutline className="bg-muted h-8 w-8 rounded p-1 text-primary" />
               <p className="whitespace-nowrap">Light</p>
             </div>
-            <div className="flex items-center font-semibold text-gray-800">
+            <div className="text-text flex items-center font-semibold">
               {typeof product.light === "object"
                 ? product.light.en || product.light.de || ""
                 : product.light || ""}
@@ -141,7 +141,7 @@ const ProductDetail = ({ products }) => {
             </div>
             <Link
               to="/products"
-              className="text-garden-green-dark hover:text-garden-green-light hidden items-center transition-colors md:flex"
+              className="hover:text-primary-dark hidden items-center text-primary transition-colors md:flex"
             >
               View all products <ArrowRight size={16} className="ml-2" />
             </Link>
@@ -158,7 +158,7 @@ const ProductDetail = ({ products }) => {
           <div className="mt-8 text-center md:hidden">
             <Link
               to="/products"
-              className="text-garden-green-dark hover:text-garden-green-light inline-flex items-center transition-colors"
+              className="hover:text-primary-dark inline-flex items-center text-primary transition-colors"
             >
               View all products <ArrowRight size={16} className="ml-2" />
             </Link>

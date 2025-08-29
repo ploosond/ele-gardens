@@ -319,7 +319,7 @@ const AddProductForm = ({ onProductAdded }) => {
 
       {/* Colors */}
       <div className="mb-4">
-        <label htmlFor="color" className="block font-medium text-gray-700">
+        <label htmlFor="color" className="text-text block font-medium">
           Select Color
         </label>
         <div className="mt-1 flex gap-2">
@@ -328,9 +328,7 @@ const AddProductForm = ({ onProductAdded }) => {
               key={c}
               onClick={() => setFormData({ ...formData, color: c })}
               className={`h-8 w-8 cursor-pointer rounded-full border-2 transition-all duration-200 ${
-                formData.color === c
-                  ? "scale-110 border-black"
-                  : "border-gray-300"
+                formData.color === c ? "scale-110 border-black" : "border-muted"
               }`}
               style={{ backgroundColor: c }}
             />
@@ -392,10 +390,10 @@ const AddProductForm = ({ onProductAdded }) => {
       <button
         type="submit"
         disabled={isLoading}
-        className={`w-26 flex rounded px-4 py-2 text-white ${
+        className={`w-26 text-on-dark flex rounded px-4 py-2 ${
           isLoading
             ? "cursor-not-allowed bg-gray-400"
-            : "bg-green-500 hover:bg-green-600"
+            : "hover:bg-primary-dark bg-primary"
         }`}
       >
         {isLoading ? "Adding..." : "Add Product"}

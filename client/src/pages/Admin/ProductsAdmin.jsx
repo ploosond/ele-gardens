@@ -46,11 +46,11 @@ const ProductsAdmin = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="bg-muted min-h-screen p-6">
       <div className="mb-4 flex flex-row-reverse items-center justify-between">
         <button
           onClick={() => setShowAddForm((prev) => !prev)}
-          className="rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
+          className="text-on-dark hover:bg-primary-dark rounded bg-primary px-4 py-2"
         >
           {showAddForm ? "Cancel" : "Add +"}
         </button>
