@@ -1,50 +1,120 @@
 import { useState } from "react";
 import productService from "../services/productService";
+import { toast } from "sonner";
 
 const AddProductForm = ({ onProductAdded }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const colors = [
+    "#6a844a",
+    "#748f3b",
+    "#a6c338",
+    "#647867",
+    "#875b72",
+    "#3b5833",
+    "#556b2f",
+    "#4c4f4a",
+  ];
+
   const [formData, setFormData] = useState({
-    tag: "",
-    scientific_name: "",
     common_name: "",
-    category: "grass", // Default to the first enum value
-    description: "",
-    images: [{ url: "" }, { url: "" }, { url: "" }], // Three image URLs
+    description_en: "",
+    description_de: "",
     height: "",
     diameter: "",
     hardiness: "",
-    light: "sun", // Default to the first enum value
+    light: "sun",
+    color: "",
   });
 
+  const lightDEMap = {
+    sun: "sonne",
+    "half-shadow": "halb-schatten",
+    shadow: "schatten",
+  };
+
+  const [images, setImages] = useState([]);
+
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleImageChange = (index, value) => {
-    const updatedImages = [...formData.images];
-    updatedImages[index].url = value;
-    setFormData({ ...formData, images: updatedImages });
+  // Handle image selection
+  const handleFileChange = (e) => {
+    const files = Array.from(e.target.files);
+    if (files.length + images.length > 3) {
+      alert("You can upload up to 3 images only.");
+      return;
+    }
+    setImages((prev) => [...prev, ...files]);
   };
 
+  // Remove a selected image
+  const handleRemoveImage = (index) => {
+    setImages((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (images.length < 1) {
+      alert("At least one image is required.");
+      return;
+    }
+
     try {
-      const addedProduct = await productService.createProduct(formData);
-      onProductAdded(addedProduct); // Notify parent component
+      setIsLoading(true); // <-- start loading
+
+      const light = {
+        en: formData.light,
+        de: lightDEMap[formData.light],
+      };
+
+      // Format the input values
+      const formattedFormData = {
+        ...formData,
+        height: formData.height.replace(/–/g, "-").trim(),
+        diameter: formData.diameter.replace(/–/g, "-").trim(),
+        hardiness: formData.hardiness.replace(/–/g, "-").trim(),
+      };
+
+      const formDataToSend = new FormData();
+      formDataToSend.append("common_name", formData.common_name);
+      formDataToSend.append("description_en", formData.description_en);
+      formDataToSend.append("description_de", formData.description_de);
+      formDataToSend.append("height", formattedFormData.height);
+      formDataToSend.append("diameter", formattedFormData.diameter);
+      formDataToSend.append("hardiness", formattedFormData.hardiness);
+      formDataToSend.append("light_en", light.en);
+      formDataToSend.append("light_de", light.de);
+      formDataToSend.append("color", formData.color);
+
+      images.forEach((file) => formDataToSend.append("images", file));
+
+      const addedProduct = await productService.createProduct(formDataToSend, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      onProductAdded(addedProduct);
       setFormData({
-        tag: "",
-        scientific_name: "",
         common_name: "",
-        category: "grass",
-        description: "",
-        images: [{ url: "" }, { url: "" }, { url: "" }],
+        description_en: "",
+        description_de: "",
         height: "",
         diameter: "",
         hardiness: "",
-        light: "sun",
+        light_en: "sun",
+        light_de: "sonne",
       });
+      setImages([]);
     } catch (error) {
-      console.error("Error adding product:", error);
+      console.error(error);
+      toast.error(error.response?.data?.error || "Failed to add product.");
+    } finally {
+      setIsLoading(false); // <-- stop loading
     }
   };
 
@@ -55,183 +125,158 @@ const AddProductForm = ({ onProductAdded }) => {
     >
       <h2 className="text-lg font-semibold">Add New Product</h2>
 
-      {/* General Information Section */}
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-medium">
-            Tag <span className="text-red-500">*</span>
-          </label>
-          <input
-            type="text"
-            name="tag"
-            value={formData.tag}
-            onChange={handleChange}
-            className="w-full rounded border p-2"
-            required
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium">
-            Scientific Name <span className="text-red-500">*</span>
-          </label>
-          <input
-            type="text"
-            name="scientific_name"
-            value={formData.scientific_name}
-            onChange={handleChange}
-            className="w-full rounded border p-2"
-            required
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium">Common Name</label>
-          <input
-            type="text"
-            name="common_name"
-            value={formData.common_name}
-            onChange={handleChange}
-            className="w-full rounded border p-2"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium">
-            Category <span className="text-red-500">*</span>
-          </label>
-          <select
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            className="w-full rounded border p-2"
-            required
-          >
-            <option value="grass">Grass</option>
-            <option value="flower">Flower</option>
-          </select>
-        </div>
-      </div>
-
-      {/* Description Section */}
+      {/* Common Name */}
       <div>
-        <label className="block text-sm font-medium">Description</label>
-        <textarea
-          name="description"
-          value={formData.description}
+        <label className="block text-sm font-medium">Common Name</label>
+        <input
+          type="text"
+          name="common_name"
+          value={formData.common_name}
           onChange={handleChange}
           className="w-full rounded border p-2"
+          required
         />
       </div>
 
-      {/* Dimensions Section */}
-      <div className="grid grid-cols-4 gap-4">
+      {/* Descriptions */}
+      <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium">
-            Height (cm) <span className="text-red-500">*</span>
-          </label>
+          <label className="block text-sm font-medium">Description (EN)</label>
+          <textarea
+            name="description_en"
+            value={formData.description_en}
+            onChange={handleChange}
+            className="w-full rounded border p-2"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium">Description (DE)</label>
+          <textarea
+            name="description_de"
+            value={formData.description_de}
+            onChange={handleChange}
+            className="w-full rounded border p-2"
+          />
+        </div>
+      </div>
+
+      {/* Dimensions */}
+      <div className="grid grid-cols-3 gap-4">
+        <div>
+          <label className="block text-sm font-medium">Height (cm)</label>
           <input
-            type="number"
+            type="text"
             name="height"
             value={formData.height}
             onChange={handleChange}
             className="w-full rounded border p-2"
+            placeholder="e.g. 10-20"
             required
           />
         </div>
         <div>
-          <label className="block text-sm font-medium">
-            Diameter (cm) <span className="text-red-500">*</span>
-          </label>
+          <label className="block text-sm font-medium">Diameter (cm)</label>
           <input
-            type="number"
+            type="text"
             name="diameter"
             value={formData.diameter}
             onChange={handleChange}
             className="w-full rounded border p-2"
+            placeholder="e.g. 5-10"
             required
           />
         </div>
         <div>
-          <label className="block text-sm font-medium">
-            Hardiness <span className="text-red-500">*</span>
-          </label>
+          <label className="block text-sm font-medium">Hardiness (°C)</label>
           <input
-            type="number"
+            type="text"
             name="hardiness"
             value={formData.hardiness}
             onChange={handleChange}
             className="w-full rounded border p-2"
+            placeholder="e.g. 3-5"
             required
           />
         </div>
-        <div>
-          <label className="block text-sm font-medium">
-            Light <span className="text-red-500">*</span>
-          </label>
-          <select
-            name="light"
-            value={formData.light}
-            onChange={handleChange}
-            className="w-full rounded border p-2"
-            required
-          >
-            <option value="sun">Sun</option>
-            <option value="half-shadow">Half-Shadow</option>
-            <option value="shadow">Shadow</option>
-          </select>
-        </div>
       </div>
 
-      {/* Images Section */}
+      {/* Light */}
+
       <div>
-        <h3 className="text-sm font-medium">Image URLs</h3>
-        <div className="grid grid-cols-3 gap-4">
-          <div>
-            <label className="block text-sm font-medium">
-              Image URL 1 <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              value={formData.images[0].url}
-              onChange={(e) => handleImageChange(0, e.target.value)}
-              className="w-full rounded border p-2"
-              placeholder="Enter the first image URL"
-              required
+        <label className="block text-sm font-medium">Light</label>
+        <select
+          name="light"
+          value={formData.light}
+          onChange={(e) => setFormData({ ...formData, light: e.target.value })}
+          className="w-full rounded border p-2"
+        >
+          <option value="sun">Sun</option>
+          <option value="half-shadow">Half-Shadow</option>
+          <option value="shadow">Shadow</option>
+        </select>
+        <p className="mt-1 text-gray-500">DE: {lightDEMap[formData.light]}</p>
+      </div>
+
+      {/* Colors */}
+      <div className="mb-4">
+        <label className="block font-medium text-gray-700">Select Color</label>
+        <div className="mt-1 flex gap-2">
+          {colors.map((c) => (
+            <div
+              key={c}
+              onClick={() => setFormData({ ...formData, color: c })}
+              className={`h-8 w-8 cursor-pointer rounded-full border-2 transition-all duration-200 ${
+                formData.color === c
+                  ? "scale-110 border-black"
+                  : "border-gray-300"
+              }`}
+              style={{ backgroundColor: c }}
             />
-          </div>
-          <div>
-            <label className="block text-sm font-medium">
-              Image URL 2 <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              value={formData.images[1].url}
-              onChange={(e) => handleImageChange(1, e.target.value)}
-              className="w-full rounded border p-2"
-              placeholder="Enter the second image URL"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium">
-              Image URL 3 <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              value={formData.images[2].url}
-              onChange={(e) => handleImageChange(2, e.target.value)}
-              className="w-full rounded border p-2"
-              placeholder="Enter the third image URL"
-              required
-            />
-          </div>
+          ))}
         </div>
       </div>
 
-      {/* Submit Button */}
+      {/* Images */}
+      <div className="mb-4">
+        <label className="block font-medium text-gray-700">Images (1-3)</label>
+        <input
+          type="file"
+          accept="image/*"
+          multiple
+          onChange={handleFileChange}
+          className="w-full rounded border p-2"
+        />
+        <div className="mt-2 flex flex-row gap-2 overflow-x-auto">
+          {images.map((img, index) => (
+            <div key={index} className="relative">
+              <img
+                src={URL.createObjectURL(img)}
+                alt="Product"
+                className="h-16 w-16 rounded object-cover"
+              />
+              <button
+                type="button"
+                className="absolute right-1/2 top-1/2 flex h-6 w-6 -translate-y-1/2 translate-x-1/2 transform items-center justify-center rounded-full bg-red-500 text-sm font-bold text-white transition hover:bg-red-600"
+                onClick={() => handleRemoveImage(index)}
+              >
+                ×
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Submit */}
       <button
         type="submit"
-        className="w-26 flex rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
+        disabled={isLoading}
+        className={`w-26 flex rounded px-4 py-2 text-white ${
+          isLoading
+            ? "cursor-not-allowed bg-gray-400"
+            : "bg-green-500 hover:bg-green-600"
+        }`}
       >
-        Add Product
+        {isLoading ? "Adding..." : "Add Product"}
       </button>
     </form>
   );

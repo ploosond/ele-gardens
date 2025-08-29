@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import employeeService from "../../services/employeeService";
 
 const EditEmployeeForm = ({ employee, onUpdate, onCancel }) => {
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
-    role: "",
-    department: "",
+    role_en: "",
+    role_de: "",
+    department_en: "",
+    department_de: "",
     telephone: "",
     email: "",
     profilePictureFile: null,
@@ -14,17 +16,20 @@ const EditEmployeeForm = ({ employee, onUpdate, onCancel }) => {
   });
 
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     if (employee) {
       setFormData({
         firstname: employee.firstname || "",
         lastname: employee.lastname || "",
-        role: employee.role || "",
-        department: employee.department || "",
-        telephone: employee.telephone || "",
         email: employee.email || "",
-        profilePictureFile: null,
+        role_en: employee.role?.en || "",
+        role_de: employee.role?.de || "",
+        department_en: employee.department?.en || "",
+        department_de: employee.department?.de || "",
+        telephone: employee.telephone || "",
         profilePictureUrl: employee.profilePicture?.url || "",
       });
       setErrors({});
@@ -62,41 +67,52 @@ const EditEmployeeForm = ({ employee, onUpdate, onCancel }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validate()) return;
+
+    if (isSubmitting) return; // Prevent double submission
+
+    if (!validate()) {
+      alert("Please fix the errors in the form.");
+      return;
+    }
+
+    setIsSubmitting(true);
 
     try {
-      const formPayload = new FormData();
-      formPayload.append("firstname", formData.firstname);
-      formPayload.append("lastname", formData.lastname);
-      formPayload.append("role", formData.role);
-      formPayload.append("department", formData.department);
-      formPayload.append("telephone", formData.telephone);
-      formPayload.append("email", formData.email);
+      const formDataToSend = new FormData();
+      Object.keys(formData).forEach((key) => {
+        if (key === "profilePictureFile" && formData[key]) {
+          formDataToSend.append("profilePicture", formData[key]); // Correct field name for Multer
+        } else if (formData[key] !== null && formData[key] !== undefined) {
+          formDataToSend.append(key, formData[key].toString()); // Ensure all values are strings
+        }
+      });
 
-      if (formData.profilePictureFile) {
-        formPayload.append("profilePicture", formData.profilePictureFile);
+      console.log("FormData before submission:");
+      for (let [key, value] of formDataToSend.entries()) {
+        console.log(`${key}:`, value);
       }
 
-      // Use employee._id here
       const updatedEmployee = await employeeService.updateEmployee(
         employee._id,
-        formPayload,
+        formDataToSend,
       );
 
       onUpdate(updatedEmployee);
+      setFormData((prev) => ({ ...prev, profilePictureFile: null }));
     } catch (error) {
-      console.error(
-        "Failed to update employee:",
-        error.response?.data || error.message || error,
-      );
+      console.error("Failed to update employee:", error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   const {
     firstname,
     lastname,
-    role,
-    department,
+    role_en,
+    role_de,
+    department_en,
+    department_de,
     telephone,
     email,
     profilePictureUrl,
@@ -197,40 +213,120 @@ const EditEmployeeForm = ({ employee, onUpdate, onCancel }) => {
           )}
         </div>
 
-        {/* Role */}
+        {/* Role (EN) */}
         <div>
           <label
-            htmlFor="role"
+            htmlFor="role_en"
             className="mb-1 block font-medium text-gray-700"
           >
-            Role
+            Role (EN) <span className="text-red-500">*</span>
           </label>
           <input
-            id="role"
-            name="role"
-            value={role}
+            id="role_en"
+            name="role_en"
+            value={role_en}
             onChange={handleChange}
-            placeholder="Role"
-            className="input w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            placeholder="Role in English"
+            required
+            className={`input w-full rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+              errors.role_en ? "border-red-500" : "border-gray-300"
+            }`}
+            aria-invalid={!!errors.role_en}
+            aria-describedby={errors.role_en ? "role_en-error" : undefined}
           />
+          {errors.role_en && (
+            <p id="role_en-error" className="mt-1 text-sm text-red-600">
+              {errors.role_en}
+            </p>
+          )}
         </div>
 
-        {/* Department */}
+        {/* Role (DE) */}
         <div>
           <label
-            htmlFor="department"
+            htmlFor="role_de"
             className="mb-1 block font-medium text-gray-700"
           >
-            Department
+            Role (DE) <span className="text-red-500">*</span>
           </label>
           <input
-            id="department"
-            name="department"
-            value={department}
+            id="role_de"
+            name="role_de"
+            value={role_de}
             onChange={handleChange}
-            placeholder="Department"
-            className="input w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            placeholder="Rolle auf Deutsch"
+            required
+            className={`input w-full rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+              errors.role_de ? "border-red-500" : "border-gray-300"
+            }`}
+            aria-invalid={!!errors.role_de}
+            aria-describedby={errors.role_de ? "role_de-error" : undefined}
           />
+          {errors.role_de && (
+            <p id="role_de-error" className="mt-1 text-sm text-red-600">
+              {errors.role_de}
+            </p>
+          )}
+        </div>
+
+        {/* Department (EN) */}
+        <div>
+          <label
+            htmlFor="department_en"
+            className="mb-1 block font-medium text-gray-700"
+          >
+            Department (EN) <span className="text-red-500">*</span>
+          </label>
+          <input
+            id="department_en"
+            name="department_en"
+            value={department_en}
+            onChange={handleChange}
+            placeholder="Department in English"
+            required
+            className={`input w-full rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+              errors.department_en ? "border-red-500" : "border-gray-300"
+            }`}
+            aria-invalid={!!errors.department_en}
+            aria-describedby={
+              errors.department_en ? "department_en-error" : undefined
+            }
+          />
+          {errors.department_en && (
+            <p id="department_en-error" className="mt-1 text-sm text-red-600">
+              {errors.department_en}
+            </p>
+          )}
+        </div>
+
+        {/* Department (DE) */}
+        <div>
+          <label
+            htmlFor="department_de"
+            className="mb-1 block font-medium text-gray-700"
+          >
+            Department (DE) <span className="text-red-500">*</span>
+          </label>
+          <input
+            id="department_de"
+            name="department_de"
+            value={department_de}
+            onChange={handleChange}
+            placeholder="Abteilung auf Deutsch"
+            required
+            className={`input w-full rounded border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+              errors.department_de ? "border-red-500" : "border-gray-300"
+            }`}
+            aria-invalid={!!errors.department_de}
+            aria-describedby={
+              errors.department_de ? "department_de-error" : undefined
+            }
+          />
+          {errors.department_de && (
+            <p id="department_de-error" className="mt-1 text-sm text-red-600">
+              {errors.department_de}
+            </p>
+          )}
         </div>
 
         {/* Telephone */}
@@ -264,19 +360,40 @@ const EditEmployeeForm = ({ employee, onUpdate, onCancel }) => {
             name="profilePictureFile"
             type="file"
             accept="image/*"
+            ref={fileInputRef}
             onChange={handleChange}
             className="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
         </div>
 
         {/* Preview */}
-        <div className="flex items-center gap-4">
+        <div className="mt-2 flex items-center gap-4">
           {profilePictureUrl && (
-            <img
-              src={profilePictureUrl}
-              alt={firstname}
-              className="h-16 w-16 rounded-full border border-gray-300 object-cover"
-            />
+            <div className="relative">
+              <img
+                src={profilePictureUrl}
+                alt={firstname}
+                className="h-16 w-16 rounded-full border border-gray-300 object-cover"
+              />
+              {/* show remove button when a new file is selected */}
+              {formData.profilePictureFile && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFormData((prev) => ({
+                      ...prev,
+                      profilePictureFile: null,
+                      profilePictureUrl: employee?.profilePicture?.url || "",
+                    }));
+                    if (fileInputRef.current) fileInputRef.current.value = "";
+                  }}
+                  className="absolute right-1/2 top-1/2 flex h-6 w-6 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full bg-red-500 text-sm font-bold text-white hover:bg-red-600"
+                  aria-label="Remove selected image"
+                >
+                  ×
+                </button>
+              )}
+            </div>
           )}
         </div>
       </div>
@@ -285,9 +402,14 @@ const EditEmployeeForm = ({ employee, onUpdate, onCancel }) => {
       <div className="mt-6 flex justify-end gap-3">
         <button
           type="submit"
-          className="rounded bg-blue-600 px-6 py-2 font-semibold text-white shadow transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          disabled={isSubmitting}
+          className={`rounded px-6 py-2 font-semibold text-white shadow focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+            isSubmitting
+              ? "cursor-not-allowed bg-gray-400"
+              : "bg-blue-600 hover:bg-blue-700"
+          }`}
         >
-          Save
+          {isSubmitting ? "Saving..." : "Save"}
         </button>
         <button
           type="button"

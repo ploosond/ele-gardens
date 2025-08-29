@@ -20,6 +20,7 @@ import PrivateRoute from "./pages/PrivateRoute";
 import PublicLayout from "./pages/PublicLayout";
 import ScrollToTop from "./components/ScrollToTop";
 import ProjectDetail from "./components/ProjectDetail";
+import { Toaster } from "sonner";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -50,12 +51,16 @@ const App = () => {
 
   return (
     <div>
+      <Toaster position="top-right" />
       <ScrollToTop />
       <Routes>
         {/* Public Routes with Layout */}
         <Route element={<PublicLayout />}>
-          <Route path="/" element={<Home products={products} />} />
-          <Route path="/about" element={<About members={members} />} />
+          <Route
+            path="/"
+            element={<Home products={products} members={members} />}
+          />
+          <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products products={products} />} />
           <Route
             path="/products/:id"

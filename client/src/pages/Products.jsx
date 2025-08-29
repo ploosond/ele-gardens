@@ -53,7 +53,7 @@ const Products = ({ products }) => {
       </div>
 
       {/* Products Section */}
-      <section className="bg-white p-12">
+      <section className="bg-white py-12">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-6 lg:flex-row">
             {/* Products Grid */}

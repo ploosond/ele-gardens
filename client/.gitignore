@@ -23,4 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
-home_*
+# Local video assets
+/public/videos/
+# Specific hero file (if you prefer to ignore only this file)
+/public/videos/intro.mp4
+

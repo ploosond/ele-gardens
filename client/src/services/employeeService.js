@@ -29,6 +29,7 @@ const updateEmployee = async (id, updatedEmployee) => {
   const config = {
     headers: {
       Authorization: token,
+      "Content-Type": "multipart/form-data",
     },
   };
 

@@ -1,43 +1,65 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema(
   {
-    tag: {
+    common_name: {
       type: String,
-      lowercase: true,
-      unique: true,
       trim: true,
-      required: true,
+      unique: true,
+      required: [true, 'Common name is required.'],
     },
-    scientific_name: { type: String, required: true, trim: true },
-    common_name: { type: String, trim: true },
-    category: { type: String, enum: ["grass", "flower"], required: true },
-    description: { type: String },
+
+    // Multilingual descriptions
+    description: {
+      en: {
+        type: String,
+        trim: true,
+        required: [true, 'English description is required.'],
+      },
+      de: {
+        type: String,
+        trim: true,
+        required: [true, 'German description is required.'],
+      },
+    },
+
+    // Images
     images: [
       {
         url: {
           type: String,
-          required: true,
+          required: [true, 'Image URL is required.'],
         },
         altText: { type: String },
       },
     ],
-    height: { type: Number, required: true },
-    diameter: { type: Number, required: true },
-    hardiness: { type: Number, required: true },
+
+    height: { type: String, required: [true, 'Height is required.'] },
+    diameter: { type: String, required: [true, 'Diameter is required.'] },
+    hardiness: { type: String, required: [true, 'Hardiness is required.'] },
+
+    // Multilingual light info
     light: {
-      type: String,
-      enum: ["sun", "half-shadow", "shadow"],
-      required: true,
+      en: {
+        type: String,
+        enum: ['sun', 'half-shadow', 'shadow'],
+        required: [true, 'Light (EN) is required.'],
+      },
+      de: {
+        type: String,
+        enum: ['sonne', 'halb-schatten', 'schatten'],
+        required: [true, 'Light (DE) is required.'],
+      },
     },
+
     color: {
       type: String,
-      default: "#E7E381",
+      default: '#6a844a',
     },
 
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
       required: true,
     },
   },
@@ -46,6 +68,6 @@ const productSchema = new mongoose.Schema(
   }
 );
 
-const Product = mongoose.model("Product", productSchema);
+const Product = mongoose.model('Product', productSchema);
 
 export default Product;

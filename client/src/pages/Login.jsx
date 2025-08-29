@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import userService from "../services/userService";
 import { AuthContext } from "../context/AuthContext";
+import { toast } from "sonner";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -27,10 +28,13 @@ const Login = () => {
       setFormData({ username: "", password: "" });
       navigate("/admin");
     } catch (error) {
-      setErrorMessage(error || "Wrong credentials");
-      setTimeout(() => {
-        setErrorMessage(null);
-      }, 3000);
+      let message = "Wrong credentials";
+      if (error.response && error.response.status === 401) {
+        message = "Invalid username or password.";
+      } else if (error.message) {
+        message = error.message;
+      }
+      toast.error(message);
     }
   };
 
