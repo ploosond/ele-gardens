@@ -111,13 +111,15 @@ router.post(
       const images = req.files
         ? req.files.map((file) => ({
             url: file.path,
-            public_id: file.filename || (() => {
-              try {
-                return file.path.split('/').slice(-2).join('/').split('.')[0];
-              } catch (e) {
-                return undefined;
-              }
-            })(),
+            public_id:
+              file.filename ||
+              (() => {
+                try {
+                  return file.path.split('/').slice(-2).join('/').split('.')[0];
+                } catch (e) {
+                  return undefined;
+                }
+              })(),
           }))
         : [];
 
@@ -187,13 +189,15 @@ router.put(
       const uploadedImages = req.files
         ? req.files.map((file) => ({
             url: file.path,
-            public_id: file.filename || (() => {
-              try {
-                return file.path.split('/').slice(-2).join('/').split('.')[0];
-              } catch (e) {
-                return undefined;
-              }
-            })(),
+            public_id:
+              file.filename ||
+              (() => {
+                try {
+                  return file.path.split('/').slice(-2).join('/').split('.')[0];
+                } catch (e) {
+                  return undefined;
+                }
+              })(),
           }))
         : [];
 
@@ -234,7 +238,11 @@ router.delete(
         for (const img of product.images) {
           // publicId extraction is best-effort; if it fails we'll log and continue
           try {
-            const publicId = img.url.split('/').slice(-2).join('/').split('.')[0];
+            const publicId = img.url
+              .split('/')
+              .slice(-2)
+              .join('/')
+              .split('.')[0];
             await cloudinary.uploader.destroy(publicId);
           } catch (error) {
             // Log and continue removing other images instead of aborting whole request

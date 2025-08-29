@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import productService from "../services/productService";
 import { toast } from "sonner";
 
@@ -34,6 +34,10 @@ const AddProductForm = ({ onProductAdded }) => {
   };
 
   const [images, setImages] = useState([]);
+  const [previews, setPreviews] = useState([]);
+  const [errors, setErrors] = useState([]);
+  const fileInputRef = useRef(null);
+  const commonNameRef = useRef(null);
 
   // Handle input changes
   const handleChange = (e) => {
@@ -48,34 +52,49 @@ const AddProductForm = ({ onProductAdded }) => {
       alert("You can upload up to 3 images only.");
       return;
     }
+    // create object URLs for previews and store them
+    const newPreviews = files.map((f) => URL.createObjectURL(f));
     setImages((prev) => [...prev, ...files]);
+    setPreviews((prev) => [...prev, ...newPreviews]);
   };
 
   // Remove a selected image
   const handleRemoveImage = (index) => {
     setImages((prev) => prev.filter((_, i) => i !== index));
+    setPreviews((prev) => {
+      const url = prev[index];
+      if (url) URL.revokeObjectURL(url);
+      return prev.filter((_, i) => i !== index);
+    });
+    // clear native file input so same file can be re-selected if desired
+    if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     // client-side validation for required fields
     const missing = [];
-    if (!formData.common_name) missing.push("Common name");
-    if (!formData.description_en) missing.push("Description (EN)");
-    if (!formData.description_de) missing.push("Description (DE)");
-    if (!formData.height) missing.push("Height");
-    if (!formData.diameter) missing.push("Diameter");
-    if (!formData.hardiness) missing.push("Hardiness");
-    if (!formData.light) missing.push("Light");
-    if (!formData.color) missing.push("Color");
-    if (images.length < 1) missing.push("At least one image");
+    if (!formData.common_name) missing.push("common_name");
+    if (!formData.description_en) missing.push("description_en");
+    if (!formData.description_de) missing.push("description_de");
+    if (!formData.height) missing.push("height");
+    if (!formData.diameter) missing.push("diameter");
+    if (!formData.hardiness) missing.push("hardiness");
+    if (!formData.light) missing.push("light");
+    if (!formData.color) missing.push("color");
+    if (images.length < 1) missing.push("images");
 
     if (missing.length > 0) {
-      alert("Please fill required fields: " + missing.join(", "));
+      setErrors(missing);
+      // focus first invalid field
+      const first = missing[0];
+      if (first === "common_name" && commonNameRef.current) {
+        commonNameRef.current.focus();
+      }
       return;
     }
+    setErrors([]);
 
     try {
       setIsLoading(true); // <-- start loading
@@ -96,7 +115,8 @@ const AddProductForm = ({ onProductAdded }) => {
       const formDataToSend = new FormData();
       formDataToSend.append("common_name", formData.common_name);
       formDataToSend.append("description_en", formData.description_en);
-      formDataToSend.append("description_de", formData.description_de);
+      // send only the english light key
+      formDataToSend.append("light_en", formData.light);
       formDataToSend.append("height", formattedFormData.height);
       formDataToSend.append("diameter", formattedFormData.diameter);
       formDataToSend.append("hardiness", formattedFormData.hardiness);
@@ -106,7 +126,7 @@ const AddProductForm = ({ onProductAdded }) => {
 
       images.forEach((file) => formDataToSend.append("images", file));
 
-  const addedProduct = await productService.createProduct(formDataToSend);
+      const addedProduct = await productService.createProduct(formDataToSend);
 
       onProductAdded(addedProduct);
       setFormData({
@@ -120,6 +140,10 @@ const AddProductForm = ({ onProductAdded }) => {
         color: "",
       });
       setImages([]);
+      // revoke previews and clear them
+      previews.forEach((p) => URL.revokeObjectURL(p));
+      setPreviews([]);
+      if (fileInputRef.current) fileInputRef.current.value = "";
     } catch (error) {
       console.error(error);
       toast.error(error.response?.data?.error || "Failed to add product.");
@@ -137,10 +161,12 @@ const AddProductForm = ({ onProductAdded }) => {
 
       {/* Common Name */}
       <div>
-        <label className="block text-sm font-medium">
+        <label htmlFor="common_name" className="block text-sm font-medium">
           Common Name <span className="text-red-500">*</span>
         </label>
         <input
+          id="common_name"
+          ref={commonNameRef}
           type="text"
           name="common_name"
           value={formData.common_name}
@@ -148,16 +174,27 @@ const AddProductForm = ({ onProductAdded }) => {
           className="w-full rounded border p-2"
           placeholder="e.g. Ficus lyrata"
           required
+          aria-required="true"
+          aria-invalid={errors.includes("common_name")}
+          aria-describedby={
+            errors.includes("common_name") ? "err_common_name" : undefined
+          }
         />
+        {errors.includes("common_name") && (
+          <p id="err_common_name" className="mt-1 text-sm text-red-600">
+            Common name is required.
+          </p>
+        )}
       </div>
 
       {/* Descriptions */}
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium">
+          <label htmlFor="description_en" className="block text-sm font-medium">
             Description (EN) <span className="text-red-500">*</span>
           </label>
           <textarea
+            id="description_en"
             name="description_en"
             value={formData.description_en}
             onChange={handleChange}
@@ -165,13 +202,20 @@ const AddProductForm = ({ onProductAdded }) => {
             placeholder="Short description in English"
             required
             aria-required="true"
+            aria-invalid={errors.includes("description_en")}
           />
+          {errors.includes("description_en") && (
+            <p className="mt-1 text-sm text-red-600">
+              English description is required.
+            </p>
+          )}
         </div>
         <div>
-          <label className="block text-sm font-medium">
+          <label htmlFor="description_de" className="block text-sm font-medium">
             Description (DE) <span className="text-red-500">*</span>
           </label>
           <textarea
+            id="description_de"
             name="description_de"
             value={formData.description_de}
             onChange={handleChange}
@@ -179,7 +223,13 @@ const AddProductForm = ({ onProductAdded }) => {
             placeholder="Kurze Beschreibung auf Deutsch"
             required
             aria-required="true"
+            aria-invalid={errors.includes("description_de")}
           />
+          {errors.includes("description_de") && (
+            <p className="mt-1 text-sm text-red-600">
+              German description is required.
+            </p>
+          )}
         </div>
       </div>
 
@@ -190,6 +240,7 @@ const AddProductForm = ({ onProductAdded }) => {
             Height (cm) <span className="text-red-500">*</span>
           </label>
           <input
+            id="height"
             type="text"
             name="height"
             value={formData.height}
@@ -197,13 +248,18 @@ const AddProductForm = ({ onProductAdded }) => {
             className="w-full rounded border p-2"
             placeholder="e.g. 10-20"
             required
+            aria-invalid={errors.includes("height")}
           />
+          {errors.includes("height") && (
+            <p className="mt-1 text-sm text-red-600">Height is required.</p>
+          )}
         </div>
         <div>
           <label className="block text-sm font-medium">
             Diameter (cm) <span className="text-red-500">*</span>
           </label>
           <input
+            id="diameter"
             type="text"
             name="diameter"
             value={formData.diameter}
@@ -211,13 +267,18 @@ const AddProductForm = ({ onProductAdded }) => {
             className="w-full rounded border p-2"
             placeholder="e.g. 5-10"
             required
+            aria-invalid={errors.includes("diameter")}
           />
+          {errors.includes("diameter") && (
+            <p className="mt-1 text-sm text-red-600">Diameter is required.</p>
+          )}
         </div>
         <div>
           <label className="block text-sm font-medium">
             Hardiness (°C) <span className="text-red-500">*</span>
           </label>
           <input
+            id="hardiness"
             type="text"
             name="hardiness"
             value={formData.hardiness}
@@ -225,7 +286,11 @@ const AddProductForm = ({ onProductAdded }) => {
             className="w-full rounded border p-2"
             placeholder="e.g. 3-5"
             required
+            aria-invalid={errors.includes("hardiness")}
           />
+          {errors.includes("hardiness") && (
+            <p className="mt-1 text-sm text-red-600">Hardiness is required.</p>
+          )}
         </div>
       </div>
 
@@ -236,12 +301,14 @@ const AddProductForm = ({ onProductAdded }) => {
           Light <span className="text-red-500">*</span>
         </label>
         <select
+          id="light"
           name="light"
           value={formData.light}
           onChange={(e) => setFormData({ ...formData, light: e.target.value })}
           className="w-full rounded border p-2"
           required
           aria-required="true"
+          aria-invalid={errors.includes("light")}
         >
           <option value="sun">Sun</option>
           <option value="half-shadow">Half-Shadow</option>
@@ -252,7 +319,9 @@ const AddProductForm = ({ onProductAdded }) => {
 
       {/* Colors */}
       <div className="mb-4">
-        <label className="block font-medium text-gray-700">Select Color</label>
+        <label htmlFor="color" className="block font-medium text-gray-700">
+          Select Color
+        </label>
         <div className="mt-1 flex gap-2">
           {colors.map((c) => (
             <div
@@ -267,28 +336,43 @@ const AddProductForm = ({ onProductAdded }) => {
             />
           ))}
         </div>
+        {errors.includes("color") && (
+          <p className="mt-1 text-sm text-red-600">Color is required.</p>
+        )}
       </div>
 
       {/* Images */}
       <div className="mb-4">
-        <label className="block font-medium text-gray-700">Images (1-3) <span className="text-red-500">*</span></label>
+        <label htmlFor="images" className="block font-medium text-gray-700">
+          Images (1-3) <span className="text-red-500">*</span>
+        </label>
         <input
+          id="images"
+          ref={fileInputRef}
           type="file"
           accept="image/*"
           multiple
           onChange={handleFileChange}
           className="w-full rounded border p-2"
+          aria-required="true"
+          aria-invalid={errors.includes("images")}
         />
+        {errors.includes("images") && (
+          <p className="mt-1 text-sm text-red-600">
+            Please add at least one image (max 3).
+          </p>
+        )}
         <div className="mt-2 flex flex-row gap-2 overflow-x-auto">
-          {images.map((img, index) => (
+          {previews.map((src, index) => (
             <div key={index} className="relative">
               <img
-                src={URL.createObjectURL(img)}
-                alt="Product"
+                src={src}
+                alt={`Product ${index + 1}`}
                 className="h-16 w-16 rounded object-cover"
               />
               <button
                 type="button"
+                aria-label={`Remove image ${index + 1}`}
                 className="absolute right-1/2 top-1/2 flex h-6 w-6 -translate-y-1/2 translate-x-1/2 transform items-center justify-center rounded-full bg-red-500 text-sm font-bold text-white transition hover:bg-red-600"
                 onClick={() => handleRemoveImage(index)}
               >
@@ -297,6 +381,11 @@ const AddProductForm = ({ onProductAdded }) => {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* aria-live region for form-level errors */}
+      <div aria-live="polite" className="sr-only" role="status">
+        {errors.length > 0 && `Please correct ${errors.length} field(s).`}
       </div>
 
       {/* Submit */}

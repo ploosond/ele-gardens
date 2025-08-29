@@ -106,9 +106,7 @@ const EmployeesAdmin = () => {
                 "First Name",
                 "Last Name",
                 "Role (EN)",
-                "Role (DE)",
                 "Department (EN)",
-                "Department (DE",
                 "Telephone",
                 "Profile",
                 "Actions",
@@ -136,16 +134,11 @@ const EmployeesAdmin = () => {
                   {m.lastname}
                 </td>
                 <td className="border border-gray-300 p-3 align-middle">
-                  {m.role.en}
+                  {m.role?.en || (typeof m.role === "string" ? m.role : "")}
                 </td>
                 <td className="border border-gray-300 p-3 align-middle">
-                  {m.role.de}
-                </td>
-                <td className="border border-gray-300 p-3 align-middle">
-                  {m.department.en}
-                </td>
-                <td className="border border-gray-300 p-3 align-middle">
-                  {m.department.de}
+                  {m.department?.en ||
+                    (typeof m.department === "string" ? m.department : "")}
                 </td>
                 <td className="border border-gray-300 p-3 align-middle">
                   {m.telephone}

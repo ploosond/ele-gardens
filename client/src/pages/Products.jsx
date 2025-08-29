@@ -13,12 +13,23 @@ const Products = ({ products }) => {
     } else {
       const term = searchTerm.toLowerCase();
       setFilteredProducts(
-        products.filter(
-          (product) =>
-            product.common_name.toLowerCase().includes(term) ||
-            product.scientific_name.toLowerCase().includes(term) ||
-            product.description.toLowerCase().includes(term),
-        ),
+        (products || []).filter((product) => {
+          const desc =
+            typeof product.description === "object"
+              ? product.description.en || product.description.de || ""
+              : product.description || "";
+          return (
+            (product.common_name || "")
+              .toString()
+              .toLowerCase()
+              .includes(term) ||
+            (product.scientific_name || "")
+              .toString()
+              .toLowerCase()
+              .includes(term) ||
+            desc.toString().toLowerCase().includes(term)
+          );
+        }),
       );
     }
   }, [searchTerm, products]);
@@ -74,9 +85,9 @@ const Products = ({ products }) => {
                   </button>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 gap-4 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
+                <div className="grid grid-cols-2 gap-4 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
                   {filteredProducts.map((product) => (
-                    <Link key={product.tag} to={`/products/${product.tag}`}>
+                    <Link key={product._id} to={`/products/${product._id}`}>
                       <ProductCard product={product} />
                     </Link>
                   ))}

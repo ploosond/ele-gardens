@@ -6,7 +6,15 @@ const Teams = ({ members }) => {
   const [activeDepartment, setActiveDepartment] = useState(null);
 
   // Extract unique departments
-  const departments = [...new Set(members.map((emp) => emp.department))];
+  const departments = [
+    ...new Set(
+      members.map((emp) =>
+        typeof emp.department === "object"
+          ? emp.department.en || emp.department.de || ""
+          : emp.department || "",
+      ),
+    ),
+  ];
 
   // Filter team members based on selected department
   const filteredEmployees = activeDepartment
@@ -48,7 +56,9 @@ const Teams = ({ members }) => {
               }`}
               onClick={() => setActiveDepartment(department)}
             >
-              {department}
+              {typeof department === "object"
+                ? department.en || department.de
+                : department}
             </button>
           ))}
         </div>
