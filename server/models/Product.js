@@ -2,11 +2,20 @@ import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema(
   {
+    // Multilingual common name. Keep `en` required and unique, `de` optional.
     common_name: {
-      type: String,
-      trim: true,
-      unique: true,
-      required: [true, 'Common name is required.'],
+      en: {
+        type: String,
+        trim: true,
+        unique: true,
+        required: [true, 'Common name (EN) is required.'],
+      },
+      de: {
+        type: String,
+        trim: true,
+        required: false,
+        default: '',
+      },
     },
 
     // Multilingual descriptions
