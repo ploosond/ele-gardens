@@ -75,7 +75,7 @@ const Contact = () => {
                 <MapPin size={24} className="mr-4 text-primary" />
                 <div>
                   <h3 className="font-medium">Our Location</h3>
-                  <p>Drüllerweg 14</p>
+                  <p>Drüller Weg 14</p>
                   <p>47559 Kranenburg</p>
                   <p>Germany</p>
                 </div>
@@ -86,8 +86,8 @@ const Contact = () => {
                 <div>
                   <h3 className="font-medium">Phone</h3>
                   <p>
-                    <a href="tel:+1234567890" className="hover:text-primary">
-                      +49 (0)2826 / 91 50-0
+                    <a href="tel:+49282691500" className="hover:text-primary">
+                      +49 2826 91500
                     </a>
                   </p>
                 </div>
@@ -99,10 +99,10 @@ const Contact = () => {
                   <h3 className="font-medium">Email</h3>
                   <p>
                     <a
-                      href="mailto:info@example.com"
+                      href="mailto:info@elegardens.com"
                       className="hover:text-primary"
                     >
-                      info@example.com
+                      info@elegardens.com
                     </a>
                   </p>
                 </div>
@@ -112,14 +112,14 @@ const Contact = () => {
                 <Clock size={24} className="mr-4 text-primary" />
                 <div>
                   <h3 className="font-medium">Hours</h3>
-                  <p>Mon-Fri: 9 AM - 6 PM | Sat: 9 AM - 4 PM | Sun: Closed</p>
+                  <p>Mon-Fri: 9 AM - 4 PM | Sat: Closed | Sun: Closed</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Contact Form */}
-          <div className="border-muted rounded-lg border bg-white p-8 shadow-sm">
+          <div className="rounded-lg border border-muted bg-white p-8 shadow-sm">
             <h2 className="mb-6 text-2xl font-medium">Send Us a Message</h2>
 
             {formStatus.submitted && (
@@ -206,7 +206,7 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="text-on-dark hover:bg-primary-dark flex w-full items-center justify-center rounded-md bg-primary py-3"
+                className="flex w-full items-center justify-center rounded-md bg-primary py-3 text-on-dark hover:bg-primary-dark"
               >
                 Send Message
               </button>

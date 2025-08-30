@@ -39,7 +39,7 @@ const About = ({}) => {
       <section className="bg-white px-2 sm:px-4 md:px-10 lg:px-40">
         <div className="mx-auto max-w-6xl px-0 sm:px-4">
           <div className="mx-auto mb-10 max-w-3xl text-center">
-            <h2 className="text-3xl font-extrabold text-black sm:text-4xl md:text-5xl">
+            <h2 className="text-3xl font-extrabold text-primary sm:text-4xl md:text-5xl">
               Milestones Along the Way
             </h2>
           </div>
@@ -48,14 +48,14 @@ const About = ({}) => {
             <img
               src={assets.about_us_001}
               alt="Milestone 1"
-              className="h-full w-full object-cover"
+              className="h-full w-full rounded-md object-cover"
             />
             <div className="flex flex-col justify-center px-4 py-4 sm:px-8 sm:py-6 md:px-0">
-              <h2 className="mb-4 text-xl font-extrabold sm:mb-6 sm:text-2xl">
+              <h2 className="mb-4 text-xl font-extrabold text-secondary sm:mb-6 sm:text-2xl">
                 A Legacy of Horticultural Excellence
               </h2>
-              <p className="mb-2 text-justify text-sm sm:mb-4 sm:text-base">
-                <span className="font-bold">
+              <p className="mb-2 text-justify text-sm text-gray-700 sm:mb-4 sm:text-base">
+                <span className="font-bold text-text">
                   A Family Tradition of Horticultural Excellence Since 1953
                 </span>{" "}
                 Elegardens® is the Bio Collection brand of Stauden Peters GbR,
@@ -66,8 +66,8 @@ const About = ({}) => {
                 and peonies.
               </p>
 
-              <p className="text-justify text-sm sm:text-base">
-                <span className="font-bold">
+              <p className="text-justify text-sm text-gray-700 sm:text-base">
+                <span className="font-bold text-text">
                   Delivering Premium Plants Across Europe
                 </span>{" "}
                 Through its brands—Elegrass, Elerose, and Elegardens—the company
@@ -85,14 +85,14 @@ const About = ({}) => {
             <img
               src={assets.about_us_002}
               alt="Milestone 2"
-              className="order-1 h-full w-full object-cover md:order-2"
+              className="order-1 h-full w-full rounded-md object-cover md:order-2"
             />
             <div className="order-2 flex flex-col justify-center px-4 py-4 sm:px-8 sm:py-6 md:order-1 md:px-0">
-              <h2 className="mb-4 text-xl font-extrabold sm:mb-6 sm:text-2xl">
+              <h2 className="mb-4 text-xl font-extrabold text-secondary sm:mb-6 sm:text-2xl">
                 Growth, Innovation, and Sustainability
               </h2>
-              <p className="mb-2 text-justify text-sm sm:mb-4 sm:text-base">
-                <span className="font-bold">
+              <p className="mb-2 text-justify text-sm text-gray-700 sm:mb-4 sm:text-base">
+                <span className="font-bold text-text">
                   Cultivating Across Germany and Portugal
                 </span>{" "}
                 In Portugal, the company operates on 25 hectares, including 22
@@ -102,8 +102,8 @@ const About = ({}) => {
                 hectares equipped with advanced greenhouses.
               </p>
 
-              <p className="text-justify text-sm sm:text-base">
-                <span className="font-bold">
+              <p className="text-justify text-sm text-gray-700 sm:text-base">
+                <span className="font-bold text-text">
                   Innovation Meets Horticultural Heritage
                 </span>{" "}
                 A major milestone occurred in 2020 with the integration of the
@@ -122,14 +122,14 @@ const About = ({}) => {
             <img
               src={assets.about_us_003}
               alt="Milestone 3"
-              className="h-full w-full object-cover"
+              className="h-full w-full rounded-md object-cover"
             />
             <div className="flex flex-col justify-center px-4 py-4 sm:px-8 sm:py-6 md:px-0">
-              <h2 className="mb-4 text-xl font-extrabold sm:mb-6 sm:text-2xl">
+              <h2 className="mb-4 text-xl font-extrabold text-secondary sm:mb-6 sm:text-2xl">
                 The Elegardens® BIO Collection
               </h2>
-              <p className="mb-2 text-justify text-sm sm:mb-4 sm:text-base">
-                <span className="font-bold">
+              <p className="mb-2 text-justify text-sm text-gray-700 sm:mb-4 sm:text-base">
+                <span className="font-bold text-text">
                   Certified Organic and Eco-Friendly
                 </span>{" "}
                 The Elegardens® BIO collection represents the next chapter in
@@ -140,8 +140,8 @@ const About = ({}) => {
                 that grow naturally without the use of synthetic chemicals.
               </p>
 
-              <p className="text-justify text-sm sm:text-base">
-                <span className="font-bold">
+              <p className="text-justify text-sm text-gray-700 sm:text-base">
+                <span className="font-bold text-text">
                   Strengthening Your Assortment, Greening the Planet
                 </span>{" "}
                 By partnering with Stauden Peters, customers can enhance their
@@ -163,22 +163,22 @@ const About = ({}) => {
             {/* Left: condensed Mission/Vision/Values in one block */}
             <div className="order-1 flex items-center px-2 sm:px-4 md:order-none md:min-h-[20rem] md:px-0 lg:min-h-[24rem]">
               <div className="w-full px-4 py-4 sm:px-8 sm:py-6 md:px-0">
-                <h2 className="mb-4 text-3xl font-extrabold text-gray-900">
+                <h2 className="mb-4 text-3xl font-extrabold text-secondary">
                   Our Story
                 </h2>
                 <p className="mb-4 text-justify text-base text-gray-700">
-                  <span className="font-bold">Our Mission</span> — Our mission
-                  is to cultivate BIO-certified perennials that enrich people
-                  and the planet. We focus on resilient plants that support
-                  biodiversity and strengthen ecosystems, with sustainability at
-                  the heart of our approach.
+                  <span className="font-bold text-text">Our Mission</span> — Our
+                  mission is to cultivate BIO-certified perennials that enrich
+                  people and the planet. We focus on resilient plants that
+                  support biodiversity and strengthen ecosystems, with
+                  sustainability at the heart of our approach.
                 </p>
 
                 <p className="mb-4 text-justify text-base text-gray-700">
-                  <span className="font-bold">Our Vision</span> — Our vision is
-                  to set new standards in sustainable horticulture by gradually
-                  transitioning toward 100% BIO-certified cultivation, creating
-                  plants that combine elegance with ecological value.
+                  <span className="font-bold text-text">Our Vision</span> — Our
+                  vision is to set new standards in sustainable horticulture by
+                  gradually transitioning toward 100% BIO-certified cultivation,
+                  creating plants that combine elegance with ecological value.
                 </p>
 
                 <p className="text-justify text-base text-gray-700">
@@ -193,11 +193,11 @@ const About = ({}) => {
             </div>
 
             {/* Right: CEO image with overlay and caption */}
-            <div className="relative order-2 flex items-center overflow-hidden shadow-lg md:order-none md:min-h-[20rem] lg:min-h-[24rem]">
+            <div className="overflow-hiddenshadow-lg relative order-2 flex items-center md:order-none md:min-h-[20rem] lg:min-h-[24rem]">
               <img
                 src={assets.about_us_ceo}
                 alt="Founding CEO"
-                className="h-48 w-full object-cover sm:h-64 md:h-80 lg:h-96"
+                className="h-full w-full rounded-md object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-black/10"></div>
               <div className="absolute bottom-6 left-6 w-[calc(100%-3rem)] text-white md:w-auto">

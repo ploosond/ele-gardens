@@ -67,14 +67,14 @@ const Home = ({ products, members }) => {
             <div className="mt-6 flex flex-col items-center justify-center gap-3 px-4 sm:flex-row sm:gap-4 sm:px-0">
               <Link
                 to="/products"
-                className="text-text hover:bg-surface inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold shadow transition-colors duration-150 sm:w-auto"
+                className="inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-text shadow transition-colors duration-150 hover:bg-surface sm:w-auto"
               >
                 Explore Products
               </Link>
 
               <Link
                 to="/contact"
-                className="text-on-dark hover:bg-primary-dark inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold shadow transition-colors duration-150 sm:w-auto"
+                className="inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-on-dark shadow transition-colors duration-150 hover:bg-primary-dark sm:w-auto"
               >
                 Contact Our Team
               </Link>
@@ -85,7 +85,7 @@ const Home = ({ products, members }) => {
 
       {/* Features Section */}
       <section className="bg-white py-8 sm:py-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {/* Feature 1: Freshly Handpicked */}
             <div className="flex flex-col items-center text-center">
@@ -93,10 +93,10 @@ const Home = ({ products, members }) => {
                 strokeWidth={1}
                 className="mb-2 h-8 w-8 text-primary"
               />
-              <div className="mt-2 text-xl font-extrabold">
+              <div className="mt-2 text-xl font-extrabold text-secondary">
                 Certified EU BIO Quality
               </div>
-              <div className="text-text mt-1 text-base">
+              <div className="mt-1 text-base text-text">
                 Independent certification guarantees compliance with the
                 strictest European organic standards
               </div>
@@ -108,10 +108,10 @@ const Home = ({ products, members }) => {
                 strokeWidth={1}
                 className="mb-2 h-8 w-8 text-primary"
               />
-              <div className="mt-2 text-xl font-extrabold">
+              <div className="mt-2 text-xl font-extrabold text-secondary">
                 Biodiversity-Enhancing
               </div>
-              <div className="text-text mt-1 text-base">
+              <div className="mt-1 text-base text-text">
                 Every plant is a pollinator-friendly asset, enriching gardens
                 and supporting environmental balance
               </div>
@@ -120,10 +120,10 @@ const Home = ({ products, members }) => {
             {/* Feature 3: Premium Quality Blooms */}
             <div className="flex flex-col items-center text-center">
               <Package strokeWidth={1} className="mb-2 h-8 w-8 text-primary" />
-              <div className="mt-2 text-xl font-extrabold">
+              <div className="mt-2 text-xl font-extrabold text-secondary">
                 Retail-Ready Design
               </div>
-              <div className="text-text mt-1 text-base">
+              <div className="mt-1 text-base text-text">
                 Modern, eco-conscious branding enhances shelf appeal and
                 strengthens consumer trust
               </div>
@@ -135,8 +135,10 @@ const Home = ({ products, members }) => {
                 strokeWidth={1}
                 className="mb-2 h-8 w-8 text-primary"
               />
-              <div className="mt-2 text-xl font-extrabold">Long-Term Value</div>
-              <div className="text-text mt-1 text-base">
+              <div className="mt-2 text-xl font-extrabold text-secondary">
+                Long-Term Value
+              </div>
+              <div className="mt-1 text-base text-text">
                 Premium quality and ecological responsibility without compromise
               </div>
             </div>
@@ -150,23 +152,23 @@ const Home = ({ products, members }) => {
           {/* Section Header */}
           <div className="mb-8 flex items-end justify-between">
             <div>
-              <h2 className="text-text text-3xl font-bold md:text-4xl">
+              <h2 className="text-3xl font-bold text-primary md:text-4xl">
                 Featured Products
               </h2>
-              <p className="text-text mt-2 text-lg">
+              <p className="mt-2 text-lg text-text">
                 Discover our selection of premium plants
               </p>
             </div>
             <Link
               to="/products"
-              className="hover:text-primary-dark hidden items-center text-primary transition-colors md:flex"
+              className="hidden items-center text-primary transition-colors hover:text-primary-dark md:flex"
             >
               View all products <ArrowRight size={16} className="ml-2" />
             </Link>
           </div>
 
           {/* Product Grid */}
-          <div className="grid grid-cols-2 gap-4 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
+          <div className="grid grid-cols-2 gap-4 gap-y-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
             {featuredProducts.map((product) => (
               <Link key={product._id} to={`/products/${product.tag}`}>
                 <ProductCard product={product} />
@@ -178,7 +180,7 @@ const Home = ({ products, members }) => {
           <div className="mt-8 text-center md:hidden">
             <Link
               to="/products"
-              className="hover:text-primary-dark inline-flex items-center text-primary transition-colors"
+              className="inline-flex items-center text-primary transition-colors hover:text-primary-dark"
             >
               View all products <ArrowRight size={16} className="ml-2" />
             </Link>
@@ -187,28 +189,28 @@ const Home = ({ products, members }) => {
       </section>
 
       {/* Team Section */}
-      <section className="bg-two py-8 sm:py-10">
-        <div className="container mx-auto px-4 sm:px-6">
+      <section className="py-8 sm:py-10">
+        <div className="mx-auto px-4 sm:px-6">
           {/* Section Header */}
           <div className="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end sm:gap-0">
             <div>
-              <h2 className="text-text text-2xl font-bold sm:text-3xl md:text-4xl">
+              <h2 className="text-2xl font-bold text-primary sm:text-3xl md:text-4xl">
                 Meet Our Team
               </h2>
-              <p className="text-text mt-2 text-base sm:text-lg">
+              <p className="mt-2 text-base text-text sm:text-lg">
                 The experts behind our beautiful gardens
               </p>
             </div>
             <Link
               to="/team"
-              className="hover:text-primary-dark hidden items-center text-primary transition-colors md:flex"
+              className="hidden items-center text-primary transition-colors hover:text-primary-dark md:flex"
             >
               View full team <ArrowRight size={16} className="ml-2" />
             </Link>
           </div>
 
           {/* Team Grid */}
-          <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-6">
             {featuredTeam.map((member) => (
               <MemberCard key={member._id} member={member} />
             ))}
@@ -218,7 +220,7 @@ const Home = ({ products, members }) => {
           <div className="mt-8 text-center md:hidden">
             <Link
               to="/team"
-              className="hover:text-primary-dark inline-flex items-center text-primary transition-colors"
+              className="inline-flex items-center text-primary transition-colors hover:text-primary-dark"
             >
               View full team <ArrowRight size={16} className="ml-2" />
             </Link>
@@ -236,14 +238,14 @@ const Home = ({ products, members }) => {
           <h2 className="mb-6 text-3xl font-bold md:text-4xl">
             Ready to Transform Your Space?
           </h2>
-          <p className="text-text mx-auto mb-8 max-w-2xl text-lg">
+          <p className="mx-auto mb-8 max-w-2xl text-lg text-text">
             Whether you're designing a new garden, renovating an existing space,
             or simply adding a few plants to your home, we're here to help.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               to="/contact"
-              className="text-on-dark hover:bg-primary-dark flex items-center justify-center rounded-md border border-transparent bg-primary px-6 py-3 font-medium transition hover:border-white"
+              className="flex items-center justify-center rounded-md border border-transparent bg-primary px-6 py-3 font-medium text-on-dark transition hover:border-white hover:bg-primary-dark"
             >
               Contact Our Team
             </Link>

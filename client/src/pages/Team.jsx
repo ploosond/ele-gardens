@@ -31,41 +31,43 @@ const Teams = ({ members }) => {
       />
 
       {/* Team Members Section */}
-      <section className="mx-auto max-w-7xl px-4 py-16">
-        {/* Department Filter */}
-        <div className="mb-10 flex flex-wrap justify-center gap-3">
-          <button
-            className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-              activeDepartment === null
-                ? "text-on-dark bg-primary"
-                : "bg-surface hover:bg-surface/90 text-primary"
-            }`}
-            onClick={() => setActiveDepartment(null)}
-          >
-            All Departments
-          </button>
-          {departments.map((department) => (
+      <section className="py-16">
+        <div className="mx-auto px-4 sm:px-6">
+          {/* Department Filter */}
+          <div className="mb-10 flex flex-wrap justify-center gap-3">
             <button
-              key={department}
               className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                activeDepartment === department
-                  ? "text-on-dark bg-primary"
-                  : "bg-surface hover:bg-surface/90 text-primary"
+                activeDepartment === null
+                  ? "bg-primary text-on-dark"
+                  : "hover:bg-surface/90 bg-surface text-primary"
               }`}
-              onClick={() => setActiveDepartment(department)}
+              onClick={() => setActiveDepartment(null)}
             >
-              {typeof department === "object"
-                ? department.en || department.de
-                : department}
+              All Departments
             </button>
-          ))}
-        </div>
+            {departments.map((department) => (
+              <button
+                key={department}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  activeDepartment === department
+                    ? "bg-primary text-on-dark"
+                    : "hover:bg-surface/90 bg-surface text-primary"
+                }`}
+                onClick={() => setActiveDepartment(department)}
+              >
+                {typeof department === "object"
+                  ? department.en || department.de
+                  : department}
+              </button>
+            ))}
+          </div>
 
-        {/* Display team members */}
-        <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
-          {filteredEmployees.map((employee) => (
-            <MemberCard key={employee._id} member={employee} />
-          ))}
+          {/* Display team members */}
+          <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-6">
+            {filteredEmployees.map((employee) => (
+              <MemberCard key={employee._id} member={employee} />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -80,7 +82,7 @@ const Teams = ({ members }) => {
           <div className="mt-6">
             <a
               href="/contact"
-              className="text-on-dark hover:bg-primary-dark rounded-full bg-primary px-6 py-3 transition"
+              className="rounded-full bg-primary px-6 py-3 text-on-dark transition hover:bg-primary-dark"
             >
               Contact Us
             </a>

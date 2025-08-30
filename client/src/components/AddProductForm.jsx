@@ -6,18 +6,26 @@ const AddProductForm = ({ onProductAdded }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const colors = [
-    "#6a844a",
-    "#748f3b",
-    "#a6c338",
-    "#647867",
-    "#875b72",
-    "#3b5833",
-    "#556b2f",
-    "#4c4f4a",
+    "#D32F2F", // Crimson Red
+    "#E91E63", // Magenta Pink
+    "#F8BBD0", // Soft Blush Pink
+    "#FF7043", // Sunset Orange
+    "#FFEB3B", // Golden Yellow
+    "#FFC107", // Amber Gold
+    "#8E24AA", // Vivid Violet
+    "#B39DDB", // Lavender Purple
+    "#42A5F5", // Sky Blue
+    "#303F9F", // Deep Indigo
+    "#81C784", // Fresh Mint Green
+    "#388E3C", // Forest Green
+    "#FFFFFF", // Pure White
+    "#F5F5DC", // Cream / Ivory
+    "#212121", // Midnight Black
   ];
 
   const [formData, setFormData] = useState({
-    common_name: "",
+    common_name_en: "",
+    common_name_de: "",
     description_en: "",
     description_de: "",
     height: "",
@@ -75,7 +83,7 @@ const AddProductForm = ({ onProductAdded }) => {
     e.preventDefault();
     // client-side validation for required fields
     const missing = [];
-    if (!formData.common_name) missing.push("common_name");
+    if (!formData.common_name_en) missing.push("common_name_en");
     if (!formData.description_en) missing.push("description_en");
     if (!formData.description_de) missing.push("description_de");
     if (!formData.height) missing.push("height");
@@ -89,7 +97,7 @@ const AddProductForm = ({ onProductAdded }) => {
       setErrors(missing);
       // focus first invalid field
       const first = missing[0];
-      if (first === "common_name" && commonNameRef.current) {
+      if (first === "common_name_en" && commonNameRef.current) {
         commonNameRef.current.focus();
       }
       return;
@@ -113,10 +121,10 @@ const AddProductForm = ({ onProductAdded }) => {
       };
 
       const formDataToSend = new FormData();
-      formDataToSend.append("common_name", formData.common_name);
+      formDataToSend.append("common_name_en", formData.common_name_en);
+      formDataToSend.append("common_name_de", formData.common_name_de);
       formDataToSend.append("description_en", formData.description_en);
-      // send only the english light key
-      formDataToSend.append("light_en", formData.light);
+      formDataToSend.append("description_de", formData.description_de);
       formDataToSend.append("height", formattedFormData.height);
       formDataToSend.append("diameter", formattedFormData.diameter);
       formDataToSend.append("hardiness", formattedFormData.hardiness);
@@ -130,7 +138,8 @@ const AddProductForm = ({ onProductAdded }) => {
 
       onProductAdded(addedProduct);
       setFormData({
-        common_name: "",
+        common_name_en: "",
+        common_name_de: "",
         description_en: "",
         description_de: "",
         height: "",
@@ -159,32 +168,51 @@ const AddProductForm = ({ onProductAdded }) => {
     >
       <h2 className="text-lg font-semibold">Add New Product</h2>
 
-      {/* Common Name */}
-      <div>
-        <label htmlFor="common_name" className="block text-sm font-medium">
-          Common Name <span className="text-red-500">*</span>
-        </label>
-        <input
-          id="common_name"
-          ref={commonNameRef}
-          type="text"
-          name="common_name"
-          value={formData.common_name}
-          onChange={handleChange}
-          className="w-full rounded border p-2"
-          placeholder="e.g. Ficus lyrata"
-          required
-          aria-required="true"
-          aria-invalid={errors.includes("common_name")}
-          aria-describedby={
-            errors.includes("common_name") ? "err_common_name" : undefined
-          }
-        />
-        {errors.includes("common_name") && (
-          <p id="err_common_name" className="mt-1 text-sm text-red-600">
-            Common name is required.
-          </p>
-        )}
+      {/* Common Name (EN/DE) */}
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="common_name_en" className="block text-sm font-medium">
+            Common Name (EN) <span className="text-red-500">*</span>
+          </label>
+          <input
+            id="common_name_en"
+            ref={commonNameRef}
+            type="text"
+            name="common_name_en"
+            value={formData.common_name_en}
+            onChange={handleChange}
+            className="w-full rounded border p-2"
+            placeholder="e.g. Ficus lyrata"
+            required
+            aria-required="true"
+            aria-invalid={errors.includes("common_name_en")}
+            aria-describedby={
+              errors.includes("common_name_en")
+                ? "err_common_name_en"
+                : undefined
+            }
+          />
+          {errors.includes("common_name_en") && (
+            <p id="err_common_name_en" className="mt-1 text-sm text-red-600">
+              Common name (EN) is required.
+            </p>
+          )}
+        </div>
+        <div>
+          <label htmlFor="common_name_de" className="block text-sm font-medium">
+            Common Name (DE)
+          </label>
+          <input
+            id="common_name_de"
+            type="text"
+            name="common_name_de"
+            value={formData.common_name_de}
+            onChange={handleChange}
+            className="w-full rounded border p-2"
+            placeholder="z.B. Ficus lyrata"
+            aria-invalid={errors.includes("common_name_de")}
+          />
+        </div>
       </div>
 
       {/* Descriptions */}
@@ -319,7 +347,7 @@ const AddProductForm = ({ onProductAdded }) => {
 
       {/* Colors */}
       <div className="mb-4">
-        <label htmlFor="color" className="text-text block font-medium">
+        <label htmlFor="color" className="block font-medium text-text">
           Select Color
         </label>
         <div className="mt-1 flex gap-2">
@@ -390,10 +418,10 @@ const AddProductForm = ({ onProductAdded }) => {
       <button
         type="submit"
         disabled={isLoading}
-        className={`w-26 text-on-dark flex rounded px-4 py-2 ${
+        className={`w-26 flex rounded px-4 py-2 text-on-dark ${
           isLoading
             ? "cursor-not-allowed bg-gray-400"
-            : "hover:bg-primary-dark bg-primary"
+            : "bg-primary hover:bg-primary-dark"
         }`}
       >
         {isLoading ? "Adding..." : "Add Product"}

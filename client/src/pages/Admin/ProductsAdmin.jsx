@@ -46,11 +46,11 @@ const ProductsAdmin = () => {
   }, []);
 
   return (
-    <div className="bg-muted min-h-screen p-6">
+    <div className="min-h-screen bg-muted p-6">
       <div className="mb-4 flex flex-row-reverse items-center justify-between">
         <button
           onClick={() => setShowAddForm((prev) => !prev)}
-          className="text-on-dark hover:bg-primary-dark rounded bg-primary px-4 py-2"
+          className="rounded bg-primary px-4 py-2 text-on-dark hover:bg-primary-dark"
         >
           {showAddForm ? "Cancel" : "Add +"}
         </button>
@@ -65,7 +65,8 @@ const ProductsAdmin = () => {
       <table className="w-full border-collapse overflow-hidden rounded-lg bg-white shadow-md">
         <thead>
           <tr className="bg-gray-200 text-gray-700">
-            <th className="border p-3">Common Name</th>
+            <th className="border p-3">Common Name (EN)</th>
+            <th className="border p-3">Common Name (DE)</th>
             <th className="border p-3">Description (EN)</th>
             <th className="border p-3">Description (DE)</th>
             <th className="border p-3">Height (cm)</th>
@@ -79,11 +80,13 @@ const ProductsAdmin = () => {
         </thead>
         <tbody>
           {[...products]
-            .sort((a, b) => a.common_name.localeCompare(b.common_name))
+            .sort((a, b) =>
+              (a.common_name?.en || "").localeCompare(b.common_name?.en || ""),
+            )
             .map((p) =>
               editingProduct?._id === p._id ? (
                 <tr key={p._id}>
-                  <td colSpan={10} className="p-3">
+                  <td colSpan={11} className="p-3">
                     <EditProductForm
                       product={p}
                       onUpdate={handleProductUpdated}
@@ -93,7 +96,8 @@ const ProductsAdmin = () => {
                 </tr>
               ) : (
                 <tr key={p._id} className="hover:bg-gray-100">
-                  <td className="border p-3">{p.common_name}</td>
+                  <td className="border p-3">{p.common_name?.en}</td>
+                  <td className="border p-3">{p.common_name?.de}</td>
                   <td className="border p-3">{p.description?.en}</td>
                   <td className="border p-3">{p.description?.de}</td>
                   <td className="border p-3">{p.height}</td>
@@ -123,7 +127,7 @@ const ProductsAdmin = () => {
                     <button
                       onClick={async () => {
                         try {
-                          await handleDelete(p.common_name, p._id);
+                          await handleDelete(p.common_name?.en, p._id);
                         } catch (error) {
                           alert("Failed to delete product.");
                         }

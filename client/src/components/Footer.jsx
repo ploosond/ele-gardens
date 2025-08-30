@@ -10,10 +10,10 @@ const Footer = () => {
 
   return (
     <footer>
-      <div className="from-primary-dark text-on-dark mx-auto bg-gradient-to-l to-primary px-4 pb-4 pt-16 sm:px-6 lg:px-8">
+      <div className="mx-auto bg-gradient-to-l from-primary-dark to-primary px-4 pb-4 pt-16 text-on-dark sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4 lg:col-span-2">
-            <h3 className="font-serif text-2xl font-medium">Ele Gardens</h3>
+            <h3 className="font-serif text-3xl font-medium">elegardens</h3>
             <p className="text-on-dark/80 md:max-w-md">
               Ele Gardens combines horticultural expertise with sustainable
               practices to help you create lasting outdoor beauty — expert
@@ -57,7 +57,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/"
-                  className="text-on-dark/80 hover:text-on-dark transition-colors"
+                  className="text-on-dark/80 transition-colors hover:text-on-dark"
                 >
                   Home
                 </Link>
@@ -65,7 +65,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/about"
-                  className="text-on-dark/80 hover:text-on-dark transition-colors"
+                  className="text-on-dark/80 transition-colors hover:text-on-dark"
                 >
                   About Us
                 </Link>
@@ -73,7 +73,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/products"
-                  className="text-on-dark/80 hover:text-on-dark transition-colors"
+                  className="text-on-dark/80 transition-colors hover:text-on-dark"
                 >
                   Products
                 </Link>
@@ -81,7 +81,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/team"
-                  className="text-on-dark/80 hover:text-on-dark transition-colors"
+                  className="text-on-dark/80 transition-colors hover:text-on-dark"
                 >
                   Our Team
                 </Link>
@@ -89,7 +89,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/contact"
-                  className="text-on-dark/80 hover:text-on-dark transition-colors"
+                  className="text-on-dark/80 transition-colors hover:text-on-dark"
                 >
                   Contact
                 </Link>
@@ -97,23 +97,23 @@ const Footer = () => {
               <li>
                 <Link
                   to="/policy"
-                  className="text-on-dark/80 hover:text-on-dark transition-colors"
+                  className="text-on-dark/80 transition-colors hover:text-on-dark"
                 >
                   Privacy Policy
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/location"
-                  className="text-on-dark/80 hover:text-on-dark transition-colors"
+                  to="/career"
+                  className="text-on-dark/80 transition-colors hover:text-on-dark"
                 >
-                  Our Locations
+                  Careers
                 </Link>
               </li>
               <li>
                 <Link
                   to="/projects"
-                  className="text-on-dark/80 hover:text-on-dark transition-colors"
+                  className="text-on-dark/80 transition-colors hover:text-on-dark"
                 >
                   Projects
                 </Link>
@@ -142,7 +142,7 @@ const Footer = () => {
                   href="mailto:info@gardenoasis.com"
                   className="text-garden-100/80 transition-colors hover:text-white"
                 >
-                  info@gardenoasis.com
+                  info@elegardens.com
                 </a>
               </li>
               <li className="flex items-center">
@@ -151,10 +151,10 @@ const Footer = () => {
                   className="text-garden-300 mr-2 flex-shrink-0"
                 />
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+49282691500"
                   className="text-garden-100/80 transition-colors hover:text-white"
                 >
-                  +1 (234) 567-890
+                  +49 2826 91500
                 </a>
               </li>
             </ul>
