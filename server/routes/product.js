@@ -9,11 +9,11 @@ import { body, validationResult } from 'express-validator';
 
 // Validation rules
 const productValidationRules = [
-  body('common_name')
+  body('common_name_en')
     .notEmpty()
-    .withMessage('Common name is required.')
+    .withMessage('Common name (EN) is required.')
     .isString()
-    .withMessage('Common name must be a string.'),
+    .withMessage('Common name (EN) must be a string.'),
   body('description_en')
     .notEmpty()
     .withMessage('English description is required.')
@@ -89,7 +89,8 @@ router.post(
 
     try {
       const {
-        common_name,
+        common_name_en,
+        common_name_de,
         description_en,
         description_de,
         height,
@@ -99,6 +100,11 @@ router.post(
         light_de,
         color,
       } = req.body;
+
+      // Build multilingual common_name from explicit fields
+      const commonNameEn = (common_name_en || '').trim();
+      const commonNameDe = (common_name_de || '').trim();
+
       const description = {
         en: description_en || '',
         de: description_de || '',
@@ -129,7 +135,7 @@ router.post(
           .json({ error: 'At least one image is required.' });
 
       const newProduct = new Product({
-        common_name,
+        common_name: { en: commonNameEn, de: commonNameDe },
         description,
         height,
         diameter,
@@ -162,7 +168,8 @@ router.put(
 
     try {
       const {
-        common_name,
+        common_name_en,
+        common_name_de,
         description_en,
         description_de,
         height,
@@ -172,6 +179,9 @@ router.put(
         light_de,
         color,
       } = req.body;
+
+      const commonNameEn = (common_name_en || '').trim();
+      const commonNameDe = (common_name_de || '').trim();
 
       const description = {
         en: description_en,
@@ -206,7 +216,7 @@ router.put(
       const updatedProduct = await Product.findByIdAndUpdate(
         req.params.id,
         {
-          common_name,
+          common_name: { en: commonNameEn, de: commonNameDe },
           description,
           height,
           diameter,
