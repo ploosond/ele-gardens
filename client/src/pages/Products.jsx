@@ -19,7 +19,7 @@ const Products = ({ products }) => {
               ? product.description.en || product.description.de || ""
               : product.description || "";
           return (
-            (product.common_name || "")
+            (product.common_name.en || "")
               .toString()
               .toLowerCase()
               .includes(term) ||
@@ -37,12 +37,12 @@ const Products = ({ products }) => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="from-primary-dark text-on-dark relative mt-10 bg-gradient-to-r to-primary pb-8 pt-16">
+      <section className="relative mt-10 bg-gradient-to-r from-primary-dark to-primary pb-8 pt-16 text-on-dark">
         {/* Content */}
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl space-y-6 text-center">
             <h2 className="text-4xl font-bold md:text-5xl">
-              Our Product <span className="text-primary/70">Collection</span>
+              Our Product <span className="text-green-300">Collection</span>
             </h2>
             <p className="text-lg leading-relaxed text-white/80">
               Discover our wide range of plants, carefully curated to bring
@@ -53,7 +53,7 @@ const Products = ({ products }) => {
       </section>
 
       {/* Search input */}
-      <div className="from-primary-dark bg-gradient-to-r to-primary pb-6">
+      <div className="bg-gradient-to-r from-primary-dark to-primary pb-6">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <SearchInput
             value={searchTerm}
@@ -79,13 +79,13 @@ const Products = ({ products }) => {
                   </p>
                   <button
                     onClick={() => setSearchTerm("")}
-                    className="text-on-dark hover:bg-primary-dark rounded-md bg-primary px-4 py-2"
+                    className="rounded-md bg-primary px-4 py-2 text-on-dark hover:bg-primary-dark"
                   >
                     Clear Filters
                   </button>
                 </div>
               ) : (
-                <div className="grid grid-cols-2 gap-4 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
+                <div className="grid grid-cols-2 gap-4 gap-y-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
                   {filteredProducts.map((product) => (
                     <Link key={product._id} to={`/products/${product._id}`}>
                       <ProductCard product={product} />

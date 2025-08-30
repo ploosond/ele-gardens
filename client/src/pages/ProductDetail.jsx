@@ -12,7 +12,7 @@ const ProductDetail = ({ products }) => {
 
   if (!products) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-three">
+      <div className="bg-three flex min-h-screen items-center justify-center">
         <div className="container mx-auto px-4 py-12 text-center">
           <h2 className="text-2xl font-semibold text-gray-800">Loading...</h2>
         </div>
@@ -22,7 +22,7 @@ const ProductDetail = ({ products }) => {
 
   if (!product) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-three">
+      <div className="bg-three flex min-h-screen items-center justify-center">
         <div className="container mx-auto px-4 py-12 text-center">
           <h2 className="text-2xl font-semibold text-gray-800">
             Product Not Found
@@ -33,7 +33,7 @@ const ProductDetail = ({ products }) => {
           </p>
           <Link
             to="/products"
-            className="text-on-dark hover:bg-primary-dark mt-6 inline-block rounded-md bg-primary px-6 py-3"
+            className="mt-6 inline-block rounded-md bg-primary px-6 py-3 text-on-dark hover:bg-primary-dark"
           >
             Back to Products
           </Link>
@@ -48,7 +48,7 @@ const ProductDetail = ({ products }) => {
     .slice(0, 6);
 
   return (
-    <div className="container mx-auto mt-8 px-4 py-12">
+    <div className="container mx-auto mt-12 px-4 py-12">
       {/* Back to Products Button will appear above the image (left column) */}
 
       {/* Content Section */}
@@ -72,60 +72,52 @@ const ProductDetail = ({ products }) => {
         {/* Details Section */}
         <div className="flex flex-col">
           <div className="mb-10">
-            <h1 className="mb-2 font-poppins text-3xl font-semibold text-primary sm:text-4xl">
-              {product.scientific_name}
+            <h1 className="mb-2 font-poppins text-2xl font-semibold text-primary sm:text-3xl">
+              {product.common_name.en}
             </h1>
-            <p className="mb-4 font-poppins text-lg italic text-secondary">
-              {product.common_name}
-            </p>
             <hr className="border-muted/60 mb-6 border-0 border-b-2" />
-            <p className="text-text text-justify leading-relaxed">
-              {typeof product.description === "string"
-                ? product.description
-                : product.description?.en ||
-                  product.description?.de ||
-                  "No description available."}
-            </p>
-          </div>
+            {/* Product Attributes */}
+            <div className="grid w-full grid-cols-2 gap-x-8 gap-y-6 rounded-lg bg-white p-6 shadow-lg sm:grid-cols-2 lg:grid-cols-2">
+              {/* Row 1 */}
+              <div className="flex items-center space-x-2">
+                <RxHeight className="h-8 w-8 rounded bg-muted p-1 text-primary" />
+                <p className="whitespace-nowrap">Height</p>
+              </div>
+              <div className="flex items-center font-semibold text-text">
+                {product.height ? `${product.height} cm` : "—"}
+              </div>
 
-          {/* Product Attributes */}
-          <div className="grid w-full grid-cols-1 gap-x-8 gap-y-6 rounded-lg bg-white p-6 shadow-lg sm:grid-cols-2 lg:grid-cols-4">
-            {/* Row 1 */}
-            <div className="flex items-center space-x-2">
-              <RxHeight className="bg-muted h-8 w-8 rounded p-1 text-primary" />
-              <p className="whitespace-nowrap">Height</p>
-            </div>
-            <div className="text-text flex items-center font-semibold">
-              {product.height ? `${product.height} cm` : "—"}
-            </div>
+              <div className="flex items-center space-x-2">
+                <RxWidth className="h-8 w-8 rounded bg-muted p-1 text-primary" />
+                <p className="whitespace-nowrap">Diameter</p>
+              </div>
+              <div className="flex items-center font-semibold text-text">
+                {product.diameter ? `${product.diameter} cm` : "—"}
+              </div>
 
-            <div className="flex items-center space-x-2">
-              <RxWidth className="bg-muted h-8 w-8 rounded p-1 text-primary" />
-              <p className="whitespace-nowrap">Diameter</p>
-            </div>
-            <div className="text-text flex items-center font-semibold">
-              {product.diameter ? `${product.diameter} cm` : "—"}
-            </div>
+              {/* Row 2 */}
+              <div className="flex items-center space-x-2">
+                <PiSnowflakeThin className="h-8 w-8 rounded bg-muted p-1 text-primary" />
+                <p className="whitespace-nowrap">Hardy</p>
+              </div>
+              <div className="flex items-center font-semibold text-text">
+                {product.hardiness ? `${product.hardiness}°C` : "—"}
+              </div>
 
-            {/* Row 2 */}
-            <div className="flex items-center space-x-2">
-              <PiSnowflakeThin className="bg-muted h-8 w-8 rounded p-1 text-primary" />
-              <p className="whitespace-nowrap">Hardy</p>
-            </div>
-            <div className="text-text flex items-center font-semibold">
-              {product.hardiness ? `${product.hardiness}°C` : "—"}
-            </div>
-
-            <div className="flex items-center space-x-2">
-              <IoSunnyOutline className="bg-muted h-8 w-8 rounded p-1 text-primary" />
-              <p className="whitespace-nowrap">Light</p>
-            </div>
-            <div className="text-text flex items-center font-semibold">
-              {typeof product.light === "object"
-                ? product.light.en || product.light.de || ""
-                : product.light || ""}
+              <div className="flex items-center space-x-2">
+                <IoSunnyOutline className="h-8 w-8 rounded bg-muted p-1 text-primary" />
+                <p className="whitespace-nowrap">Light</p>
+              </div>
+              <div className="flex items-center font-semibold text-text">
+                {typeof product.light === "object"
+                  ? product.light.en || product.light.de || ""
+                  : product.light || ""}
+              </div>
             </div>
           </div>
+          <p className="text-justify leading-relaxed text-text">
+            {product.description.en}
+          </p>
         </div>
       </div>
 
@@ -141,13 +133,13 @@ const ProductDetail = ({ products }) => {
             </div>
             <Link
               to="/products"
-              className="hover:text-primary-dark hidden items-center text-primary transition-colors md:flex"
+              className="hidden items-center text-primary transition-colors hover:text-primary-dark md:flex"
             >
               View all products <ArrowRight size={16} className="ml-2" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
+          <div className="grid grid-cols-2 gap-4 gap-y-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
             {relatedProducts?.map((p) => (
               <Link key={p._id} to={`/products/${p._id}`}>
                 <ProductCard product={p} />
@@ -158,7 +150,7 @@ const ProductDetail = ({ products }) => {
           <div className="mt-8 text-center md:hidden">
             <Link
               to="/products"
-              className="hover:text-primary-dark inline-flex items-center text-primary transition-colors"
+              className="inline-flex items-center text-primary transition-colors hover:text-primary-dark"
             >
               View all products <ArrowRight size={16} className="ml-2" />
             </Link>

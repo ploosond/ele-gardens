@@ -41,7 +41,7 @@ const Navbar = () => {
               href="/"
               className="absolute left-1/2 mx-auto flex -translate-x-1/2 transform items-center md:static md:col-start-1 md:ml-0 md:transform-none md:justify-self-start"
             >
-              <img src={logo} className="h-9 w-auto md:h-12" alt="Logo" />
+              <img src={logo} className="h-10 w-auto md:h-12" alt="Logo" />
             </a>
 
             {/* Navigation bar */}

@@ -5,18 +5,26 @@ const EditProductForm = ({ product, onUpdate, onCancel }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const colors = [
-    "#6a844a",
-    "#748f3b",
-    "#a6c338",
-    "#647867",
-    "#875b72",
-    "#3b5833",
-    "#556b2f",
-    "#4c4f4a",
+    "#D32F2F", // Crimson Red
+    "#E91E63", // Magenta Pink
+    "#F8BBD0", // Soft Blush Pink
+    "#FF7043", // Sunset Orange
+    "#FFEB3B", // Golden Yellow
+    "#FFC107", // Amber Gold
+    "#8E24AA", // Vivid Violet
+    "#B39DDB", // Lavender Purple
+    "#42A5F5", // Sky Blue
+    "#303F9F", // Deep Indigo
+    "#81C784", // Fresh Mint Green
+    "#388E3C", // Forest Green
+    "#FFFFFF", // Pure White
+    "#F5F5DC", // Cream / Ivory
+    "#212121", // Midnight Black
   ];
 
   const [formData, setFormData] = useState({
-    common_name: "",
+    common_name_en: "",
+    common_name_de: "",
     description_en: "",
     description_de: "",
     height: "",
@@ -39,7 +47,8 @@ const EditProductForm = ({ product, onUpdate, onCancel }) => {
   useEffect(() => {
     if (product) {
       setFormData({
-        common_name: product.common_name || "",
+        common_name_en: product.common_name?.en || "",
+        common_name_de: product.common_name?.de || "",
         description_en: product.description?.en || "", // Ensure description_en is set
         description_de: product.description?.de || "", // Ensure description_de is set
         height: product.height || "",
@@ -102,7 +111,8 @@ const EditProductForm = ({ product, onUpdate, onCancel }) => {
 
       // Flatten description and light fields
       const formPayload = new FormData();
-      formPayload.append("common_name", formData.common_name);
+      formPayload.append("common_name_en", formData.common_name_en);
+      formPayload.append("common_name_de", formData.common_name_de);
       formPayload.append("description_en", formData.description_en); // Flattened
       formPayload.append("description_de", formData.description_de); // Flattened
       formPayload.append("height", formData.height);
@@ -141,17 +151,33 @@ const EditProductForm = ({ product, onUpdate, onCancel }) => {
     >
       <h2 className="mb-6 text-xl font-semibold text-gray-700">Edit Product</h2>
 
-      {/* Common Name */}
-      <div className="mb-4">
-        <label className="block font-medium text-gray-700">Common Name</label>
-        <input
-          type="text"
-          name="common_name"
-          value={formData.common_name}
-          onChange={handleChange}
-          className="w-full rounded border p-2"
-          required
-        />
+      {/* Common Name (EN/DE) */}
+      <div className="mb-4 grid grid-cols-2 gap-4">
+        <div>
+          <label className="block font-medium text-gray-700">
+            Common Name (EN)
+          </label>
+          <input
+            type="text"
+            name="common_name_en"
+            value={formData.common_name_en}
+            onChange={handleChange}
+            className="w-full rounded border p-2"
+            required
+          />
+        </div>
+        <div>
+          <label className="block font-medium text-gray-700">
+            Common Name (DE)
+          </label>
+          <input
+            type="text"
+            name="common_name_de"
+            value={formData.common_name_de}
+            onChange={handleChange}
+            className="w-full rounded border p-2"
+          />
+        </div>
       </div>
 
       {/* Descriptions */}
