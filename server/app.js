@@ -46,10 +46,10 @@ app.use(cors());
 app.use(middleware.tokenExtractor);
 
 app.use('/api/ping', testRouter);
-app.use('/api/user', userRouter);
-app.use('/api/product', productRouter);
-app.use('/api/employee', employeeRouter);
-app.use('/api/contact', contactRouter);
+app.use('/api/users', userRouter);
+app.use('/api/products', productRouter);
+app.use('/api/employees', employeeRouter);
+app.use('/api/contacts', contactRouter);
 app.use('/api/newsletter', newsletterRouter);
 
 // Catch-all to serve index.html for React Router

@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from "react";
-import productService from "../services/productService";
+import { useState, useRef } from "react";
+import productService from "../api/productService";
 import { toast } from "sonner";
 
 const AddProductForm = ({ onProductAdded }) => {

@@ -1,25 +1,28 @@
 import { useState } from "react";
 import MenuSharpIcon from "@mui/icons-material/MenuSharp";
 import CloseSharpIcon from "@mui/icons-material/CloseSharp";
+import { Link } from "@tanstack/react-router";
 
 import logo from "../assets/logo.png";
-import { ArrowUpRight, Globe } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { IoLanguageSharp } from "react-icons/io5";
 const navItems = [
   { name: "Home", path: "/" },
   { name: "About Us", path: "/about" },
   { name: "Products", path: "/products" },
   { name: "Projects", path: "/projects" },
-  { name: "Team", path: "/team" },
+  { name: "Team", path: "/teams" },
 ];
 
-const Navbar = () => {
+const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [language, setLanguage] = useState("EN");
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 bg-white shadow">
-      <div>
+    <>
+      {/* Fixed header */}
+      <header className="fixed left-0 right-0 top-0 z-50 bg-white shadow">
+        <div>
         {/* Top bar with logo and search */}
         <div className="relative mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr] md:items-center">
@@ -37,25 +40,25 @@ const Navbar = () => {
             </button>
 
             {/* Logo - centered on mobile, left on desktop */}
-            <a
-              href="/"
+            <Link
+              to="/"
               className="absolute left-1/2 mx-auto flex -translate-x-1/2 transform items-center md:static md:col-start-1 md:ml-0 md:transform-none md:justify-self-start"
             >
               <img src={logo} className="h-10 w-auto md:h-12" alt="Logo" />
-            </a>
+            </Link>
 
             {/* Navigation bar */}
             <div className="hidden items-center md:col-start-2 md:flex md:justify-self-center">
               {navItems.map((item, index) => (
-                <a
+                <Link
                   key={index}
-                  href={item.path}
+                  to={item.path}
                   className="group relative inline-block overflow-hidden rounded-full border border-transparent px-3 py-2 font-outfit text-sm font-semibold uppercase text-gray-800 transition-all duration-300 hover:border-gray-300"
                   onClick={() => setMenuOpen(false)}
                 >
                   <span className="relative z-10">{item.name}</span>
                   <span className="absolute inset-0 z-0 rounded-full bg-black/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                </a>
+                </Link>
               ))}
             </div>
 
@@ -73,8 +76,8 @@ const Navbar = () => {
               </button>
 
               {/* Contact button */}
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className="group relative ml-2 hidden items-center gap-2 overflow-hidden rounded-full border border-gray-500 px-4 py-1.5 font-outfit transition-all duration-300 lg:flex"
               >
                 <span className="relative z-10 flex items-center gap-2 text-sm font-semibold text-gray-800">
@@ -85,7 +88,7 @@ const Navbar = () => {
                   />
                 </span>
                 <span className="absolute inset-0 rounded-full bg-black/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -96,18 +99,22 @@ const Navbar = () => {
         className={`md:hidden ${menuOpen ? "block" : "hidden"} space-y-4 border-t bg-white py-4`}
       >
         {navItems.map((item, index) => (
-          <a
+          <Link
             key={index}
-            href={item.path}
+            to={item.path}
             className="block px-6 py-2 font-outfit text-sm font-semibold uppercase text-gray-800 hover:bg-gray-100"
             onClick={() => setMenuOpen(false)} // Close menu on click
           >
             {item.name}
-          </a>
+          </Link>
         ))}
       </div>
     </header>
+
+    {/* Spacer element to push content below the fixed header */}
+    <div className="h-16"></div>
+  </>
   );
 };
 
-export default Navbar;
+export default Header;

@@ -2,7 +2,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoInstagram } from "react-icons/io";
 import { IoLogoYoutube } from "react-icons/io";
-import { Link } from "react-router";
+import { Link } from "@tanstack/react-router";
 import { MapPin, Mail, Phone } from "lucide-react";
 
 const Footer = () => {
@@ -80,7 +80,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/team"
+                  to="/teams"
                   className="text-on-dark/80 transition-colors hover:text-on-dark"
                 >
                   Our Team

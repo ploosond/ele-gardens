@@ -1,6 +1,6 @@
 const projects = [
   {
-    id: 1,
+    _id: 1,
     client: "OKAPA",
     title: "An Everyday Object, Designed to the Extreme",
     category: "Product Design",
@@ -18,7 +18,7 @@ const projects = [
       "Reduced manufacturing cost by 18% and improved user satisfaction scores in testing; product launched to positive press.",
   },
   {
-    id: 2,
+    _id: 2,
     client: "Master Kong",
     title: "An Innovation Journey in Bottled, Sugar-Free Tea",
     category: "Brand & Packaging",
@@ -37,7 +37,7 @@ const projects = [
       "Line performed 22% above forecast in Q1 after launch and increased awareness among target demos.",
   },
   {
-    id: 3,
+    _id: 3,
     client: "Cornell Lab of Ornithology",
     title: "Using brand to bend the curve on biodiversity loss",
     category: "Campaign",

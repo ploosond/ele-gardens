@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import employeeService from "../services/employeeService";
+import employeeService from "../api/employeeService";
 
 const AddEmployeeForm = ({ onEmployeeAdded }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -257,10 +257,10 @@ const AddEmployeeForm = ({ onEmployeeAdded }) => {
       <button
         type="submit"
         disabled={isLoading}
-        className={`w-26 text-on-dark flex rounded px-4 py-2 ${
+        className={`w-26 flex rounded px-4 py-2 text-on-dark ${
           isLoading
             ? "cursor-not-allowed bg-gray-400"
-            : "hover:bg-primary-dark bg-primary"
+            : "bg-primary hover:bg-primary-dark"
         }`}
       >
         {isLoading ? "Adding..." : "Add Employee"}

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import newsletterService from "../services/newsletterService";
+import { useState } from "react";
+import newsletterService from "../api/newsletterService";
 
 const NewsletterSignup = ({ className = "" }) => {
   const [email, setEmail] = useState("");
@@ -47,7 +47,7 @@ const NewsletterSignup = ({ className = "" }) => {
         <div className="bg-secondary px-4 py-6 sm:px-8 sm:py-6">
           <div className="mx-auto flex w-full flex-col items-center gap-4 text-center md:flex-row md:items-center md:justify-between">
             <div className="md:max-w-2xl">
-              <span className="bg-surface text-text mb-1 inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
+              <span className="mb-1 inline-flex items-center rounded-full bg-surface px-3 py-1 text-sm font-medium text-text">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="mr-2 h-4 w-4 text-primary"
@@ -65,10 +65,10 @@ const NewsletterSignup = ({ className = "" }) => {
                 Stay connected
               </span>
 
-              <h2 className="text-on-dark mt-2 text-2xl font-extrabold sm:text-3xl">
+              <h2 className="mt-2 text-2xl font-extrabold text-on-dark sm:text-3xl">
                 Sign up for our newsletter
               </h2>
-              <p className="text-on-dark mt-1 text-sm">
+              <p className="mt-1 text-sm text-on-dark">
                 Get helpful tips, updates, and exclusive offers straight to your
                 inbox. Only one email a week.
               </p>
@@ -81,7 +81,7 @@ const NewsletterSignup = ({ className = "" }) => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email..."
-                  className="bg-surface text-text placeholder:text-muted w-full min-w-[320px] rounded-full px-5 py-3 pr-28 text-sm shadow-inner"
+                  className="w-full min-w-[320px] rounded-full bg-surface px-5 py-3 pr-28 text-sm text-text shadow-inner placeholder:text-muted"
                   aria-label="Email address"
                   required
                 />
@@ -89,7 +89,7 @@ const NewsletterSignup = ({ className = "" }) => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="text-on-dark absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-primary px-5 py-2 text-sm font-semibold shadow-md disabled:opacity-60"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-on-dark shadow-md disabled:opacity-60"
                 >
                   {loading ? "Sending..." : "Subscribe"}
                 </button>
