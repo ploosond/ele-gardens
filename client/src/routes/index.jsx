@@ -11,7 +11,6 @@ import { useTranslation } from "react-i18next";
 
 import ProductCard from "../components/ProductCard";
 import MemberCard from "../components/MemberCard";
-import PartnersCarousel from "../components/PartnersCarousel";
 import { useQuery } from "@tanstack/react-query";
 import productService from "../api/productService";
 import employeeService from "../api/employeeService";
@@ -227,7 +226,13 @@ function Home() {
           {/* Product Grid */}
           <div className="grid grid-cols-2 gap-4 gap-y-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
             {products.slice(0, 6).map((product) => (
-              <Link key={product._id} to={`/products/${product.tag}`}>
+              <Link
+                key={product._id}
+                to="/products/$productId"
+                params={{
+                  productId: product._id,
+                }}
+              >
                 <ProductCard product={product} />
               </Link>
             ))}
@@ -289,7 +294,7 @@ function Home() {
       </section>
 
       {/* Partners carousel (logos) */}
-      <PartnersCarousel />
+      {/* <PartnersCarousel /> */}
 
       {/* CTA Section */}
       <section className="relative overflow-hidden py-6 md:py-8">

@@ -12,7 +12,7 @@ export default function ProductGallery({
       <div className="flex flex-col gap-4">
         {/* Main image area */}
         <div className="w-full">
-          <div className="relative w-full overflow-hidden rounded-md bg-gray-50">
+          <div className="relative w-full overflow-hidden rounded bg-gray-50">
             <div className={`w-full ${className}`}>
               {selectedImage ? (
                 <img
@@ -44,7 +44,7 @@ export default function ProductGallery({
                 key={(image.url || index) + index}
                 onClick={() => setSelectedIndex(index)}
                 aria-pressed={selectedIndex === index}
-                className={`focus:ring-primary/30 flex-shrink-0 rounded-md transition-colors focus:outline-none focus:ring-2 ${
+                className={`focus:ring-primary/30 flex-shrink-0 rounded transition-colors focus:outline-none focus:ring-2 ${
                   selectedIndex === index ? "ring-2 ring-primary" : "ring-0"
                 }`}
                 aria-label={
@@ -56,7 +56,7 @@ export default function ProductGallery({
                   alt={
                     image.altText || image.caption || `Thumbnail ${index + 1}`
                   }
-                  className="h-20 w-20 rounded-md object-cover"
+                  className="h-20 w-20 rounded object-cover"
                   loading="lazy"
                   decoding="async"
                 />

@@ -17,7 +17,7 @@
   --color-muted: #f1f5f9;
 
   /* Text tokens */
-  --color-text: #0f1724; /* normal dark text for light backgrounds */
+  --color-text: #374151; /* normal dark text for light backgrounds */
   --color-on-dark: #ffffff; /* white text (use on primary/secondary/etc) */
 }
 

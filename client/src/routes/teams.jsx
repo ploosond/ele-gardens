@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import employeeService from "../api/employeeService";
-import HeroSection from "../components/HeroSection";
+import HeroSection from "../utils/HeroSection";
 import MemberCard from "../components/MemberCard";
 import { useTranslation } from "react-i18next";
 
@@ -11,7 +11,9 @@ export const Route = createFileRoute("/teams")({
 });
 
 const Teams = () => {
-  const { t } = useTranslation("teams");
+  const { t, i18n } = useTranslation("teams");
+  const lang = i18n.language?.split("-")[0] || "de";
+
   const [activeDepartment, setActiveDepartment] = useState(null);
   const {
     data: employees,
@@ -40,20 +42,17 @@ const Teams = () => {
     );
   }
 
-  // Extract unique departments
+  // Extract unique departments as objects
+
+  console.log(employees);
+
   const departments = [
-    ...new Set(
-      employees.map((emp) =>
-        typeof emp.department === "object"
-          ? emp.department.en || emp.department.de || ""
-          : emp.department || "",
-      ),
-    ),
+    ...new Set(employees.map((emp) => emp.department[lang])),
   ];
 
   // Filter team members based on selected department
   const filteredEmployees = activeDepartment
-    ? employees.filter((emp) => emp.department === activeDepartment)
+    ? employees.filter((emp) => emp.department[lang] === activeDepartment)
     : employees;
 
   return (
@@ -80,19 +79,17 @@ const Teams = () => {
             >
               {t("all_departments")}
             </button>
-            {departments.map((department) => (
+            {departments.map((departmentName) => (
               <button
-                key={department}
+                key={departmentName}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                  activeDepartment === department
+                  activeDepartment === departmentName
                     ? "bg-primary text-on-dark"
                     : "hover:bg-surface/90 bg-surface text-primary"
                 }`}
-                onClick={() => setActiveDepartment(department)}
+                onClick={() => setActiveDepartment(departmentName)}
               >
-                {typeof department === "object"
-                  ? department.en || department.de
-                  : department}
+                {departmentName}
               </button>
             ))}
           </div>

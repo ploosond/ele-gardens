@@ -5,8 +5,12 @@ import { AuthProvider } from "./context/auth/AuthProvider";
 import { routeTree } from "./routeTree.gen";
 import { useContext } from "react";
 import { AuthContext } from "./context/auth/AuthContext";
-import './i18next'
-const router = createRouter({ routeTree, context: { auth: undefined } });
+import "./i18next";
+const router = createRouter({
+  routeTree,
+  context: { auth: undefined },
+  scrollRestoration: true,
+});
 
 function InnerApp() {
   const auth = useContext(AuthContext);

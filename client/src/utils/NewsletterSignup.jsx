@@ -1,7 +1,9 @@
 import { useState } from "react";
 import newsletterService from "../api/newsletterService";
+import { useTranslation } from "react-i18next";
 
 const NewsletterSignup = ({ className = "" }) => {
+  const { t } = useTranslation("newsletter");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState(null); // null | success | error
@@ -14,7 +16,7 @@ const NewsletterSignup = ({ className = "" }) => {
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setStatus("error");
-      setMessage("Please enter a valid email address.");
+      setMessage(t("error_invalid"));
       return;
     }
 
@@ -24,17 +26,15 @@ const NewsletterSignup = ({ className = "" }) => {
       const res = await newsletterService.subscribe(payload);
       if (res && res.message === "Already subscribed") {
         setStatus("success");
-        setMessage("You're already subscribed. Thank you!");
+        setMessage(t("success_already"));
       } else {
         setStatus("success");
-        setMessage("Thanks for subscribing!");
+        setMessage(t("success"));
         setEmail("");
       }
     } catch (err) {
       setStatus("error");
-      setMessage(
-        err?.response?.data?.error || "Subscription failed. Try again later.",
-      );
+      setMessage(err?.response?.data?.error || t("error_failed"));
     } finally {
       setLoading(false);
     }
@@ -62,16 +62,13 @@ const NewsletterSignup = ({ className = "" }) => {
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
-                Stay connected
+                {t("stay_connected")}
               </span>
 
               <h2 className="mt-2 text-2xl font-extrabold text-on-dark sm:text-3xl">
-                Sign up for our newsletter
+                {t("title")}
               </h2>
-              <p className="mt-1 text-sm text-on-dark">
-                Get helpful tips, updates, and exclusive offers straight to your
-                inbox. Only one email a week.
-              </p>
+              <p className="mt-1 text-sm text-on-dark">{t("description")}</p>
             </div>
 
             <form onSubmit={handleSubmit} className="w-full md:w-auto">
@@ -80,7 +77,7 @@ const NewsletterSignup = ({ className = "" }) => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email..."
+                  placeholder={t("placeholder")}
                   className="w-full min-w-[320px] rounded-full bg-surface px-5 py-3 pr-28 text-sm text-text shadow-inner placeholder:text-muted"
                   aria-label="Email address"
                   required
@@ -91,7 +88,7 @@ const NewsletterSignup = ({ className = "" }) => {
                   disabled={loading}
                   className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-on-dark shadow-md disabled:opacity-60"
                 >
-                  {loading ? "Sending..." : "Subscribe"}
+                  {loading ? t("button_sending") : t("button_subscribe")}
                 </button>
               </div>
             </form>

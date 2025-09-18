@@ -1,0 +1,12 @@
+{
+  "stay_connected": "Bleiben Sie in Verbindung",
+  "title": "Melden Sie sich für unseren Newsletter an",
+  "description": "Erhalten Sie hilfreiche Tipps, Neuigkeiten und exklusive Angebote direkt in Ihr Postfach. Nur eine E-Mail pro Woche.",
+  "placeholder": "Geben Sie Ihre E-Mail-Adresse ein...",
+  "button_subscribe": "Abonnieren",
+  "button_sending": "Senden...",
+  "success_already": "Sie sind bereits angemeldet. Vielen Dank!",
+  "success": "Danke für Ihre Anmeldung!",
+  "error_invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+  "error_failed": "Anmeldung fehlgeschlagen. Bitte versuchen Sie es später erneut."
+}

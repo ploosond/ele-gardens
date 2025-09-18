@@ -1,0 +1,12 @@
+{
+  "stay_connected": "Stay connected",
+  "title": "Sign up for our newsletter",
+  "description": "Get helpful tips, updates, and exclusive offers straight to your inbox. Only one email a week.",
+  "placeholder": "Enter your email...",
+  "button_subscribe": "Subscribe",
+  "button_sending": "Sending...",
+  "success_already": "You're already subscribed. Thank you!",
+  "success": "Thanks for subscribing!",
+  "error_invalid": "Please enter a valid email address.",
+  "error_failed": "Subscription failed. Try again later."
+}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import ProductCard from "../../components/ProductCard";
-import SearchInput from "../../components/SearchInput";
+import SearchInput from "../../utils/SearchInput";
 import { Link, createLazyFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import productService from "../../api/productService";
@@ -98,9 +98,9 @@ function Products() {
         </div>
       </div>
 
-      {/* Products Section */}
-      <section className="bg-white py-12">
-        <div className="w-full px-4 sm:px-6 lg:px-8">
+      {/* Products Section - unified with home page */}
+      <section className="bg-white py-8 sm:py-12">
+        <div className="mx-auto mt-0 px-4 sm:mt-0 sm:px-6">
           <div className="flex flex-col gap-6 lg:flex-row">
             {/* Products Grid */}
             <div className="w-full">

@@ -2,7 +2,7 @@ import { createLazyFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import axios from "axios";
-import HeroSection from "../components/HeroSection";
+import HeroSection from "../utils/HeroSection";
 import { useTranslation } from "react-i18next";
 
 export const Route = createLazyFileRoute("/contact")({
@@ -72,7 +72,7 @@ function Contact() {
       <section className="mx-auto max-w-7xl px-4 py-16">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
           {/* Contact Information */}
-          <div>
+          <div className="mx-auto mt-8 px-4 sm:mt-12 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-semibold">{t("contact_us")}</h2>
             <p className="mt-2 text-gray-600">{t("contact_us_desc")}</p>
 
@@ -102,7 +102,7 @@ function Contact() {
               <div className="flex items-start">
                 <Mail size={24} className="mr-4 text-primary" />
                 <div>
-                  <h3 className="font-medium">[t('email_title')]</h3>
+                  <h3 className="font-medium">{t("email_title")}</h3>
                   <p>
                     <a
                       href="mailto:info@elegardens.com"

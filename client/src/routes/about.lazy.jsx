@@ -1,6 +1,6 @@
-import HeroSection from "../components/HeroSection";
+import HeroSection from "../utils/HeroSection";
 import { assets } from "../assets/assets";
-import NewsletterSignup from "../components/NewsletterSignup";
+import NewsletterSignup from "../utils/NewsletterSignup";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 
@@ -11,7 +11,7 @@ export const Route = createLazyFileRoute("/about")({
 function About() {
   const { t } = useTranslation("about");
   return (
-    <div className="">
+    <div>
       {/* Hero Section */}
       <HeroSection
         title={t("hero_title")}

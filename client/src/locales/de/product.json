@@ -1,0 +1,15 @@
+{
+  "loading": "Lädt...",
+  "product_not_found": "Produkt nicht gefunden",
+  "product_not_found_desc": "Das gesuchte Produkt existiert nicht. Bitte überprüfen Sie die URL oder stöbern Sie in unseren Produkten.",
+  "back_to_products": "Zurück zu den Produkten",
+
+  "height": "Höhe",
+  "diameter": "Durchmesser",
+  "hardy": "Winterhart",
+  "light": "Licht",
+
+  "related_products": "Ähnliche Produkte",
+  "you_might_also_like": "Das könnte Ihnen auch gefallen",
+  "view_all_products": "Alle Produkte anzeigen"
+}

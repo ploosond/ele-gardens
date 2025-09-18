@@ -7,18 +7,20 @@ import logo from "../assets/logo.png";
 import { ArrowUpRight } from "lucide-react";
 import { IoLanguageSharp } from "react-icons/io5";
 import { useTranslation } from "react-i18next";
-const navItems = [
-  { name: "Home", path: "/" },
-  { name: "About Us", path: "/about" },
-  { name: "Products", path: "/products" },
-  { name: "Projects", path: "/projects" },
-  { name: "Team", path: "/teams" },
-];
+import i18n from "../i18next";
 
 const Header = () => {
+  const { t } = useTranslation("header");
+  const navItems = [
+    { name: t("home"), path: "/" },
+    { name: t("about"), path: "/about" },
+    { name: t("products"), path: "/products" },
+    { name: t("projects"), path: "/projects" },
+    { name: t("our_team"), path: "/teams" },
+  ];
+
   const [menuOpen, setMenuOpen] = useState(false);
-  const { i18n } = useTranslation();
-  const currentLang = i18n.language ? i18n.language.toUpperCase() : "EN";
+  const currentLang = i18n.language.toUpperCase();
   const nextLang = currentLang === "EN" ? "DE" : "EN";
 
   return (
@@ -77,7 +79,7 @@ const Header = () => {
                   }
                 >
                   <IoLanguageSharp className="text-sm" />
-                  {currentLang === "EN" ? "DEU" : "ENG"}
+                  {currentLang === "EN" ? "ENG" : "DEU"}
                 </button>
 
                 {/* Contact button */}
@@ -86,7 +88,7 @@ const Header = () => {
                   className="group relative ml-2 hidden items-center gap-2 overflow-hidden rounded-full border border-gray-500 px-4 py-1.5 font-outfit transition-all duration-300 lg:flex"
                 >
                   <span className="relative z-10 flex items-center gap-2 text-sm font-semibold text-gray-800">
-                    Contact
+                    {t("contact")}
                     <ArrowUpRight
                       width={18}
                       className="transition-transform duration-300 group-hover:translate-x-1"

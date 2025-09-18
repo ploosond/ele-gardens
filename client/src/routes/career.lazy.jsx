@@ -1,6 +1,5 @@
 import { createLazyFileRoute, Link } from "@tanstack/react-router";
-import React from "react";
-import HeroSection from "../components/HeroSection";
+import HeroSection from "../utils/HeroSection";
 import { useTranslation } from "react-i18next";
 
 export const Route = createLazyFileRoute("/career")({
