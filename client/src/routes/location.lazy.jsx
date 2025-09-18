@@ -1,5 +1,5 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
-import HeroSection from "../components/HeroSection";
+import HeroSection from "../utils/HeroSection";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 export const Route = createLazyFileRoute("/location")({
