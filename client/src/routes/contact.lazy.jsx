@@ -3,12 +3,14 @@ import { useState } from "react";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import axios from "axios";
 import HeroSection from "../components/HeroSection";
+import { useTranslation } from "react-i18next";
 
 export const Route = createLazyFileRoute("/contact")({
   component: Contact,
 });
 
 function Contact() {
+  const { t } = useTranslation("contact");
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -35,8 +37,7 @@ function Contact() {
       setFormStatus({
         submitted: true,
         error: false,
-        message:
-          response.data.message || "Your message has been sent successfully!",
+        message: response.data.message || t("form_success"),
       });
       setFormData({
         firstname: "",
@@ -48,9 +49,7 @@ function Contact() {
     } catch (error) {
       console.log(error);
 
-      const errorMessage =
-        error.response?.data?.error ||
-        "Something went wrong. Please try again.";
+      const errorMessage = error.response?.data?.error || t("form_error");
       setFormStatus({
         submitted: true,
         error: true,
@@ -64,9 +63,9 @@ function Contact() {
       {/* Hero Section */}
 
       <HeroSection
-        title="Contact"
-        highlight="Us"
-        description="Have a question or need help planning your garden? Our team at Ele Gardens is here to help — visit our center, call, or send a message and we'll respond promptly."
+        title={t("hero_title")}
+        highlight={t("hero_highlight")}
+        description={t("hero_description")}
       />
 
       {/* Contact Info & Form */}
@@ -74,29 +73,27 @@ function Contact() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
           {/* Contact Information */}
           <div>
-            <h2 className="text-3xl font-semibold">Contact Us</h2>
-            <p className="mt-2 text-gray-600">
-              Reach out to us for inquiries or assistance.
-            </p>
+            <h2 className="text-3xl font-semibold">{t("contact_us")}</h2>
+            <p className="mt-2 text-gray-600">{t("contact_us_desc")}</p>
 
             <div className="mt-6 space-y-6">
               <div className="flex items-start">
                 <MapPin size={24} className="mr-4 text-primary" />
                 <div>
-                  <h3 className="font-medium">Our Location</h3>
-                  <p>Drüller Weg 14</p>
-                  <p>47559 Kranenburg</p>
-                  <p>Germany</p>
+                  <h3 className="font-medium">{t("location_title")}</h3>
+                  <p>{t("location_address1")}</p>
+                  <p>{t("location_address2")}</p>
+                  <p>{t("location_address3")}</p>
                 </div>
               </div>
 
               <div className="flex items-start">
                 <Phone size={24} className="mr-4 text-primary" />
                 <div>
-                  <h3 className="font-medium">Phone</h3>
+                  <h3 className="font-medium">{t("phone_title")}</h3>
                   <p>
                     <a href="tel:+49282691500" className="hover:text-primary">
-                      +49 2826 91500
+                      {t("phone_number")}
                     </a>
                   </p>
                 </div>
@@ -105,13 +102,13 @@ function Contact() {
               <div className="flex items-start">
                 <Mail size={24} className="mr-4 text-primary" />
                 <div>
-                  <h3 className="font-medium">Email</h3>
+                  <h3 className="font-medium">[t('email_title')]</h3>
                   <p>
                     <a
                       href="mailto:info@elegardens.com"
                       className="hover:text-primary"
                     >
-                      info@elegardens.com
+                      {t("email_address")}
                     </a>
                   </p>
                 </div>
@@ -120,8 +117,8 @@ function Contact() {
               <div className="flex items-start">
                 <Clock size={24} className="mr-4 text-primary" />
                 <div>
-                  <h3 className="font-medium">Hours</h3>
-                  <p>Mon-Fri: 9 AM - 4 PM | Sat: Closed | Sun: Closed</p>
+                  <h3 className="font-medium">{t("hours_title")}</h3>
+                  <p>{t("hours_value")}</p>
                 </div>
               </div>
             </div>
@@ -129,7 +126,9 @@ function Contact() {
 
           {/* Contact Form */}
           <div className="rounded-lg border border-muted bg-white p-8 shadow-sm">
-            <h2 className="mb-6 text-2xl font-medium">Send Us a Message</h2>
+            <h2 className="mb-6 text-2xl font-medium">
+              {t("send_message_title")}
+            </h2>
 
             {formStatus.submitted && (
               <div
@@ -143,7 +142,7 @@ function Contact() {
               <div className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
                   <label className="mb-1 block text-sm font-medium">
-                    First Name *
+                    {t("form_firstname")}
                   </label>
                   <input
                     type="text"
@@ -157,7 +156,7 @@ function Contact() {
 
                 <div>
                   <label className="mb-1 block text-sm font-medium">
-                    Last Name *
+                    {t("form_lastname")}
                   </label>
                   <input
                     type="text"
@@ -171,7 +170,7 @@ function Contact() {
 
                 <div>
                   <label className="mb-1 block text-sm font-medium">
-                    Email *
+                    {t("form_email")}
                   </label>
                   <input
                     type="email"
@@ -186,7 +185,7 @@ function Contact() {
                 <div className="">
                   <div>
                     <label className="mb-1 block text-sm font-medium">
-                      Phone Number
+                      {t("form_phone")}
                     </label>
                     <input
                       type="tel"
@@ -201,7 +200,7 @@ function Contact() {
 
               <div className="mb-6">
                 <label className="mb-1 block text-sm font-medium">
-                  Your Message *
+                  {t("form_message")}
                 </label>
                 <textarea
                   name="message"
@@ -217,7 +216,7 @@ function Contact() {
                 type="submit"
                 className="flex w-full items-center justify-center rounded-md bg-primary py-3 text-on-dark hover:bg-primary-dark"
               >
-                Send Message
+                {t("form_submit")}
               </button>
             </form>
           </div>

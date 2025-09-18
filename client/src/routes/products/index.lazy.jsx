@@ -4,12 +4,14 @@ import SearchInput from "../../components/SearchInput";
 import { Link, createLazyFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import productService from "../../api/productService";
+import { useTranslation } from "react-i18next";
 
 export const Route = createLazyFileRoute("/products/")({
   component: Products,
 });
 
 function Products() {
+  const { t } = useTranslation("products");
   const {
     isLoading,
     isError,
@@ -75,11 +77,11 @@ function Products() {
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl space-y-6 text-center">
             <h2 className="text-4xl font-bold md:text-5xl">
-              Our Product <span className="text-green-300">Collection</span>
+              {t("hero_title")}{" "}
+              <span className="text-green-300">{t("hero_highlight")}</span>
             </h2>
             <p className="text-lg leading-relaxed text-white/80">
-              Discover our wide range of plants, carefully curated to bring
-              beauty and sustainability to your space.
+              {t("hero_description")}
             </p>
           </div>
         </div>
@@ -91,7 +93,7 @@ function Products() {
           <SearchInput
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search products..."
+            placeholder={t("search_placeholder")}
           />
         </div>
       </div>
@@ -105,16 +107,14 @@ function Products() {
               {filteredProducts.length === 0 ? (
                 <div className="rounded-lg bg-gray-100 py-12 text-center">
                   <h3 className="mb-2 text-xl font-medium">
-                    No products found
+                    {t("no_products_title")}
                   </h3>
-                  <p className="mb-4 text-gray-600">
-                    Try adjusting your filters or search term.
-                  </p>
+                  <p className="mb-4 text-gray-600">{t("no_products_desc")}</p>
                   <button
                     onClick={() => setSearchTerm("")}
                     className="rounded-md bg-primary px-4 py-2 text-on-dark hover:bg-primary-dark"
                   >
-                    Clear Filters
+                    {t("clear_filters")}
                   </button>
                 </div>
               ) : (

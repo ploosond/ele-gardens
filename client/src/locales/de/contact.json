@@ -1,0 +1,34 @@
+{
+  "hero_title": "Kontakt",
+  "hero_highlight": "Aufnehmen",
+  "hero_description": "Haben Sie eine Frage oder benötigen Sie Hilfe bei der Gartenplanung? Unser Team von Ele Gardens ist für Sie da – besuchen Sie unser Zentrum, rufen Sie an oder senden Sie eine Nachricht. Wir antworten umgehend.",
+
+  "contact_us": "Kontaktieren Sie uns",
+  "contact_us_desc": "Kontaktieren Sie uns für Anfragen oder Unterstützung.",
+
+  "location_title": "Unsere Adresse",
+  "location_address1": "Drüller Weg 14",
+  "location_address2": "47559 Kranenburg",
+  "location_address3": "Deutschland",
+
+  "phone_title": "Telefon",
+  "phone_number": "+49 2826 91500",
+
+  "email_title": "E-Mail",
+  "email_address": "info@elegardens.com",
+
+  "hours_title": "Öffnungszeiten",
+  "hours_value": "Mo-Fr: 9–16 Uhr | Sa: Geschlossen | So: Geschlossen",
+
+  "send_message_title": "Nachricht senden",
+
+  "form_firstname": "Vorname *",
+  "form_lastname": "Nachname *",
+  "form_email": "E-Mail *",
+  "form_phone": "Telefonnummer",
+  "form_message": "Ihre Nachricht *",
+  "form_submit": "Nachricht senden",
+
+  "form_success": "Ihre Nachricht wurde erfolgreich gesendet!",
+  "form_error": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
+}

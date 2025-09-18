@@ -2,20 +2,22 @@ import { createLazyFileRoute, Link } from "@tanstack/react-router";
 import HeroSection from "../../components/HeroSection";
 import ProjectCard from "../../components/ProjectCard";
 import projectsData from "../../data/projects";
+import { useTranslation } from "react-i18next";
 
 export const Route = createLazyFileRoute("/projects/")({
   component: Projects,
 });
 
 function Projects() {
+  const { t } = useTranslation("projects");
   const projects = projectsData;
 
   return (
     <div>
       <HeroSection
-        title="Our Work"
-        highlight="Projects"
-        description="Browse recent landscape and garden projects — from private patios to commercial landscapes — showcasing our design, planting, and long-term care approach."
+        title={t("hero_title")}
+        highlight={t("hero_highlight")}
+        description={t("hero_description")}
       />
 
       <div className="py-12">

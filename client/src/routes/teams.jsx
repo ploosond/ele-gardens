@@ -4,12 +4,14 @@ import { useQuery } from "@tanstack/react-query";
 import employeeService from "../api/employeeService";
 import HeroSection from "../components/HeroSection";
 import MemberCard from "../components/MemberCard";
+import { useTranslation } from "react-i18next";
 
 export const Route = createFileRoute("/teams")({
   component: Teams,
 });
 
 const Teams = () => {
+  const { t } = useTranslation("teams");
   const [activeDepartment, setActiveDepartment] = useState(null);
   const {
     data: employees,
@@ -58,9 +60,9 @@ const Teams = () => {
     <div>
       {/* Hero Section */}
       <HeroSection
-        title="Meet Our"
-        highlight="Team"
-        description="Meet the passionate team at Ele Gardens — horticulturists, designers, and plant-care specialists who combine practical expertise with sustainable practices to bring your outdoor spaces to life."
+        title={t("hero_title")}
+        highlight={t("hero_highlight")}
+        description={t("hero_description")}
       />
 
       {/* Team Members Section */}
@@ -76,7 +78,7 @@ const Teams = () => {
               }`}
               onClick={() => setActiveDepartment(null)}
             >
-              All Departments
+              {t("all_departments")}
             </button>
             {departments.map((department) => (
               <button
@@ -107,17 +109,16 @@ const Teams = () => {
       {/* Contact Section */}
       <section className="bg-primary/10 py-12 text-center">
         <div className="mx-auto max-w-5xl px-4">
-          <h2 className="text-2xl font-medium">Get in Touch</h2>
+          <h2 className="text-2xl font-medium">{t("get_in_touch_title")}</h2>
           <p className="mx-auto mt-2 max-w-2xl text-gray-600">
-            Have questions about our services? Contact our team directly or
-            visit our contact page.
+            {t("get_in_touch_desc")}
           </p>
           <div className="mt-6">
             <Link
               to="/contact"
               className="rounded-full bg-primary px-6 py-3 text-on-dark transition hover:bg-primary-dark"
             >
-              Contact Us
+              {t("contact_us")}
             </Link>
           </div>
         </div>

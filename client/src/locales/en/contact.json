@@ -1,0 +1,34 @@
+{
+  "hero_title": "Contact",
+  "hero_highlight": "Us",
+  "hero_description": "Have a question or need help planning your garden? Our team at Ele Gardens is here to help — visit our center, call, or send a message and we'll respond promptly.",
+
+  "contact_us": "Contact Us",
+  "contact_us_desc": "Reach out to us for inquiries or assistance.",
+
+  "location_title": "Our Location",
+  "location_address1": "Drüller Weg 14",
+  "location_address2": "47559 Kranenburg",
+  "location_address3": "Germany",
+
+  "phone_title": "Phone",
+  "phone_number": "+49 2826 91500",
+
+  "email_title": "Email",
+  "email_address": "info@elegardens.com",
+
+  "hours_title": "Hours",
+  "hours_value": "Mon-Fri: 9 AM - 4 PM | Sat: Closed | Sun: Closed",
+
+  "send_message_title": "Send Us a Message",
+
+  "form_firstname": "First Name *",
+  "form_lastname": "Last Name *",
+  "form_email": "Email *",
+  "form_phone": "Phone Number",
+  "form_message": "Your Message *",
+  "form_submit": "Send Message",
+
+  "form_success": "Your message has been sent successfully!",
+  "form_error": "Something went wrong. Please try again."
+}

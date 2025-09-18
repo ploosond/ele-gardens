@@ -2,34 +2,32 @@ import HeroSection from "../components/HeroSection";
 import { assets } from "../assets/assets";
 import NewsletterSignup from "../components/NewsletterSignup";
 import { createLazyFileRoute } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 
 export const Route = createLazyFileRoute("/about")({
   component: About,
 });
 
 function About() {
+  const { t } = useTranslation("about");
   return (
     <div className="">
       {/* Hero Section */}
       <HeroSection
-        title="Born from"
-        highlight="Passion"
-        description="Cultivating BIO‑certified perennials that bring beauty, resilience, and biodiversity to gardens and retail."
+        title={t("hero_title")}
+        highlight={t("hero_highlight")}
+        description={t("hero_description")}
       />
 
       {/* Our Roots & Philosophy Section (updated layout: centered intro + CTA) */}
       <section className="py-8 sm:py-10 md:py-12">
         <div className="mx-auto max-w-5xl px-4 text-center sm:px-6">
           <p className="mb-8 text-base text-gray-700 sm:text-lg md:text-xl">
-            Rooted in generations of horticultural expertise, Elegardens®
-            blends traditional knowledge with sustainable innovation. We
-            cultivate resilient, BIO-certified perennials designed to support
-            biodiversity, delight customers, and perform reliably in the garden
-            and at retail.
+            {t("roots_intro")}
           </p>
 
           <p className="text-end text-xs italic text-gray-500 sm:text-sm">
-            — The Elegardens Team
+            {t("roots_signature")}
           </p>
         </div>
       </section>
@@ -39,7 +37,7 @@ function About() {
         <div className="mx-auto max-w-6xl px-0 sm:px-4">
           <div className="mx-auto mb-10 max-w-3xl text-center">
             <h2 className="text-3xl font-extrabold text-primary sm:text-4xl md:text-5xl">
-              Milestones Along the Way
+              {t("milestones_title")}
             </h2>
           </div>
           {/* Milestone 1 */}
@@ -51,31 +49,20 @@ function About() {
             />
             <div className="flex flex-col justify-center px-4 py-4 sm:px-8 sm:py-6 md:px-0">
               <h2 className="mb-4 text-xl font-extrabold text-secondary sm:mb-6 sm:text-2xl">
-                A Legacy of Horticultural Excellence
+                {t("milestone1_title")}
               </h2>
               <p className="mb-2 text-justify text-sm text-gray-700 sm:mb-4 sm:text-base">
                 <span className="font-bold text-text">
-                  A Family Tradition of Horticultural Excellence Since 1953
+                  {t("milestone1_sub1")}
                 </span>{" "}
-                Elegardens® is the Bio Collection brand of Stauden Peters GbR,
-                a family-owned company with over seven decades of horticultural
-                tradition. Founded in 1953 in Kranenburg, Germany, Stauden
-                Peters has grown from a small flower nursery into one of
-                Europe’s leading producers of perennials, ornamental grasses,
-                and peonies.
+                {t("milestone1_desc1")}
               </p>
 
               <p className="text-justify text-sm text-gray-700 sm:text-base">
                 <span className="font-bold text-text">
-                  Delivering Premium Plants Across Europe
+                  {t("milestone1_sub2")}
                 </span>{" "}
-                Through its brands—Elegrass, Elerose, and Elegardens—the company
-                delivers innovative, high-quality plant solutions to garden
-                centers, nurseries, and wholesalers across Europe. With
-                cultivation sites in both Germany and Portugal, Stauden Peters
-                combines expertise with modern production methods and reliable
-                logistics to ensure consistent availability and premium quality
-                throughout the season.
+                {t("milestone1_desc2")}
               </p>
             </div>
           </div>
@@ -88,31 +75,20 @@ function About() {
             />
             <div className="order-2 flex flex-col justify-center px-4 py-4 sm:px-8 sm:py-6 md:order-1 md:px-0">
               <h2 className="mb-4 text-xl font-extrabold text-secondary sm:mb-6 sm:text-2xl">
-                Growth, Innovation, and Sustainability
+                {t("milestone2_title")}
               </h2>
               <p className="mb-2 text-justify text-sm text-gray-700 sm:mb-4 sm:text-base">
                 <span className="font-bold text-text">
-                  Cultivating Across Germany and Portugal
+                  {t("milestone2_sub1")}
                 </span>{" "}
-                In Portugal, the company operates on 25 hectares, including 22
-                hectares of open-field cultivation and 3 hectares under
-                protective cover. In Germany, production spans three sites
-                totaling 27 hectares, with 20 hectares of open fields and 7
-                hectares equipped with advanced greenhouses.
+                {t("milestone2_desc1")}
               </p>
 
               <p className="text-justify text-sm text-gray-700 sm:text-base">
                 <span className="font-bold text-text">
-                  Innovation Meets Horticultural Heritage
+                  {t("milestone2_sub2")}
                 </span>{" "}
-                A major milestone occurred in 2020 with the integration of the
-                Reichswalde branch, formerly Nursery Stefan Wolf, into the
-                family business. This 7-hectare site—featuring 3 hectares of
-                state-of-the-art greenhouses and 4 hectares of open
-                fields—blends horticultural heritage with innovation. It was
-                here in 2024 that the Elegardens® BIO collection was launched,
-                reflecting the company’s dedication to sustainable and
-                forward-looking horticulture.
+                {t("milestone2_desc2")}
               </p>
             </div>
           </div>
@@ -125,30 +101,20 @@ function About() {
             />
             <div className="flex flex-col justify-center px-4 py-4 sm:px-8 sm:py-6 md:px-0">
               <h2 className="mb-4 text-xl font-extrabold text-secondary sm:mb-6 sm:text-2xl">
-                The Elegardens® BIO Collection
+                {t("milestone3_title")}
               </h2>
               <p className="mb-2 text-justify text-sm text-gray-700 sm:mb-4 sm:text-base">
                 <span className="font-bold text-text">
-                  Certified Organic and Eco-Friendly
+                  {t("milestone3_sub1")}
                 </span>{" "}
-                The Elegardens® BIO collection represents the next chapter in
-                Stauden Peters’ journey, combining certified organic cultivation
-                with a strong commitment to aesthetics and environmental care.
-                Built on the principles of biodiversity, resilience, and
-                sustainability, the collection features EU BIO-certified plants
-                that grow naturally without the use of synthetic chemicals.
+                {t("milestone3_desc1")}
               </p>
 
               <p className="text-justify text-sm text-gray-700 sm:text-base">
                 <span className="font-bold text-text">
-                  Strengthening Your Assortment, Greening the Planet
+                  {t("milestone3_sub2")}
                 </span>{" "}
-                By partnering with Stauden Peters, customers can enhance their
-                assortment with premium perennials that not only offer visual
-                appeal but also convey a meaningful ecological message. This
-                collaboration strengthens market position, meets evolving
-                customer expectations, and contributes to a greener, healthier
-                planet for future generations.
+                {t("milestone3_desc2")}
               </p>
             </div>
           </div>
@@ -163,30 +129,23 @@ function About() {
             <div className="order-1 flex items-center px-2 sm:px-4 md:order-none md:min-h-[20rem] md:px-0 lg:min-h-[24rem]">
               <div className="w-full px-4 py-4 sm:px-8 sm:py-6 md:px-0">
                 <h2 className="mb-4 text-3xl font-extrabold text-secondary">
-                  Our Story
+                  {t("our_story_title")}
                 </h2>
                 <p className="mb-4 text-justify text-base text-gray-700">
-                  <span className="font-bold text-text">Our Mission</span> — Our
-                  mission is to cultivate BIO-certified perennials that enrich
-                  people and the planet. We focus on resilient plants that
-                  support biodiversity and strengthen ecosystems, with
-                  sustainability at the heart of our approach.
+                  <span className="font-bold text-text">
+                    {t("our_mission")}
+                  </span>{" "}
+                  {t("our_mission_desc")}
                 </p>
 
                 <p className="mb-4 text-justify text-base text-gray-700">
-                  <span className="font-bold text-text">Our Vision</span> — Our
-                  vision is to set new standards in sustainable horticulture by
-                  gradually transitioning toward 100% BIO-certified cultivation,
-                  creating plants that combine elegance with ecological value.
+                  <span className="font-bold text-text">{t("our_vision")}</span>{" "}
+                  {t("our_vision_desc")}
                 </p>
 
                 <p className="text-justify text-base text-gray-700">
-                  <span className="font-bold">Our Values</span> — Sustainability
-                  guides everything we do. We prioritize partnerships with
-                  retailers, ensuring our collections are attractive,
-                  eco-friendly, and market-ready. We blend decades of
-                  horticultural expertise with innovation to produce
-                  high-quality, climate-resilient plants.
+                  <span className="font-bold">{t("our_values")}</span> —
+                  {t("our_values_desc")}
                 </p>
               </div>
             </div>
@@ -200,11 +159,8 @@ function About() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-black/10"></div>
               <div className="absolute bottom-6 left-6 w-[calc(100%-3rem)] text-white md:w-auto">
-                <h3 className="text-lg font-bold">Meet the Founding CEO</h3>
-                <p className="mt-1 text-sm">
-                  Leader in sustainable horticulture, guiding Elegardens' BIO
-                  transition.
-                </p>
+                <h3 className="text-lg font-bold">{t("ceo_title")}</h3>
+                <p className="mt-1 text-sm">{t("ceo_desc")}</p>
               </div>
             </div>
           </div>

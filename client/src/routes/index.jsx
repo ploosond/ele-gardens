@@ -7,6 +7,7 @@ import {
   TreeDeciduous,
   TrendingUp,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import ProductCard from "../components/ProductCard";
 import MemberCard from "../components/MemberCard";
@@ -20,6 +21,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const { t } = useTranslation("home");
   const {
     isPending: isPendingProducts,
     isError: isErrorProducts,
@@ -113,12 +115,11 @@ function Home() {
         <div className="relative z-10 flex h-full items-center">
           <div className="mx-auto w-full px-4 text-center sm:px-6 lg:px-8">
             <h1 className="mb-4 text-3xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl">
-              Transform Your Space with{" "}
-              <span className="text-accent">Nature's Beauty</span>
+              {t("welcome1")}
+              <span className="text-accent">{t("welcome2")}</span>
             </h1>
             <p className="mx-auto mb-6 max-w-lg text-base text-white/80 sm:text-lg">
-              Discover the perfect plants and designs to create your dream
-              garden.
+              {t("welcome3")}
             </p>
 
             {/* CTA Buttons: stacked on mobile, inline on larger screens */}
@@ -127,14 +128,14 @@ function Home() {
                 to="/products"
                 className="inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-text shadow transition-colors duration-150 hover:bg-surface sm:w-auto"
               >
-                Explore Products
+                {t("explore_products")}
               </Link>
 
               <Link
                 to="/contact"
                 className="inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-on-dark shadow transition-colors duration-150 hover:bg-primary-dark sm:w-auto"
               >
-                Contact Our Team
+                {t("contact_our_team")}
               </Link>
             </div>
           </div>
@@ -152,11 +153,10 @@ function Home() {
                 className="mb-2 h-8 w-8 text-primary"
               />
               <div className="mt-2 text-xl font-extrabold text-secondary">
-                Certified EU BIO Quality
+                {t("feature1_title")}
               </div>
               <div className="mt-1 text-base text-text">
-                Independent certification guarantees compliance with the
-                strictest European organic standards
+                {t("feature1_desc")}
               </div>
             </div>
 
@@ -167,11 +167,10 @@ function Home() {
                 className="mb-2 h-8 w-8 text-primary"
               />
               <div className="mt-2 text-xl font-extrabold text-secondary">
-                Biodiversity-Enhancing
+                {t("feature2_title")}
               </div>
               <div className="mt-1 text-base text-text">
-                Every plant is a pollinator-friendly asset, enriching gardens
-                and supporting environmental balance
+                {t("feature2_desc")}
               </div>
             </div>
 
@@ -179,11 +178,10 @@ function Home() {
             <div className="flex flex-col items-center text-center">
               <Package strokeWidth={1} className="mb-2 h-8 w-8 text-primary" />
               <div className="mt-2 text-xl font-extrabold text-secondary">
-                Retail-Ready Design
+                {t("feature3_title")}
               </div>
               <div className="mt-1 text-base text-text">
-                Modern, eco-conscious branding enhances shelf appeal and
-                strengthens consumer trust
+                {t("feature3_desc")}
               </div>
             </div>
 
@@ -194,10 +192,10 @@ function Home() {
                 className="mb-2 h-8 w-8 text-primary"
               />
               <div className="mt-2 text-xl font-extrabold text-secondary">
-                Long-Term Value
+                {t("feature4_title")}
               </div>
               <div className="mt-1 text-base text-text">
-                Premium quality and ecological responsibility without compromise
+                {t("feature4_desc")}
               </div>
             </div>
           </div>
@@ -211,17 +209,18 @@ function Home() {
           <div className="mb-8 flex items-end justify-between">
             <div>
               <h2 className="text-3xl font-bold text-primary md:text-4xl">
-                Featured Products
+                {t("featured_products")}
               </h2>
               <p className="mt-2 text-lg text-text">
-                Discover our selection of premium plants
+                {t("discover_premium_plants")}
               </p>
             </div>
             <Link
               to="/products"
               className="hidden items-center text-primary transition-colors hover:text-primary-dark md:flex"
             >
-              View all products <ArrowRight size={16} className="ml-2" />
+              {t("view_all_products")}
+              <ArrowRight size={16} className="ml-2" />
             </Link>
           </div>
 
@@ -240,7 +239,8 @@ function Home() {
               to="/products"
               className="inline-flex items-center text-primary transition-colors hover:text-primary-dark"
             >
-              View all products <ArrowRight size={16} className="ml-2" />
+              {t("view_all_products")}
+              <ArrowRight size={16} className="ml-2" />
             </Link>
           </div>
         </div>
@@ -253,17 +253,18 @@ function Home() {
           <div className="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end sm:gap-0">
             <div>
               <h2 className="text-2xl font-bold text-primary sm:text-3xl md:text-4xl">
-                Meet Our Team
+                {t("meet_our_team")}
               </h2>
               <p className="mt-2 text-base text-text sm:text-lg">
-                The experts behind our beautiful gardens
+                {t("team_experts")}
               </p>
             </div>
             <Link
               to="/teams"
               className="hidden items-center text-primary transition-colors hover:text-primary-dark md:flex"
             >
-              View full team <ArrowRight size={16} className="ml-2" />
+              {t("view_full_team")}
+              <ArrowRight size={16} className="ml-2" />
             </Link>
           </div>
 
@@ -280,7 +281,8 @@ function Home() {
               to="/teams"
               className="inline-flex items-center text-primary transition-colors hover:text-primary-dark"
             >
-              View full team <ArrowRight size={16} className="ml-2" />
+              {t("view_full_team")}
+              <ArrowRight size={16} className="ml-2" />
             </Link>
           </div>
         </div>
@@ -294,18 +296,17 @@ function Home() {
         {/* Content */}
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-6 text-3xl font-bold md:text-4xl">
-            Ready to Transform Your Space?
+            {t("ready_transform")}
           </h2>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-text">
-            Whether you're designing a new garden, renovating an existing space,
-            or simply adding a few plants to your home, we're here to help.
+            {t("cta_desc")}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               to="/contact"
               className="flex items-center justify-center rounded-md border border-transparent bg-primary px-6 py-3 font-medium text-on-dark transition hover:border-white hover:bg-primary-dark"
             >
-              Contact Our Team
+              {t("contact_our_team")}
             </Link>
           </div>
         </div>
