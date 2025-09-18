@@ -23,6 +23,8 @@ lib-cov
 coverage
 *.lcov
 
+/node_modules
+
 # nyc test coverage
 .nyc_output
 
@@ -134,5 +136,6 @@ out
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
 
 
