@@ -20,8 +20,7 @@ const Header = () => {
   ];
 
   const [menuOpen, setMenuOpen] = useState(false);
-  const currentLang = i18n.language.toUpperCase();
-  const nextLang = currentLang === "EN" ? "DE" : "EN";
+  const lang = i18n.language?.split("-")[0] || "de";
 
   return (
     <>
@@ -70,16 +69,16 @@ const Header = () => {
               <div className="mr-4 flex items-center space-x-4 md:col-start-3 md:mr-0 md:justify-self-end">
                 {/* Language toggle button */}
                 <button
-                  onClick={() => i18n.changeLanguage(nextLang.toLowerCase())}
+                  onClick={() =>
+                    i18n.changeLanguage(lang === "de" ? "en" : "de")
+                  }
                   className="group flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1.5 font-outfit text-xs font-semibold text-gray-800 transition hover:bg-gray-200"
                   title={
-                    currentLang === "EN"
-                      ? "Switch to German"
-                      : "Switch to English"
+                    lang === "de" ? "Switch to English" : "Switch to German"
                   }
                 >
                   <IoLanguageSharp className="text-sm" />
-                  {currentLang === "EN" ? "ENG" : "DEU"}
+                  {lang === "de" ? "ENG" : "DEU"}
                 </button>
 
                 {/* Contact button */}
