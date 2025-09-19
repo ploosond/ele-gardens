@@ -1,10 +1,9 @@
 import {
   createLazyFileRoute,
   useNavigate,
-  useRouter,
   useSearch,
 } from "@tanstack/react-router";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import userService from "../api/userService";
 import { AuthContext } from "../context/auth/AuthContext";
 import { toast } from "sonner";
@@ -18,10 +17,17 @@ function Login() {
     username: "",
     password: "",
   });
-  const { login } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const search = useSearch({ strict: false });
-  const router = useRouter();
+  const { userData, login, loading } = useContext(AuthContext);
+
+  // Redirect to /admin if already authenticated
+  useEffect(() => {
+    if (!loading && userData) {
+      navigate({ to: "/admin" });
+    }
+  }, [loading, userData, navigate]);
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -32,13 +38,14 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const user = await userService.login(formData);
       login(user);
       setFormData({ username: "", password: "" });
 
       if (search?.redirect) {
-        router.history.push(search.redirect);
+        navigate({ to: search.redirect });
       } else {
         navigate({ to: "/admin" });
       }
@@ -50,6 +57,8 @@ function Login() {
         message = error.message;
       }
       toast.error(message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -91,9 +100,10 @@ function Login() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full rounded-md bg-primary px-4 py-2 text-on-dark hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            className="w-full rounded-md bg-primary px-4 py-2 text-on-dark hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+            disabled={isLoading}
           >
-            Login
+            {isLoading ? "Logging in..." : "Login"}
           </button>
         </form>
       </div>
