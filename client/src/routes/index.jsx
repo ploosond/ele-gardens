@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
 import {
   ArrowRight,
   Package,
@@ -43,11 +42,8 @@ function Home() {
     staleTime: 30000,
   });
 
-  // Local hero video (place your MP4 at public/videos/intro.mp4)
-  const localHero = "/videos/intro.mp4";
-  // If you can't commit the local file, fallback to a hosted MP4 URL
-  const [useFallback, setUseFallback] = useState(false);
-  const fallbackHero = "https://www.w3schools.com/html/mov_bbb.mp4"; // change to your hosted URL if desired
+  const localHero =
+    "https://res.cloudinary.com/dl2zglwft/video/upload/v1758299668/intro_1_aaczyc.mp4";
 
   if (isPendingProducts) {
     return (
@@ -87,26 +83,14 @@ function Home() {
       <section className="relative h-[50vh] w-full overflow-hidden md:h-[calc(100vh-4rem)]">
         {/* Video background (native file for clean cover) */}
         <div className="absolute inset-0 -z-10">
-          {!useFallback ? (
-            <video
-              className="h-full w-full object-cover"
-              src={localHero}
-              autoPlay
-              muted
-              loop
-              playsInline
-              onError={() => setUseFallback(true)}
-            />
-          ) : (
-            <video
-              className="h-full w-full object-cover"
-              src={fallbackHero}
-              autoPlay
-              muted
-              loop
-              playsInline
-            />
-          )}
+          <video
+            className="h-full w-full object-cover"
+            src={localHero}
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
           <div className="absolute inset-0 bg-black/40" />
         </div>
 
