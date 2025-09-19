@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:3001/api/employees";
+const baseUrl = "https://ele-gardens-r6f2.onrender.com/api/employees";
 
 let token = null;
 

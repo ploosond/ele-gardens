@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:3001/api/newsletter";
+const baseUrl = "https://ele-gardens-r6f2.onrender.com/api/newsletter";
 
 const subscribe = async (payload) => {
   const response = await axios.post(baseUrl, payload);

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:3001/api/users/login";
+const baseUrl = "https://ele-gardens-r6f2.onrender.com/api/users/login";
 
 const login = async (credentials) => {
   const response = await axios.post(baseUrl, credentials);
