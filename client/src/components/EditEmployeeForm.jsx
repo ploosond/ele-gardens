@@ -101,11 +101,6 @@ const EditEmployeeForm = ({ employee, onUpdate, onCancel }) => {
         }
       }
 
-      console.log("FormData before submission:");
-      for (let [key, value] of formDataToSend.entries()) {
-        console.log(`${key}:`, value);
-      }
-
       const updatedEmployee = await employeeService.updateEmployee(
         employee._id,
         formDataToSend,

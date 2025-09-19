@@ -45,8 +45,6 @@ function EmployeesAdmin() {
     }
 
     try {
-      // `EditEmployeeForm` already performs the API call and returns the updated employee.
-      // Avoid calling the API again here to prevent double PUT requests.
       setMembers((prevMembers) =>
         prevMembers.map((emp) =>
           emp._id === updatedEmployee._id ? updatedEmployee : emp,
